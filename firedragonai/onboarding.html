@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Welcome Aboard — Onboarding | Fire Dragon AI</title>
+<meta name="description" content="Upload your logo, photos, and business info so we can build your Fire Dragon AI system. You'll get a Client ID and email confirmation instantly." />
+<meta name="robots" content="noindex" />
+<meta name="theme-color" content="#0a0606" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/brand.css" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="assets/tw-config.js"></script>
+<style>
+  .dropzone{ border:2px dashed rgba(255,180,120,0.3); transition:all .18s ease; }
+  .dropzone.drag{ border-color:#FB7227; background:rgba(251,114,39,0.08); }
+</style>
+</head>
+<body class="font-body text-orange-50/90 selection:bg-ember-orange/40">
+
+<canvas id="flame-canvas" aria-hidden="true"></canvas>
+<div class="glow-blob" style="top:-6rem;left:-6rem;width:32rem;height:32rem;background:#E11D2A;"></div>
+<div class="glow-blob" style="bottom:-8rem;right:-6rem;width:32rem;height:32rem;background:#FB7227;opacity:.3;"></div>
+
+<div class="relative" style="z-index:1;">
+
+<header class="fixed top-0 inset-x-0 z-50">
+  <nav class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="mt-4 flex items-center justify-between rounded-2xl glass px-4 py-3">
+      <a href="index.html" class="flex items-center gap-3" aria-label="Fire Dragon AI home">
+        <img src="assets/logo-dragon.png" alt="Fire Dragon AI" class="h-10 w-10 rounded-full ring-1 ring-ember-orange/40" />
+        <span class="font-heading text-lg font-700 tracking-tight text-white">Fire&nbsp;Dragon<span class="text-flame">AI</span></span>
+      </a>
+      <a href="tel:+13125156882" class="text-sm text-orange-100/70 hover:text-white transition">Need help? 312.515.6882</a>
+    </div>
+  </nav>
+</header>
+
+<main class="relative pt-36 pb-24">
+  <div class="mx-auto max-w-3xl px-5 sm:px-8">
+
+    <!-- Intro -->
+    <div class="text-center">
+      <div class="reveal inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-semibold text-ember-yellow">
+        <span class="h-2 w-2 rounded-full bg-ember-orange animate-pulse"></span> Payment received · Step 2 of 3
+      </div>
+      <h1 class="reveal mt-6 font-display text-5xl sm:text-7xl leading-[0.95] text-white">WELCOME ABOARD.<br/><span class="text-flame">LET'S BUILD.</span></h1>
+      <p class="reveal mt-5 text-orange-100/75">Send us your materials and business info. The moment you submit, you'll get a <span class="text-white font-semibold">Client ID</span> and a confirmation email — and our 48-hour build clock starts.</p>
+      <p id="plan-badge" class="reveal mt-4 hidden"></p>
+    </div>
+
+    <!-- FORM -->
+    <form id="onboard-form" class="reveal mt-12 space-y-7" novalidate enctype="multipart/form-data">
+
+      <fieldset class="glass rounded-2xl p-6 space-y-5">
+        <legend class="px-2 font-heading text-lg font-700 text-white">Your business</legend>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div><label for="business" class="block text-sm font-600 text-orange-100/80 mb-1.5">Business name *</label><input id="business" name="business" type="text" required class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="Iron House Fitness" /></div>
+          <div><label for="name" class="block text-sm font-600 text-orange-100/80 mb-1.5">Your name *</label><input id="name" name="name" type="text" required autocomplete="name" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="Jordan Smith" /></div>
+          <div><label for="email" class="block text-sm font-600 text-orange-100/80 mb-1.5">Email *</label><input id="email" name="email" type="email" required autocomplete="email" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="you@business.com" /></div>
+          <div><label for="phone" class="block text-sm font-600 text-orange-100/80 mb-1.5">Phone *</label><input id="phone" name="phone" type="tel" required autocomplete="tel" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="(312) 555-0199" /></div>
+          <div><label for="type" class="block text-sm font-600 text-orange-100/80 mb-1.5">Business type *</label>
+            <select id="type" name="type" required class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white focus:border-ember-orange focus:outline-none">
+              <option value="" disabled selected>Choose one</option>
+              <option>Online fitness coach</option><option>Gym / studio</option><option>Cleaning business</option><option>Other</option>
+            </select>
+          </div>
+          <div><label for="website" class="block text-sm font-600 text-orange-100/80 mb-1.5">Current website <span class="text-orange-100/40">(if any)</span></label><input id="website" name="website" type="url" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="https://" /></div>
+        </div>
+        <div><label for="services" class="block text-sm font-600 text-orange-100/80 mb-1.5">What do you offer &amp; who's your ideal customer? *</label><textarea id="services" name="services" rows="3" required class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="e.g. 12-week strength programs for busy professionals in Chicago…"></textarea></div>
+      </fieldset>
+
+      <fieldset class="glass rounded-2xl p-6 space-y-5">
+        <legend class="px-2 font-heading text-lg font-700 text-white">Brand &amp; socials</legend>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div><label for="colors" class="block text-sm font-600 text-orange-100/80 mb-1.5">Brand colors <span class="text-orange-100/40">(optional)</span></label><input id="colors" name="colors" type="text" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="e.g. orange & black, or #FB7227" /></div>
+          <div><label for="instagram" class="block text-sm font-600 text-orange-100/80 mb-1.5">Instagram</label><input id="instagram" name="instagram" type="text" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="@yourhandle" /></div>
+          <div><label for="facebook" class="block text-sm font-600 text-orange-100/80 mb-1.5">Facebook</label><input id="facebook" name="facebook" type="text" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="facebook.com/yourpage" /></div>
+          <div><label for="tiktok" class="block text-sm font-600 text-orange-100/80 mb-1.5">TikTok</label><input id="tiktok" name="tiktok" type="text" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="@yourhandle" /></div>
+        </div>
+      </fieldset>
+
+      <fieldset class="glass rounded-2xl p-6 space-y-5">
+        <legend class="px-2 font-heading text-lg font-700 text-white">Upload your assets</legend>
+        <!-- Logo -->
+        <div>
+          <p class="text-sm font-600 text-orange-100/80 mb-2">Logo</p>
+          <label for="logo" class="dropzone block rounded-xl p-6 text-center cursor-pointer" data-target="logo">
+            <svg class="mx-auto h-8 w-8 text-ember-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.9A5 5 0 1115.9 6 4.5 4.5 0 0117 16M9 13l3-3 3 3m-3-3v9"/></svg>
+            <span class="mt-2 block text-sm text-orange-100/70">Drag &amp; drop or <span class="text-ember-orange font-600">browse</span></span>
+            <span class="block text-xs text-orange-100/40">PNG, JPG or SVG</span>
+          </label>
+          <input id="logo" name="logo" type="file" accept="image/*" class="hidden" />
+          <ul class="file-list mt-2 space-y-1 text-xs text-orange-100/70" data-for="logo"></ul>
+        </div>
+        <!-- Photos -->
+        <div>
+          <p class="text-sm font-600 text-orange-100/80 mb-2">Photos &amp; images <span class="text-orange-100/40">(you, your space, your work — the more the better)</span></p>
+          <label for="photos" class="dropzone block rounded-xl p-6 text-center cursor-pointer" data-target="photos">
+            <svg class="mx-auto h-8 w-8 text-ember-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16M4 6h16a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1z"/></svg>
+            <span class="mt-2 block text-sm text-orange-100/70">Drag &amp; drop or <span class="text-ember-orange font-600">browse</span> — multiple files</span>
+            <span class="block text-xs text-orange-100/40">PNG or JPG</span>
+          </label>
+          <input id="photos" name="photos" type="file" accept="image/*" multiple class="hidden" />
+          <ul class="file-list mt-2 space-y-1 text-xs text-orange-100/70" data-for="photos"></ul>
+        </div>
+        <div><label for="notes" class="block text-sm font-600 text-orange-100/80 mb-1.5">Anything else we should know?</label><textarea id="notes" name="notes" rows="2" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="Links, examples you love, deadlines…"></textarea></div>
+      </fieldset>
+
+      <label class="flex items-start gap-3 text-sm text-orange-100/70">
+        <input type="checkbox" required class="mt-1 h-4 w-4 rounded border-orange-200/30 bg-ink-700 text-ember-orange focus:ring-ember-orange" />
+        <span>I agree to the <a href="#" class="text-ember-orange underline">Terms &amp; 90-day guarantee</a> and authorize Fire Dragon AI to begin the build.</span>
+      </label>
+
+      <input type="hidden" id="plan-field" name="plan" value="" />
+      <input type="hidden" id="billing-field" name="billing" value="" />
+      <input type="hidden" id="clientid-field" name="client_id" value="" />
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+      <button type="submit" id="onboard-submit" class="btn-flame w-full rounded-xl px-6 py-4 text-base font-700 text-white disabled:opacity-60 disabled:cursor-not-allowed">🔥 Submit &amp; Start My 48-Hour Build</button>
+      <p id="onboard-msg" class="text-sm text-center hidden text-red-400" role="status" aria-live="polite"></p>
+    </form>
+
+    <!-- CONFIRMATION (hidden until submit) -->
+    <div id="confirmation" class="hidden text-center">
+      <div class="relative overflow-hidden rounded-[2rem] glass p-10">
+        <div class="absolute -top-20 left-1/2 -translate-x-1/2 h-60 w-60 rounded-full bg-ember-orange/30 blur-3xl"></div>
+        <div class="relative">
+          <div class="mx-auto h-16 w-16 grid place-items-center rounded-full bg-gradient-to-br from-ember-orange to-ember-red text-white">
+            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h2 class="mt-6 font-display text-5xl sm:text-6xl text-white">YOU'RE IN! 🔥</h2>
+          <p class="mt-4 text-orange-100/75">Everything's received. Our team is on the clock — your website &amp; funnel go live within <span class="text-white font-semibold">48 hours</span>.</p>
+          <div class="mt-7 inline-block rounded-2xl border border-ember-orange/40 bg-ink-800/70 px-8 py-5">
+            <p class="text-xs uppercase tracking-[0.2em] text-orange-100/50">Your Client ID</p>
+            <p id="client-id" class="font-display text-4xl text-flame mt-1">FD-—</p>
+          </div>
+          <p class="mt-6 text-sm text-orange-100/70">A confirmation email is on its way to <span id="confirm-email" class="text-white font-600">your inbox</span>, including your contract to e-sign and download.</p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="index.html" class="btn-ghost rounded-xl border border-orange-200/25 px-6 py-3 text-sm font-600 text-orange-50">Back to home</a>
+            <a href="tel:+13125156882" class="btn-flame rounded-xl px-6 py-3 text-sm font-700 text-white">Questions? Call us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="relative border-t border-orange-200/10 py-10">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 text-center text-sm text-orange-100/55">
+    © <span id="year"></span> Fire Dragon AI · <a href="mailto:info@firedragonai.com" class="hover:text-white transition">info@firedragonai.com</a> · 312.515.6882
+  </div>
+</footer>
+
+</div>
+
+<script src="assets/brand.js"></script>
+<script>
+  // ============================================================
+  //  ONBOARDING BACKEND — set this to your GoHighLevel/Formspree
+  //  endpoint when ready. Leave empty for preview (demo) mode:
+  //  it generates a Client ID and shows the confirmation locally.
+  // ============================================================
+  var ONBOARD_ENDPOINT = ""; // e.g. "https://formspree.io/f/xxxx" or your GHL webhook
+
+  (function () {
+    // Show which plan was purchased (Stripe can append ?plan=inferno&billing=onetime)
+    var params = new URLSearchParams(location.search);
+    var plan = (params.get('plan') || '').toLowerCase();
+    var billing = (params.get('billing') || '').toLowerCase();
+    var names = { ignite: 'Ignite', inferno: 'Inferno' };
+    if (names[plan]) {
+      var badge = document.getElementById('plan-badge');
+      badge.innerHTML = 'Plan purchased: <span class="text-white font-700">' + names[plan] +
+        (billing ? ' · ' + (billing === 'monthly' ? 'Monthly' : 'One-time') : '') + '</span>';
+      badge.className = 'reveal mt-4 text-sm text-ember-yellow';
+      document.getElementById('plan-field').value = names[plan];
+      document.getElementById('billing-field').value = billing;
+    }
+
+    // File pickers + drag/drop
+    document.querySelectorAll('.dropzone').forEach(function (zone) {
+      var input = document.getElementById(zone.dataset.target);
+      var list = document.querySelector('.file-list[data-for="' + zone.dataset.target + '"]');
+      function fmt(b) { return b < 1024*1024 ? (b/1024).toFixed(0)+' KB' : (b/1024/1024).toFixed(1)+' MB'; }
+      function paint() {
+        list.innerHTML = '';
+        Array.prototype.forEach.call(input.files, function (f) {
+          var li = document.createElement('li');
+          li.className = 'flex items-center gap-2';
+          li.innerHTML = '<span class="text-ember-orange">●</span> ' + f.name + ' <span class="text-orange-100/40">(' + fmt(f.size) + ')</span>';
+          list.appendChild(li);
+        });
+      }
+      input.addEventListener('change', paint);
+      ['dragenter','dragover'].forEach(function (ev) { zone.addEventListener(ev, function (e){ e.preventDefault(); zone.classList.add('drag'); }); });
+      ['dragleave','drop'].forEach(function (ev) { zone.addEventListener(ev, function (e){ e.preventDefault(); zone.classList.remove('drag'); }); });
+      zone.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files.length) { input.files = e.dataTransfer.files; paint(); } });
+    });
+
+    // Generate a Client ID:  FD-YYYY-XXXXX
+    function makeClientId() {
+      var rnd = Math.random().toString(36).substring(2, 7).toUpperCase();
+      return 'FD-' + new Date().getFullYear() + '-' + rnd;
+    }
+
+    var form = document.getElementById('onboard-form');
+    var btn = document.getElementById('onboard-submit');
+    var msg = document.getElementById('onboard-msg');
+
+    function showConfirmation(clientId, email) {
+      form.classList.add('hidden');
+      var c = document.getElementById('confirmation');
+      c.classList.remove('hidden');
+      document.getElementById('client-id').textContent = clientId;
+      document.getElementById('confirm-email').textContent = email || 'your inbox';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (form._gotcha && form._gotcha.value) return;
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      var clientId = makeClientId();
+      document.getElementById('clientid-field').value = clientId;
+      var email = document.getElementById('email').value;
+
+      btn.disabled = true; btn.textContent = 'Submitting…';
+
+      if (!ONBOARD_ENDPOINT) {            // preview/demo mode
+        setTimeout(function () { showConfirmation(clientId, email); }, 600);
+        return;
+      }
+      fetch(ONBOARD_ENDPOINT, { method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form) })
+        .then(function (res) {
+          if (res.ok) { showConfirmation(clientId, email); }
+          else { msg.textContent = 'Upload failed — please email your files to info@firedragonai.com.'; msg.classList.remove('hidden'); }
+        })
+        .catch(function () { msg.textContent = 'Network error — please email info@firedragonai.com or call 312.515.6882.'; msg.classList.remove('hidden'); })
+        .finally(function () { btn.disabled = false; btn.textContent = '🔥 Submit & Start My 48-Hour Build'; });
+    });
+  })();
+</script>
+</body>
+</html>
