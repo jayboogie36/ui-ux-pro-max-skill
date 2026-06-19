@@ -6,6 +6,21 @@
 
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // ---------- mobile sticky "Build Now" bar ----------
+  // Skipped on pages with <body data-no-mobile-cta> (pricing, onboarding).
+  if (!document.body.hasAttribute('data-no-mobile-cta')) {
+    var bar = document.createElement('div');
+    bar.className = 'mobile-cta-bar';
+    bar.setAttribute('aria-label', 'Quick actions');
+    bar.innerHTML =
+      '<a href="tel:+13125156882" class="call" aria-label="Call Fire Dragon AI">' +
+        '<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">' +
+        '<path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.2l-2.26 1.13a11 11 0 005.5 5.5l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/></svg></a>' +
+      '<a href="pricing.html" class="build btn-flame">🔥 Build Now — from $1,150</a>';
+    document.body.appendChild(bar);
+    document.body.classList.add('has-mobile-cta');
+  }
+
   // ---------- scroll reveal ----------
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });

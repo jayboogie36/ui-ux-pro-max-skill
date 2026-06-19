@@ -118,6 +118,19 @@
     .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
     html { scroll-behavior: auto; }
   }
+
+  /* Mobile sticky "Build Now" bar */
+  .mobile-cta-bar{
+    position:fixed; left:0; right:0; bottom:0; z-index:60;
+    display:none; align-items:center; gap:.6rem;
+    padding:.7rem .9rem calc(.7rem + env(safe-area-inset-bottom));
+    background:linear-gradient(0deg, rgba(10,6,6,0.98), rgba(10,6,6,0.82));
+    border-top:1px solid rgba(255,180,120,0.18); backdrop-filter:blur(10px);
+  }
+  .mobile-cta-bar .call{ display:grid; place-items:center; width:52px; height:52px; flex:0 0 auto;
+    border:1px solid rgba(255,180,120,0.28); border-radius:12px; color:#FB7227; }
+  .mobile-cta-bar .build{ flex:1; text-align:center; border-radius:12px; padding:14px 12px; font-weight:700; color:#fff; }
+  @media (max-width:639px){ .mobile-cta-bar{ display:flex; } body.has-mobile-cta{ padding-bottom:5.5rem; } }
 </style>
 </head>
 
@@ -595,9 +608,18 @@
 
 </div><!-- /z-1 -->
 
+<!-- Mobile sticky Build Now bar -->
+<div class="mobile-cta-bar" aria-label="Quick actions">
+  <a href="tel:+13125156882" class="call" aria-label="Call Fire Dragon AI">
+    <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.2l-2.26 1.13a11 11 0 005.5 5.5l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/></svg>
+  </a>
+  <a href="pricing.html" class="build btn-flame">🔥 Build Now — from $1,150</a>
+</div>
+
 <script>
   // ---------- Year ----------
   document.getElementById('year').textContent = new Date().getFullYear();
+  document.body.classList.add('has-mobile-cta');
 
   // ---------- Scroll reveal ----------
   const io = new IntersectionObserver((entries) => {

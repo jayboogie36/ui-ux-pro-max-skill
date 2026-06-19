@@ -48,3 +48,24 @@ a,button{ -webkit-tap-highlight-color:transparent; }
   .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
   html{ scroll-behavior:auto; }
 }
+
+/* Mobile sticky "Build Now" bar (injected by brand.js) */
+.mobile-cta-bar{
+  position:fixed; left:0; right:0; bottom:0; z-index:60;
+  display:none; align-items:center; gap:.6rem;
+  padding:.7rem .9rem calc(.7rem + env(safe-area-inset-bottom));
+  background:linear-gradient(0deg, rgba(10,6,6,0.98), rgba(10,6,6,0.82));
+  border-top:1px solid rgba(255,180,120,0.18); backdrop-filter:blur(10px);
+}
+.mobile-cta-bar .call{
+  display:grid; place-items:center; width:52px; height:52px; flex:0 0 auto;
+  border:1px solid rgba(255,180,120,0.28); border-radius:12px; color:#FB7227;
+}
+.mobile-cta-bar .build{
+  flex:1; text-align:center; border-radius:12px; padding:14px 12px;
+  font-weight:700; color:#fff; font-family:'Inter',sans-serif;
+}
+@media (max-width:639px){
+  .mobile-cta-bar{ display:flex; }
+  body.has-mobile-cta{ padding-bottom:5.5rem; }
+}
