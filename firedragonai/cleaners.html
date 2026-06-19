@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cleaning Businesses — Free Website + Instant-Quote Funnel | Fire Dragon AI</title>
+<meta name="description" content="Win more recurring clients. Fire Dragon AI builds cleaning businesses a free high-converting website with an instant-quote funnel and AI booking that turns 'how much?' into a scheduled job." />
+<meta property="og:title" content="Fire Dragon AI for Cleaning Businesses" />
+<meta property="og:description" content="Free website + an instant-quote calculator and booking funnel that fills your route." />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#0a0606" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/brand.css" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="assets/tw-config.js"></script>
+<script>/* window.FORMSPREE_ID = "your-cleaners-form-id"; */</script>
+</head>
+<body class="font-body text-orange-50/90 selection:bg-ember-orange/40">
+
+<canvas id="flame-canvas" aria-hidden="true"></canvas>
+<div class="glow-blob" style="top:-6rem;left:-6rem;width:32rem;height:32rem;background:#FB7227;"></div>
+<div class="glow-blob" style="top:35%;right:-8rem;width:34rem;height:34rem;background:#9A1B0E;opacity:.4;"></div>
+
+<div class="relative" style="z-index:1;">
+
+<header class="fixed top-0 inset-x-0 z-50">
+  <nav class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="mt-4 flex items-center justify-between rounded-2xl glass px-4 py-3">
+      <a href="index.html" class="flex items-center gap-3" aria-label="Fire Dragon AI home">
+        <img src="assets/logo-dragon.png" alt="Fire Dragon AI" class="h-10 w-10 rounded-full ring-1 ring-ember-orange/40" />
+        <span class="font-heading text-lg font-700 tracking-tight text-white">Fire&nbsp;Dragon<span class="text-flame">AI</span></span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="tel:+13125156882" class="hidden sm:block text-sm text-orange-100/70 hover:text-white transition">312.515.6882</a>
+        <a href="#quote" class="btn-flame rounded-xl px-4 py-2.5 text-sm font-700 text-white">Get Instant Quote</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="relative min-h-dvh flex items-center pt-32 pb-20">
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <video id="hero-flames" class="h-full w-full object-cover opacity-0 transition-opacity duration-1000" muted loop playsinline preload="auto" poster="assets/hero-poster.jpg">
+      <source src="assets/hero-flames.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0" style="background:radial-gradient(125% 85% at 50% 100%, rgba(10,6,6,0.15), rgba(10,6,6,0.82) 68%, #0a0606 100%);"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-12 items-center w-full">
+    <div class="lg:col-span-7">
+      <div class="reveal inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-semibold text-ember-yellow">
+        <span class="h-2 w-2 rounded-full bg-ember-orange animate-pulse"></span> For Cleaning Businesses
+      </div>
+      <h1 class="reveal mt-6 font-display text-6xl sm:text-7xl lg:text-8xl leading-[0.92] text-white">
+        TURN "HOW MUCH?"<br /><span class="text-flame">INTO BOOKED JOBS.</span>
+      </h1>
+      <p class="reveal mt-7 max-w-xl text-lg text-orange-100/75 leading-relaxed">
+        We build your cleaning business a <span class="text-white font-semibold">free</span> website with an
+        <span class="text-white font-semibold">instant-quote calculator</span> and AI booking — so customers get a price and schedule themselves while you're out on a route.
+      </p>
+      <div class="reveal mt-9 flex flex-col sm:flex-row gap-4">
+        <a href="#quote" class="btn-flame rounded-2xl px-8 py-4 text-center text-base font-700 text-white">🔥 Try the Instant Quote</a>
+        <a href="#how" class="btn-ghost rounded-2xl border border-orange-200/25 px-8 py-4 text-center text-base font-600 text-orange-50">See How It Works</a>
+      </div>
+      <div class="reveal mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-orange-100/60">
+        <span>✓ Free build</span><span>✓ Instant-quote funnel</span><span>✓ Self-serve booking</span>
+      </div>
+    </div>
+    <div class="lg:col-span-5 relative h-[360px] sm:h-[460px]">
+      <div class="float-3d glass absolute top-4 right-2 rounded-2xl px-5 py-4 w-44"><div class="font-display text-4xl text-flame leading-none">+45%</div><div class="mt-1 text-xs text-orange-100/70">more booked jobs</div></div>
+      <div class="float-3d delay-1 glass absolute bottom-8 left-0 rounded-2xl px-5 py-4 w-48"><div class="font-display text-4xl text-white leading-none">&lt;60s</div><div class="mt-1 text-xs text-orange-100/70">to quote &amp; book</div></div>
+      <div class="float-3d delay-2 glass absolute bottom-32 right-6 rounded-2xl px-4 py-3 flex items-center gap-3"><span class="h-9 w-9 grid place-items-center rounded-xl bg-ember-orange/20 text-ember-orange"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span><span class="text-xs text-orange-100/80 leading-tight">Quotes while<br/>you're cleaning</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Pain -->
+<section class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-4xl px-5 sm:px-8 text-center">
+    <p class="reveal text-sm font-semibold uppercase tracking-[0.25em] text-ember-orange">The Quote Trap</p>
+    <h2 class="reveal mt-4 font-heading text-3xl sm:text-5xl font-700 text-white leading-tight">Every "how much?" you miss is a job your <span class="text-flame">competitor</span> books.</h2>
+    <div class="mt-12 grid sm:grid-cols-3 gap-6 text-left">
+      <div class="reveal glass rounded-2xl p-6"><p class="text-orange-100/80">You can't text quotes back fast enough while on a job.</p></div>
+      <div class="reveal glass rounded-2xl p-6"><p class="text-orange-100/80">Leads ghost because they waited a day for a price.</p></div>
+      <div class="reveal glass rounded-2xl p-6"><p class="text-orange-100/80">No easy way to lock in recurring weekly/bi-weekly clients.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Instant Quote -->
+<section id="quote" class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-5xl px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto">
+      <p class="reveal text-sm font-semibold uppercase tracking-[0.25em] text-ember-orange">Live Demo</p>
+      <h2 class="reveal mt-4 font-heading text-3xl sm:text-5xl font-700 text-white">This is the funnel we build you</h2>
+      <p class="reveal mt-4 text-orange-100/70">Try it — adjust the details and watch the price update instantly. This is exactly what your customers will use to quote and book themselves.</p>
+    </div>
+
+    <div class="reveal mt-12 relative overflow-hidden rounded-[2rem] glass p-6 sm:p-10">
+      <div class="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-ember-orange/30 blur-3xl"></div>
+      <form id="lead-form" class="relative grid lg:grid-cols-2 gap-8" novalidate>
+        <!-- Quote controls -->
+        <div class="space-y-5">
+          <div>
+            <label for="service" class="block text-sm font-600 text-orange-100/80 mb-1.5">Type of clean</label>
+            <select id="service" name="service" class="quote-input w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white focus:border-ember-orange focus:outline-none">
+              <option value="standard" data-base="90">Standard clean</option>
+              <option value="deep" data-base="160">Deep clean</option>
+              <option value="move" data-base="210">Move in / move out</option>
+              <option value="office" data-base="120">Office / commercial</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="bedrooms" class="block text-sm font-600 text-orange-100/80 mb-1.5">Bedrooms</label>
+              <select id="bedrooms" name="bedrooms" class="quote-input w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white focus:border-ember-orange focus:outline-none">
+                <option value="0">Studio</option><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5+</option>
+              </select>
+            </div>
+            <div>
+              <label for="bathrooms" class="block text-sm font-600 text-orange-100/80 mb-1.5">Bathrooms</label>
+              <select id="bathrooms" name="bathrooms" class="quote-input w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white focus:border-ember-orange focus:outline-none">
+                <option value="1" selected>1</option><option value="2">2</option><option value="3">3</option><option value="4">4+</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label for="frequency" class="block text-sm font-600 text-orange-100/80 mb-1.5">How often?</label>
+            <select id="frequency" name="frequency" class="quote-input w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white focus:border-ember-orange focus:outline-none">
+              <option value="1" data-label="One-time">One-time</option>
+              <option value="0.95" data-label="Monthly">Monthly</option>
+              <option value="0.85" data-label="Bi-weekly" selected>Bi-weekly (save 15%)</option>
+              <option value="0.8" data-label="Weekly">Weekly (save 20%)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Estimate + capture -->
+        <div class="flex flex-col">
+          <div class="rounded-2xl bg-ink-800/70 border border-ember-orange/25 p-6 text-center">
+            <p class="text-xs uppercase tracking-[0.2em] text-orange-100/50">Your estimated price</p>
+            <p id="quote-amount" class="font-display text-6xl sm:text-7xl text-flame leading-none mt-2">$—</p>
+            <p id="quote-note" class="mt-2 text-xs text-orange-100/50">Bi-weekly · final price confirmed on site visit</p>
+          </div>
+          <div class="mt-5 grid sm:grid-cols-2 gap-4">
+            <div><label for="name" class="block text-sm font-600 text-orange-100/80 mb-1.5">Name</label><input id="name" name="name" type="text" required autocomplete="name" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="Jordan Smith" /></div>
+            <div><label for="phone" class="block text-sm font-600 text-orange-100/80 mb-1.5">Phone</label><input id="phone" name="phone" type="tel" required autocomplete="tel" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="(312) 555-0199" /></div>
+          </div>
+          <div class="mt-4"><label for="email" class="block text-sm font-600 text-orange-100/80 mb-1.5">Email</label><input id="email" name="email" type="email" required autocomplete="email" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="you@email.com" /></div>
+          <div class="mt-4"><label for="zip" class="block text-sm font-600 text-orange-100/80 mb-1.5">Service ZIP</label><input id="zip" name="zip" type="text" inputmode="numeric" required class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="60601" /></div>
+
+          <input type="hidden" name="niche" value="Cleaning business" />
+          <input type="hidden" id="quote-value" name="quote_estimate" value="" />
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+          <button type="submit" class="btn-flame mt-5 w-full rounded-xl px-6 py-4 text-base font-700 text-white disabled:opacity-60 disabled:cursor-not-allowed">🔥 Lock In My Quote &amp; Book</button>
+          <p class="form-msg text-sm text-center hidden mt-3" role="status" aria-live="polite"></p>
+          <p class="mt-2 text-xs text-orange-100/40 text-center">Demo pricing — your real rates are fully configurable.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Offer -->
+<section class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="max-w-2xl">
+      <p class="reveal text-sm font-semibold uppercase tracking-[0.25em] text-ember-orange">What You Get</p>
+      <h2 class="reveal mt-4 font-heading text-3xl sm:text-5xl font-700 text-white">A booking machine for your route</h2>
+    </div>
+    <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <article class="reveal glass rounded-3xl p-7 lg:row-span-2 relative overflow-hidden">
+        <div class="absolute top-4 right-4 rounded-full bg-ember-yellow/15 px-3 py-1 text-xs font-700 text-ember-yellow">FREE</div>
+        <h3 class="mt-2 font-heading text-2xl font-700 text-white">Your Cleaning Website</h3>
+        <p class="mt-3 text-sm text-orange-100/70">A trust-building, local site with reviews, service areas, and the instant-quote tool baked in — free, as our proof of work.</p>
+        <ul class="mt-5 space-y-2 text-sm text-orange-100/75"><li class="flex gap-2"><span class="text-ember-orange">✓</span> Instant-quote calculator</li><li class="flex gap-2"><span class="text-ember-orange">✓</span> Trust badges &amp; reviews</li><li class="flex gap-2"><span class="text-ember-orange">✓</span> Live in days</li></ul>
+        <a href="#quote" class="mt-6 inline-flex btn-flame rounded-xl px-5 py-3 text-sm font-700 text-white">Claim it free</a>
+      </article>
+      <article class="reveal glass rounded-3xl p-7"><h3 class="font-heading text-xl font-700 text-white">Instant-Quote Funnel</h3><p class="mt-3 text-sm text-orange-100/70">Customers price their own clean and book in under a minute — no phone tag.</p></article>
+      <article class="reveal glass rounded-3xl p-7"><h3 class="font-heading text-xl font-700 text-white">Self-Serve Booking</h3><p class="mt-3 text-sm text-orange-100/70">AI scheduling drops jobs onto your calendar and routes them efficiently.</p></article>
+      <article class="reveal glass rounded-3xl p-7"><h3 class="font-heading text-xl font-700 text-white">Recurring-Client Engine</h3><p class="mt-3 text-sm text-orange-100/70">Frequency discounts and reminders that lock in weekly &amp; bi-weekly clients.</p></article>
+      <article class="reveal glass rounded-3xl p-7"><h3 class="font-heading text-xl font-700 text-white">Review &amp; Referral Flow</h3><p class="mt-3 text-sm text-orange-100/70">Automated review requests after each job to build local trust and rankings.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- How -->
+<section id="how" class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <h2 class="reveal font-heading text-3xl sm:text-5xl font-700 text-white">From "how much?" to scheduled</h2>
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="reveal glass rounded-2xl p-6"><div class="font-display text-5xl text-flame">1</div><h3 class="mt-2 font-heading text-lg font-600 text-white">Free strategy call</h3><p class="mt-2 text-sm text-orange-100/70">We learn your services and pricing.</p></div>
+      <div class="reveal glass rounded-2xl p-6"><div class="font-display text-5xl text-flame">2</div><h3 class="mt-2 font-heading text-lg font-600 text-white">We build it free</h3><p class="mt-2 text-sm text-orange-100/70">Website + quote tool live in days.</p></div>
+      <div class="reveal glass rounded-2xl p-6"><div class="font-display text-5xl text-flame">3</div><h3 class="mt-2 font-heading text-lg font-600 text-white">Add the funnel</h3><p class="mt-2 text-sm text-orange-100/70">Self-serve booking + follow-up.</p></div>
+      <div class="reveal glass rounded-2xl p-6"><div class="font-display text-5xl text-flame">4</div><h3 class="mt-2 font-heading text-lg font-600 text-white">Route fills</h3><p class="mt-2 text-sm text-orange-100/70">Recurring clients stack up. We optimize.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Proof -->
+<section class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <h2 class="reveal text-center font-heading text-3xl sm:text-5xl font-700 text-white">Owners who filled their route</h2>
+    <div class="mt-14 grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <figure class="reveal glass rounded-3xl p-7"><div class="flex gap-1 text-ember-yellow">★★★★★</div><blockquote class="mt-4 text-orange-100/85">"I clean houses — I don't do tech. Now people get an instant quote and book me before I've finished a job."</blockquote><figcaption class="mt-5 flex items-center gap-3"><span class="h-10 w-10 rounded-full bg-gradient-to-br from-ember-orange to-ember-red grid place-items-center font-700 text-white">D</span><span class="text-sm"><span class="block font-600 text-white">Dion W.</span><span class="text-orange-100/60">Residential Cleaning</span></span></figcaption></figure>
+      <figure class="reveal glass rounded-3xl p-7"><div class="flex gap-1 text-ember-yellow">★★★★★</div><blockquote class="mt-4 text-orange-100/85">"The frequency discounts in the quote tool turned a bunch of one-time cleans into weekly recurring clients."</blockquote><figcaption class="mt-5 flex items-center gap-3"><span class="h-10 w-10 rounded-full bg-gradient-to-br from-ember-flame to-ember-deep grid place-items-center font-700 text-white">R</span><span class="text-sm"><span class="block font-600 text-white">Rosa M.</span><span class="text-orange-100/60">Cleaning Co. Owner</span></span></figcaption></figure>
+    </div>
+    <p class="reveal mt-8 text-center text-xs text-orange-100/40">Illustrative examples — swap in your real client results before launch.</p>
+  </div>
+</section>
+
+<footer class="relative border-t border-orange-200/10 py-12">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-orange-100/60">
+    <a href="index.html" class="flex items-center gap-3"><img src="assets/logo-dragon.png" alt="" class="h-9 w-9 rounded-full ring-1 ring-ember-orange/40" /><span class="font-heading font-700 text-white">Fire Dragon <span class="text-flame">AI</span></span></a>
+    <nav class="flex gap-5"><a href="coaches.html" class="hover:text-white transition">Coaches</a><a href="gyms.html" class="hover:text-white transition">Gyms</a><a href="cleaners.html" class="text-white">Cleaners</a><a href="index.html" class="hover:text-white transition">Home</a></nav>
+    <p>© <span id="year"></span> Fire Dragon AI · info@firedragonai.com</p>
+  </div>
+</footer>
+
+</div>
+
+<script src="assets/brand.js"></script>
+<script>
+  // ---------- Instant-quote calculator (demo pricing) ----------
+  (function () {
+    var PER_BED = 20, PER_BATH = 25;
+    var serviceEl = document.getElementById('service');
+    var bedEl = document.getElementById('bedrooms');
+    var bathEl = document.getElementById('bathrooms');
+    var freqEl = document.getElementById('frequency');
+    var amountEl = document.getElementById('quote-amount');
+    var noteEl = document.getElementById('quote-note');
+    var hidden = document.getElementById('quote-value');
+    var round5 = function (n) { return Math.round(n / 5) * 5; };
+
+    function calc() {
+      var base = +serviceEl.selectedOptions[0].dataset.base;
+      var beds = +bedEl.value, baths = +bathEl.value;
+      var mult = +freqEl.value;
+      var label = freqEl.selectedOptions[0].dataset.label;
+      var est = (base + beds * PER_BED + baths * PER_BATH) * mult;
+      var low = round5(est * 0.9), high = round5(est * 1.15);
+      amountEl.textContent = '$' + low + '–$' + high;
+      noteEl.textContent = label + ' · final price confirmed on site visit';
+      hidden.value = label + ': $' + low + '–$' + high;
+    }
+    [serviceEl, bedEl, bathEl, freqEl].forEach(function (el) { el.addEventListener('change', calc); });
+    calc();
+  })();
+</script>
+</body>
+</html>

@@ -79,16 +79,41 @@ Pulled to match the dragon logo's flames. On a near-black base for max contrast.
 ## 4. What's in this folder
 ```
 firedragonai/
-├── index.html          # Production landing page (single file, Tailwind CDN)
+├── index.html          # Main landing page (homepage / overview)
+├── coaches.html        # Niche funnel — online fitness coaches
+├── gyms.html           # Niche funnel — small gyms & studios
+├── cleaners.html       # Niche funnel — cleaning businesses (instant-quote calculator)
 ├── assets/
 │   ├── logo-dragon.png    # Circular dragon emblem
 │   ├── logo-wordmark.png  # "Fire Dragon AI" wordmark
 │   ├── hero-flames.mp4    # Seamlessly-looping procedural flame video (hero bg)
 │   ├── hero-poster.jpg    # Poster frame (shown before video loads / reduced-motion)
-│   └── make_flames.py     # Generator script (re-run to tweak the flame look)
+│   ├── make_flames.py     # Generator script (re-run to tweak the flame look)
+│   ├── brand.css          # Shared Ember Dark styles (used by niche pages)
+│   ├── brand.js           # Shared behaviour: reveal, flame canvas, hero video, lead form
+│   └── tw-config.js       # Shared Tailwind CDN config (brand tokens)
 ├── PLAN.md             # This document
 └── PROMPT.md           # Copy-paste master prompt for Claude / Claude Code
 ```
+
+### Niche funnel pages
+Three dedicated, conversion-focused landing pages share the design system via
+`assets/brand.{css,js}` + `tw-config.js`, each with its own funnel copy and a single primary
+action. The homepage "Who It's For" cards deep-link into them.
+
+| Page | Headline angle | Conversion mechanism |
+|------|----------------|----------------------|
+| `coaches.html` | "Stop chasing DMs. Fill your roster." | Application-funnel lead form |
+| `gyms.html` | "Empty classes? Not anymore." | Trial-class lead form |
+| `cleaners.html` | "Turn 'how much?' into booked jobs." | **Live instant-quote calculator** → lead capture |
+
+**Instant-quote calculator** (`cleaners.html`): pick clean type (base price), bedrooms (+$20),
+bathrooms (+$25), and frequency (one-time → weekly with up to 20% off). It computes a rounded
+`$low–$high` range live as a demo of the exact funnel we build, then captures the lead with the
+quote string included. Pricing constants are at the top of the inline script — fully configurable.
+
+Each niche page has its own `window.FORMSPREE_ID` slot (commented in `<head>`) so you can route
+coach / gym / cleaner leads to separate Formspree inboxes.
 
 ### Hero flame video
 A real, GPU-free looping flame video sits behind the hero (`opacity ~0.42`), with a radial

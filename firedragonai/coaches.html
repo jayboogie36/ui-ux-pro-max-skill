@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Online Fitness Coaches — Free Website + Client-Booking Funnel | Fire Dragon AI</title>
+<meta name="description" content="Turn your following into paying clients. Fire Dragon AI builds online fitness coaches a free high-converting website, then the application funnel and AI booking that fills your roster — so you can focus on coaching." />
+<meta property="og:title" content="Fire Dragon AI for Online Fitness Coaches" />
+<meta property="og:description" content="Free website + a funnel that books discovery calls and fills your coaching roster on autopilot." />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#0a0606" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/brand.css" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="assets/tw-config.js"></script>
+<script>/* window.FORMSPREE_ID = "your-coaches-form-id"; */</script>
+</head>
+<body class="font-body text-orange-50/90 selection:bg-ember-orange/40">
+
+<canvas id="flame-canvas" aria-hidden="true"></canvas>
+<div class="glow-blob" style="top:-6rem;left:-6rem;width:32rem;height:32rem;background:#E11D2A;"></div>
+<div class="glow-blob" style="top:35%;right:-8rem;width:34rem;height:34rem;background:#FB7227;opacity:.32;"></div>
+
+<div class="relative" style="z-index:1;">
+
+<!-- Header -->
+<header class="fixed top-0 inset-x-0 z-50">
+  <nav class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="mt-4 flex items-center justify-between rounded-2xl glass px-4 py-3">
+      <a href="index.html" class="flex items-center gap-3" aria-label="Fire Dragon AI home">
+        <img src="assets/logo-dragon.png" alt="Fire Dragon AI" class="h-10 w-10 rounded-full ring-1 ring-ember-orange/40" />
+        <span class="font-heading text-lg font-700 tracking-tight text-white">Fire&nbsp;Dragon<span class="text-flame">AI</span></span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="tel:+13125156882" class="hidden sm:block text-sm text-orange-100/70 hover:text-white transition">312.515.6882</a>
+        <a href="#apply" class="btn-flame rounded-xl px-4 py-2.5 text-sm font-700 text-white">Get My Free Funnel</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="relative min-h-dvh flex items-center pt-32 pb-20">
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <video id="hero-flames" class="h-full w-full object-cover opacity-0 transition-opacity duration-1000" muted loop playsinline preload="auto" poster="assets/hero-poster.jpg">
+      <source src="assets/hero-flames.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0" style="background:radial-gradient(125% 85% at 50% 100%, rgba(10,6,6,0.15), rgba(10,6,6,0.82) 68%, #0a0606 100%);"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-12 items-center w-full">
+    <div class="lg:col-span-7">
+      <div class="reveal inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-semibold text-ember-yellow">
+        <span class="h-2 w-2 rounded-full bg-ember-orange animate-pulse"></span> For Online Fitness Coaches
+      </div>
+      <h1 class="reveal mt-6 font-display text-6xl sm:text-7xl lg:text-8xl leading-[0.92] text-white">
+        STOP CHASING DMs.<br /><span class="text-flame">FILL YOUR ROSTER.</span>
+      </h1>
+      <p class="reveal mt-7 max-w-xl text-lg text-orange-100/75 leading-relaxed">
+        We build you a <span class="text-white font-semibold">free</span>, high-converting coaching website — then the application funnel and AI booking that turn followers into discovery calls and paying clients. You coach. We fill the calendar.
+      </p>
+      <div class="reveal mt-9 flex flex-col sm:flex-row gap-4">
+        <a href="#apply" class="btn-flame rounded-2xl px-8 py-4 text-center text-base font-700 text-white">🔥 Get My Free Coaching Funnel</a>
+        <a href="#how" class="btn-ghost rounded-2xl border border-orange-200/25 px-8 py-4 text-center text-base font-600 text-orange-50">See How It Works</a>
+      </div>
+      <div class="reveal mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-orange-100/60">
+        <span>✓ Free build</span><span>✓ Application funnel</span><span>✓ Auto-booked calls</span>
+      </div>
+    </div>
+    <div class="lg:col-span-5 relative h-[360px] sm:h-[460px]">
+      <div class="float-3d glass absolute top-4 right-2 rounded-2xl px-5 py-4 w-44">
+        <div class="font-display text-4xl text-flame leading-none">2×</div>
+        <div class="mt-1 text-xs text-orange-100/70">applications in 30 days</div>
+      </div>
+      <div class="float-3d delay-1 glass absolute bottom-8 left-0 rounded-2xl px-5 py-4 w-48">
+        <div class="font-display text-4xl text-white leading-none">-50%</div>
+        <div class="mt-1 text-xs text-orange-100/70">no-shows with AI reminders</div>
+      </div>
+      <div class="float-3d delay-2 glass absolute bottom-32 right-6 rounded-2xl px-4 py-3 flex items-center gap-3">
+        <span class="h-9 w-9 grid place-items-center rounded-xl bg-ember-orange/20 text-ember-orange">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </span>
+        <span class="text-xs text-orange-100/80 leading-tight">Booking runs<br/>while you train</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pain -->
+<section class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-4xl px-5 sm:px-8 text-center">
+    <p class="reveal text-sm font-semibold uppercase tracking-[0.25em] text-ember-orange">Sound Familiar?</p>
+    <h2 class="reveal mt-4 font-heading text-3xl sm:text-5xl font-700 text-white leading-tight">Your content is great. Your <span class="text-flame">sales process</span> is a DM thread.</h2>
+    <div class="mt-12 grid sm:grid-cols-3 gap-6 text-left">
+      <div class="reveal glass rounded-2xl p-6"><p class="text-orange-100/80">Leads go cold while you reply between sessions.</p></div>
+      <div class="reveal glass rounded-2xl p-6"><p class="text-orange-100/80">No clear place to send people who want to work with you.</p></div>
+      <div class="reveal glass rounded-2xl p-6"><p class="text-orange-100/80">Calls no-show because nothing reminds or qualifies them.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Offer -->
+<section class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="max-w-2xl">
+      <p class="reveal text-sm font-semibold uppercase tracking-[0.25em] text-ember-orange">What You Get</p>
+      <h2 class="reveal mt-4 font-heading text-3xl sm:text-5xl font-700 text-white">A complete client-getting machine</h2>
+    </div>
+    <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <article class="reveal glass rounded-3xl p-7 lg:row-span-2 relative overflow-hidden">
+        <div class="absolute top-4 right-4 rounded-full bg-ember-yellow/15 px-3 py-1 text-xs font-700 text-ember-yellow">FREE</div>
+        <h3 class="mt-2 font-heading text-2xl font-700 text-white">Your Coaching Website</h3>
+        <p class="mt-3 text-sm text-orange-100/70">A fast, mobile-first site built around your transformation results and your offer — free, as our proof of work.</p>
+        <ul class="mt-5 space-y-2 text-sm text-orange-100/75">
+          <li class="flex gap-2"><span class="text-ember-orange">✓</span> Results-led design</li>
+          <li class="flex gap-2"><span class="text-ember-orange">✓</span> Built to convert visitors to applicants</li>
+          <li class="flex gap-2"><span class="text-ember-orange">✓</span> Live in days</li>
+        </ul>
+        <a href="#apply" class="mt-6 inline-flex btn-flame rounded-xl px-5 py-3 text-sm font-700 text-white">Claim it free</a>
+      </article>
+      <article class="reveal glass rounded-3xl p-7"><h3 class="font-heading text-xl font-700 text-white">Application Funnel</h3><p class="mt-3 text-sm text-orange-100/70">A qualifying funnel that filters tire-kickers and sends serious prospects straight to your calendar.</p></article>
+      <article class="reveal glass rounded-3xl p-7"><h3 class="font-heading text-xl font-700 text-white">AI Booking & Reminders</h3><p class="mt-3 text-sm text-orange-100/70">Automatic scheduling, SMS/email reminders, and follow-ups that cut no-shows and re-engage no-replies.</p></article>
+      <article class="reveal glass rounded-3xl p-7"><h3 class="font-heading text-xl font-700 text-white">Offer & Sales Page</h3><p class="mt-3 text-sm text-orange-100/70">A dedicated page that frames your program, pricing, and proof so the call is a formality.</p></article>
+      <article class="reveal glass rounded-3xl p-7"><h3 class="font-heading text-xl font-700 text-white">Lead Capture That Works 24/7</h3><p class="mt-3 text-sm text-orange-100/70">Free-resource opt-ins that grow your list while you sleep — then nurture them to a booked call.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- How -->
+<section id="how" class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <h2 class="reveal font-heading text-3xl sm:text-5xl font-700 text-white">From follower to booked call</h2>
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="reveal glass rounded-2xl p-6"><div class="font-display text-5xl text-flame">1</div><h3 class="mt-2 font-heading text-lg font-600 text-white">Free strategy call</h3><p class="mt-2 text-sm text-orange-100/70">We map your offer and ideal client.</p></div>
+      <div class="reveal glass rounded-2xl p-6"><div class="font-display text-5xl text-flame">2</div><h3 class="mt-2 font-heading text-lg font-600 text-white">We build it free</h3><p class="mt-2 text-sm text-orange-100/70">Website live in days, on the house.</p></div>
+      <div class="reveal glass rounded-2xl p-6"><div class="font-display text-5xl text-flame">3</div><h3 class="mt-2 font-heading text-lg font-600 text-white">Add the funnel</h3><p class="mt-2 text-sm text-orange-100/70">Application flow + AI booking go live.</p></div>
+      <div class="reveal glass rounded-2xl p-6"><div class="font-display text-5xl text-flame">4</div><h3 class="mt-2 font-heading text-lg font-600 text-white">Calls roll in</h3><p class="mt-2 text-sm text-orange-100/70">You close. We optimize and scale.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Proof -->
+<section class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <h2 class="reveal text-center font-heading text-3xl sm:text-5xl font-700 text-white">Coaches who stopped chasing</h2>
+    <div class="mt-14 grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <figure class="reveal glass rounded-3xl p-7"><div class="flex gap-1 text-ember-yellow">★★★★★</div><blockquote class="mt-4 text-orange-100/85">"My applications doubled two weeks after the funnel launched. I finally have a system instead of a chaotic inbox."</blockquote><figcaption class="mt-5 flex items-center gap-3"><span class="h-10 w-10 rounded-full bg-gradient-to-br from-ember-orange to-ember-red grid place-items-center font-700 text-white">M</span><span class="text-sm"><span class="block font-600 text-white">Marcus T.</span><span class="text-orange-100/60">Strength Coach</span></span></figcaption></figure>
+      <figure class="reveal glass rounded-3xl p-7"><div class="flex gap-1 text-ember-yellow">★★★★★</div><blockquote class="mt-4 text-orange-100/85">"The free website alone looked like I'd paid five figures. The booking automation cut my no-shows in half."</blockquote><figcaption class="mt-5 flex items-center gap-3"><span class="h-10 w-10 rounded-full bg-gradient-to-br from-ember-flame to-ember-deep grid place-items-center font-700 text-white">S</span><span class="text-sm"><span class="block font-600 text-white">Simone K.</span><span class="text-orange-100/60">Online Nutrition Coach</span></span></figcaption></figure>
+    </div>
+    <p class="reveal mt-8 text-center text-xs text-orange-100/40">Illustrative examples — swap in your real client results before launch.</p>
+  </div>
+</section>
+
+<!-- Apply / Form -->
+<section id="apply" class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-5xl px-5 sm:px-8">
+    <div class="reveal relative overflow-hidden rounded-[2rem] glass p-8 sm:p-12">
+      <div class="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-ember-orange/30 blur-3xl"></div>
+      <div class="relative grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 class="font-display text-5xl sm:text-6xl leading-[0.95] text-white">GET YOUR FREE<br/><span class="text-flame">COACHING FUNNEL</span></h2>
+          <p class="mt-5 text-orange-100/75">Tell us about your coaching business and we'll build your free website + a plan to fill your roster.</p>
+          <div class="mt-8 space-y-2 text-sm">
+            <a href="tel:+13125156882" class="flex items-center gap-3 text-orange-100/80 hover:text-white transition"><span class="text-ember-orange">📞</span> 312.515.6882</a>
+            <a href="mailto:info@firedragonai.com" class="flex items-center gap-3 text-orange-100/80 hover:text-white transition"><span class="text-ember-orange">✉</span> info@firedragonai.com</a>
+          </div>
+        </div>
+        <form id="lead-form" class="space-y-4" novalidate>
+          <input type="hidden" name="niche" value="Online fitness coach" />
+          <div><label for="name" class="block text-sm font-600 text-orange-100/80 mb-1.5">Your name</label><input id="name" name="name" type="text" required autocomplete="name" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="Jordan Smith" /></div>
+          <div><label for="email" class="block text-sm font-600 text-orange-100/80 mb-1.5">Email</label><input id="email" name="email" type="email" required autocomplete="email" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="you@coaching.com" /></div>
+          <div><label for="offer" class="block text-sm font-600 text-orange-100/80 mb-1.5">What do you coach?</label><input id="offer" name="offer" type="text" required class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="e.g. 12-week strength program" /></div>
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+          <button type="submit" class="btn-flame w-full rounded-xl px-6 py-4 text-base font-700 text-white disabled:opacity-60 disabled:cursor-not-allowed">🔥 Build My Free Funnel</button>
+          <p class="form-msg text-sm text-center hidden" role="status" aria-live="polite"></p>
+          <p class="text-xs text-orange-100/40 text-center">We'll reply within one business day. No spam, ever.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="relative border-t border-orange-200/10 py-12">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-orange-100/60">
+    <a href="index.html" class="flex items-center gap-3"><img src="assets/logo-dragon.png" alt="" class="h-9 w-9 rounded-full ring-1 ring-ember-orange/40" /><span class="font-heading font-700 text-white">Fire Dragon <span class="text-flame">AI</span></span></a>
+    <nav class="flex gap-5"><a href="coaches.html" class="text-white">Coaches</a><a href="gyms.html" class="hover:text-white transition">Gyms</a><a href="cleaners.html" class="hover:text-white transition">Cleaners</a><a href="index.html" class="hover:text-white transition">Home</a></nav>
+    <p>© <span id="year"></span> Fire Dragon AI · info@firedragonai.com</p>
+  </div>
+</footer>
+
+</div>
+<script src="assets/brand.js"></script>
+</body>
+</html>
