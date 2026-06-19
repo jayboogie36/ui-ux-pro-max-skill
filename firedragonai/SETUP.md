@@ -57,7 +57,8 @@ Trigger: new onboarding submission (and/or Stripe "payment succeeded").
 ---
 
 ## 4. Contract (get it lawyer-reviewed before it's binding)
-Must cover:
+A starter draft is in **`CONTRACT-TEMPLATE.md`** — fill the `[BRACKETED]` placeholders and have
+a licensed attorney review it before use. It already covers:
 - Scope per tier + **48-hour delivery defined as** "website & funnel after materials received;
   ads/SEO/GBP/social begin within 48h and ramp through week one."
 - **Conditional 90-day money-back guarantee:** refund of service fee only if the client
