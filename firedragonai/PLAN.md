@@ -82,10 +82,26 @@ firedragonai/
 ├── index.html          # Production landing page (single file, Tailwind CDN)
 ├── assets/
 │   ├── logo-dragon.png    # Circular dragon emblem
-│   └── logo-wordmark.png  # "Fire Dragon AI" wordmark
+│   ├── logo-wordmark.png  # "Fire Dragon AI" wordmark
+│   ├── hero-flames.mp4    # Seamlessly-looping procedural flame video (hero bg)
+│   ├── hero-poster.jpg    # Poster frame (shown before video loads / reduced-motion)
+│   └── make_flames.py     # Generator script (re-run to tweak the flame look)
 ├── PLAN.md             # This document
 └── PROMPT.md           # Copy-paste master prompt for Claude / Claude Code
 ```
+
+### Hero flame video
+A real, GPU-free looping flame video sits behind the hero (`opacity ~0.42`), with a radial
+scrim for headline legibility. It degrades gracefully: **video → poster image → live ember
+canvas**. Under `prefers-reduced-motion` the video is paused and the static poster shows at low
+opacity. Regenerate the look anytime with `python3 assets/make_flames.py`. To swap in a
+nano-banana / AI-generated clip, just replace `assets/hero-flames.mp4` (and the poster).
+
+### Lead form → real endpoint
+The form POSTs to **Formspree** via `fetch` with loading / success / error states, inline
+validation, and a honeypot anti-spam field. **One-line activation:** create a free form at
+formspree.io (use info@firedragonai.com) and paste the ID into `FORMSPREE_ID` in `index.html`.
+Until then it runs in a safe demo mode. Swappable for HubSpot/Web3Forms by changing the endpoint.
 
 **Preview locally:** open `index.html` in a browser, or `cd firedragonai && python3 -m http.server 8000` → http://localhost:8000
 
@@ -93,7 +109,7 @@ firedragonai/
 
 ## 5. Before launch (swap placeholders)
 1. Replace the 3 illustrative testimonials with real client quotes + photos.
-2. Wire the form to a real endpoint (Formspree / HubSpot / your CRM) — currently a demo handler.
-3. Add `nano-banana` generated hero video/flame loop if desired (see PROMPT.md "Optional media").
+2. ✅ Form wired to Formspree — just paste your `FORMSPREE_ID` in `index.html` to go live.
+3. ✅ Hero flame video added (`assets/hero-flames.mp4`) — optionally replace with a nano-banana clip.
 4. Add favicon + real OG share image; verify the `og:image` tag.
 5. Connect booking (Calendly / GoHighLevel) behind the CTA.
