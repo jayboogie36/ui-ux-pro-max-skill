@@ -151,3 +151,84 @@ A note on your AI voice service: calls are announced as recorded to comply with 
 - **Set `{{client_id}}`** in your GHL workflow to match the ID shown on the onboarding screen
   (format `FD-YYYY-XXXXX`), or have GHL generate it and display that instead.
 - **Test deliverability:** send to Gmail, Outlook, and Apple Mail before going live.
+
+---
+
+## EMAIL 3 — Sign Your Agreement (pairs with the contract)
+
+Send from **GHL Documents & Contracts** so the button links to the e-sign document. Fire it right
+after Email 2 (or trigger on contract-created).
+
+**Subject line options**
+- ✍️ One last step, {{contact.first_name}} — sign your Fire Dragon AI agreement
+- Your agreement is ready to sign (2 minutes)
+- Please sign to lock in your 90-day guarantee
+
+**Preheader:** Quick e-signature so we can keep building — includes your 90-day guarantee.
+
+**Body (plain text)**
+```
+Hey {{contact.first_name}},
+
+Your Fire Dragon AI service agreement for {{business_name}} is ready to sign. It's a quick
+2-minute e-signature — no printing required.
+
+👉 Review & sign: {{contract_link}}
+
+What's inside:
+- Exactly what's included in your {{plan_name}} package
+- Your 90-day money-back guarantee
+- Timeline, ownership, and how the white-label handoff works after 90 days
+
+Once it's signed, you're fully locked in and we keep your build moving on schedule.
+
+Client ID: {{client_id}}
+
+Questions about any term? Just reply or call 312.515.6882 — happy to walk you through it.
+
+Talk soon,
+The Fire Dragon AI Team
+info@firedragonai.com | 312.515.6882
+```
+
+**Body (branded HTML — paste into GHL HTML editor)**
+```html
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0a0606;margin:0;padding:24px 0;font-family:Arial,Helvetica,sans-serif;">
+  <tr><td align="center">
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#120a09;border:1px solid rgba(255,180,120,0.18);border-radius:16px;overflow:hidden;">
+      <tr><td style="padding:28px 32px;border-bottom:1px solid rgba(255,180,120,0.12);">
+        <span style="font-size:22px;font-weight:bold;color:#ffffff;">Fire Dragon <span style="color:#FB7227;">AI</span></span>
+      </td></tr>
+      <tr><td style="padding:32px 32px 8px;">
+        <h1 style="margin:0;color:#ffffff;font-size:25px;line-height:1.25;">One last step, {{contact.first_name}} — sign your agreement ✍️</h1>
+        <p style="margin:14px 0 0;color:#e8d8cf;font-size:15px;line-height:1.6;">
+          Your service agreement for <strong style="color:#ffffff;">{{business_name}}</strong> is ready. It's a quick 2-minute e-signature and includes your <strong style="color:#ffffff;">90-day money-back guarantee</strong>.
+        </p>
+      </td></tr>
+      <tr><td style="padding:18px 32px 4px;">
+        <p style="color:#e8d8cf;font-size:14px;line-height:1.7;margin:0;">
+          <strong style="color:#FB7227;">•</strong> What's included in your {{plan_name}} package<br>
+          <strong style="color:#FB7227;">•</strong> Your 90-day guarantee<br>
+          <strong style="color:#FB7227;">•</strong> Timeline, ownership &amp; the white-label handoff after 90 days
+        </p>
+      </td></tr>
+      <tr><td style="padding:24px 32px 8px;" align="center">
+        <a href="{{contract_link}}" style="display:inline-block;background:#FB7227;color:#ffffff;text-decoration:none;font-weight:bold;font-size:16px;padding:15px 34px;border-radius:12px;">Review &amp; Sign Agreement</a>
+      </td></tr>
+      <tr><td style="padding:8px 32px 0;" align="center">
+        <p style="color:#b89c90;font-size:12px;margin:0;">Client ID: {{client_id}}</p>
+      </td></tr>
+      <tr><td style="padding:24px 32px 28px;border-top:1px solid rgba(255,180,120,0.12);margin-top:16px;">
+        <p style="color:#b89c90;font-size:12px;line-height:1.6;margin:0;">
+          Questions about any term? Reply here or call 312.515.6882.<br><br>
+          <strong style="color:#e8d8cf;">The Fire Dragon AI Team</strong><br>
+          <a href="mailto:info@firedragonai.com" style="color:#FB7227;text-decoration:none;">info@firedragonai.com</a> · 312.515.6882
+        </p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+```
+
+**Extra merge fields:** `{{contract_link}}` (the GHL e-sign URL), `{{plan_name}}`.
+**Follow-up:** if unsigned after 48h, auto-send a one-line nudge ("Still need your signature to keep your build on schedule 🔥").
