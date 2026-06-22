@@ -371,6 +371,24 @@
             <p id="demo-note" class="mt-3 text-sm text-orange-100/60">Select options above</p>
             <p class="mt-2 text-xs text-orange-100/40">Final price confirmed on first visit</p>
           </div>
+
+          <!-- Mock booking calendar (demo only — clickable, intentionally routes nowhere) -->
+          <div class="w-full rounded-2xl bg-ink-800/70 border border-orange-200/15 p-5 text-left">
+            <div class="flex items-center justify-between mb-3">
+              <p class="text-xs uppercase tracking-[0.2em] text-orange-100/50">Pick a date</p>
+              <span id="demo-month" class="text-xs text-orange-100/40"></span>
+            </div>
+            <div id="demo-dates" class="grid grid-cols-5 gap-2"></div>
+
+            <p class="text-xs uppercase tracking-[0.2em] text-orange-100/50 mt-5 mb-2">Available times</p>
+            <div id="demo-times" class="grid grid-cols-3 gap-2"></div>
+
+            <button id="demo-book" type="button" class="btn-flame mt-5 w-full rounded-xl px-6 py-3.5 text-base font-700 text-white">
+              Book Now
+            </button>
+            <p id="demo-book-msg" class="hidden mt-3 text-center text-sm font-600 text-ember-yellow"></p>
+          </div>
+
           <a href="#claim" class="btn-flame w-full rounded-xl px-6 py-4 text-base font-700 text-white">
             🔥 Get This On My Website — Free
           </a>
@@ -799,6 +817,85 @@
     }
     [svc, beds, bath, freq].forEach(function (el) { el.addEventListener('change', calc); });
     calc();
+  })();
+
+  // ---------- Mock booking calendar (demo only — routes nowhere) ----------
+  (function () {
+    var datesEl = document.getElementById('demo-dates');
+    var timesEl = document.getElementById('demo-times');
+    var monthEl = document.getElementById('demo-month');
+    var bookBtn = document.getElementById('demo-book');
+    var bookMsg = document.getElementById('demo-book-msg');
+    if (!datesEl || !timesEl) return;
+
+    var DAYS  = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var TIMES = ['8:00 AM', '10:30 AM', '1:00 PM', '3:30 PM', '5:00 PM', '6:30 PM'];
+
+    var selDate = null, selTime = null;
+    var base = 'rounded-xl border px-2 py-2 text-center transition cursor-pointer';
+    var off  = ' bg-ink-700/60 border-orange-200/15 text-orange-100/80 hover:border-ember-orange/60';
+    var on   = ' bg-ember-orange border-ember-orange text-white font-700';
+
+    // Next 10 days, starting tomorrow
+    var start = new Date();
+    start.setDate(start.getDate() + 1);
+    if (monthEl) monthEl.textContent = MONTHS[start.getMonth()] + ' ' + start.getFullYear();
+
+    function clearSel(container) {
+      Array.prototype.forEach.call(container.children, function (c) { c.className = base + off; });
+    }
+
+    for (var i = 0; i < 10; i++) {
+      var d = new Date(start);
+      d.setDate(start.getDate() + i);
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = base + off;
+      btn.innerHTML = '<span class="block text-[10px] uppercase tracking-wide text-orange-100/50">' +
+        DAYS[d.getDay()] + '</span><span class="block text-lg font-700 leading-tight">' + d.getDate() + '</span>';
+      btn.dataset.label = DAYS[d.getDay()] + ', ' + MONTHS[d.getMonth()] + ' ' + d.getDate();
+      btn.addEventListener('click', function () {
+        clearSel(datesEl);
+        this.className = base + on;
+        selDate = this.dataset.label;
+        hideMsg();
+      });
+      datesEl.appendChild(btn);
+    }
+
+    TIMES.forEach(function (t) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = base + off;
+      btn.textContent = t;
+      btn.addEventListener('click', function () {
+        clearSel(timesEl);
+        this.className = base + on;
+        selTime = t;
+        hideMsg();
+      });
+      timesEl.appendChild(btn);
+    });
+
+    function hideMsg() { if (bookMsg) bookMsg.classList.add('hidden'); }
+    function showMsg(text, ok) {
+      if (!bookMsg) return;
+      bookMsg.textContent = text;
+      bookMsg.classList.remove('hidden');
+      bookMsg.classList.toggle('text-ember-yellow', ok);
+      bookMsg.classList.toggle('text-red-400', !ok);
+    }
+
+    if (bookBtn) {
+      bookBtn.addEventListener('click', function () {
+        if (!selDate || !selTime) {
+          showMsg('Pick a date and time to see how booking works.', false);
+          return;
+        }
+        showMsg('✓ Booked for ' + selDate + ' at ' + selTime + ' — that’s exactly what your customer sees. (Demo only)', true);
+      });
+    }
   })();
 
   // ---------- Lead form -> Formspree ----------
