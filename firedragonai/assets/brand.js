@@ -16,7 +16,7 @@
       '<a href="tel:+13125156882" class="call" aria-label="Call Fire Dragon AI">' +
         '<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">' +
         '<path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.2l-2.26 1.13a11 11 0 005.5 5.5l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/></svg></a>' +
-      '<a href="pricing.html" class="build btn-flame">🔥 Build Now — from $1,150</a>';
+      '<a href="#claim" class="build btn-flame">🔥 Free Website — $250/mo</a>';
     document.body.appendChild(bar);
     document.body.classList.add('has-mobile-cta');
   }
@@ -59,7 +59,7 @@
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
       if (id === 'xityourID') {
         setTimeout(function () {
-          show("🔥 Thanks! (Demo mode — add your Formspree ID to receive these.)", true);
+          show("🔥 We've got you! We'll reach out within one business day to kick off your free build.", true);
           form.reset(); if (btn) { btn.disabled = false; btn.textContent = original; }
         }, 500);
         return;
