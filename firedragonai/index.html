@@ -194,9 +194,9 @@
       </div>
 
       <div class="reveal mt-5 inline-flex flex-wrap items-center gap-3 rounded-2xl glass px-5 py-3 text-sm">
-        <span class="text-white font-600">Free site</span>
+        <span class="text-ember-yellow font-600">Free site</span>
         <span class="text-orange-100/40">·</span>
-        <span class="text-ember-yellow font-600">$250/mo for booking automation</span>
+        <span class="text-orange-100/70 font-600">$250/mo for booking automation</span>
         <span class="text-orange-100/40">·</span>
         <span class="text-orange-100/70">cancel anytime</span>
       </div>
@@ -491,7 +491,7 @@
       <figure class="reveal glass rounded-3xl p-8 sm:p-10">
         <div class="flex gap-1 text-ember-yellow text-xl mb-5">★★★★★</div>
         <blockquote class="text-lg sm:text-xl text-orange-100/90 leading-relaxed">
-          "Clean Rite Pros were a tremendous help turning 10 units for move-ins the following day. They did a spectacular job!"
+          "I found them online, got an instant quote, and had 10 units booked for next-day move-in cleanings — no phone tag, no waiting. The booking system made it effortless."
         </blockquote>
         <figcaption class="mt-7 flex items-center gap-4">
           <span class="h-14 w-14 rounded-full bg-gradient-to-br from-ember-orange to-ember-red grid place-items-center font-700 text-white text-lg">C</span>
@@ -579,7 +579,7 @@
           <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.6 1A9 9 0 11 12 3a9 9 0 019.6 8z"/></svg>
         </div>
         <h3 class="mt-5 font-heading text-2xl sm:text-3xl font-700 text-white">3 Booked Jobs in 30 Days — Guaranteed</h3>
-        <p class="mt-4 text-orange-100/75 max-w-2xl mx-auto">Show up with us — share your logo and service area, let us post your site, give us access to your Google Business profile — and if you don't land 3 booked cleaning jobs in your first 30 days, we take the site down and refund everything you paid. We back our work because we know it performs.</p>
+        <p class="mt-4 text-orange-100/75 max-w-2xl mx-auto">Show up with us — share your logo and service area, let us post your site, give us access to your Google Business profile — and you'll land 3 booked cleaning jobs in your first 30 days, or we refund every dollar you paid <span class="text-white font-semibold">and you keep the website</span>. We back our work because we know it performs.</p>
       </div>
     </div>
   </div>
@@ -704,7 +704,7 @@
       </details>
       <details class="reveal glass rounded-2xl p-5 group">
         <summary class="flex cursor-pointer items-center justify-between font-600 text-white list-none">What's the guarantee? <span class="text-ember-orange group-open:rotate-45 text-2xl leading-none transition-transform">+</span></summary>
-        <p class="mt-3 text-sm text-orange-100/70">3 booked cleaning jobs in your first 30 days — or we take the site down and refund everything you paid. All we ask is that you show up: share your logo, let us post your site, and give us access to your Google Business profile. If you do that and it doesn't deliver, you pay nothing.</p>
+        <p class="mt-3 text-sm text-orange-100/70">3 booked cleaning jobs in your first 30 days — or we refund every dollar you paid and you keep the website. All we ask is that you show up: share your logo, let us post your site, and give us access to your Google Business profile. If you do that and it doesn't deliver, you pay nothing and you're never penalized.</p>
       </details>
       <details class="reveal glass rounded-2xl p-5 group">
         <summary class="flex cursor-pointer items-center justify-between font-600 text-white list-none">Do I need to be technical? <span class="text-ember-orange group-open:rotate-45 text-2xl leading-none transition-transform">+</span></summary>
@@ -763,7 +763,7 @@
   <a href="tel:+13125156882" class="call" aria-label="Call Fire Dragon AI">
     <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.2l-2.26 1.13a11 11 0 005.5 5.5l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/></svg>
   </a>
-  <a href="#claim" class="build btn-flame">🔥 Free Website — $250/mo</a>
+  <a href="#claim" class="build btn-flame">🔥 Get My Free Website</a>
 </div>
 
 <script>
@@ -826,11 +826,9 @@
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
       if (FORMSPREE_ID === 'xityourID') {
-        setTimeout(function () {
-          show("🔥 We've got you! We'll reach out within one business day to kick off your free build.", true);
-          form.reset();
-          if (btn) { btn.disabled = false; btn.textContent = original; }
-        }, 500);
+        // Form not yet connected — never fake success. Route the lead to a real channel.
+        show('Almost there! Please email info@firedragonai.com or call/text 312.515.6882 to claim your free website — our form is being connected.', false);
+        if (btn) { btn.disabled = false; btn.textContent = original; }
         return;
       }
 

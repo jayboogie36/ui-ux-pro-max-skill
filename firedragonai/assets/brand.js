@@ -58,10 +58,9 @@
       var original = btn ? btn.textContent : '';
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
       if (id === 'xityourID') {
-        setTimeout(function () {
-          show("🔥 We've got you! We'll reach out within one business day to kick off your free build.", true);
-          form.reset(); if (btn) { btn.disabled = false; btn.textContent = original; }
-        }, 500);
+        // Form not yet connected — never fake success. Route the lead to a real channel.
+        show('Almost there! Please email info@firedragonai.com or call/text 312.515.6882 to claim your free website — our form is being connected.', false);
+        if (btn) { btn.disabled = false; btn.textContent = original; }
         return;
       }
       fetch('https://formspree.io/f/' + id, {
