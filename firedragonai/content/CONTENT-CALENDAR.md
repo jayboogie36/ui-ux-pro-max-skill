@@ -92,10 +92,11 @@ Comment a keyword · DM us 'START' · Save & share · Tap the link in bio · Boo
 ---
 
 ## CSV columns
-`Date · Weekday · Week · Platform · Pillar · Format · Hook / Idea · Suggested CTA · Caption · Asset · Status`
+`Date · Weekday · Week · Platform · Pillar · Format · Hook / Idea · Suggested CTA · Caption · Asset (photo/video) · Status`
 
-**Workflow:** fill `Hook / Idea` from the niche bank → write the `Caption` (AI-assisted) → attach the
-`Asset` → set `Status` to *Drafted → Scheduled → Posted*. Batch a week at a time.
+**Workflow:** rows are generated with `Status` = *Idea*. Fill `Hook / Idea` from the niche bank →
+write the `Caption` (AI-assisted) → attach the `Asset (photo/video)` → advance `Status`
+through *Idea → Drafted → Scheduled → Posted*. Batch a week at a time.
 
 > Tip: keep a 70/20/10 mix — 70% value/proof, 20% offers, 10% pure fun/trends — and let the
 > Promote posts point to the client's funnel or instant-quote page.

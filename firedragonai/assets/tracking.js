@@ -62,9 +62,11 @@
     // Lead capture forms (homepage + niche pages + instant quote) -> Lead
     var lead = document.getElementById('lead-form');
     if (lead) lead.addEventListener('submit', function () {
+      if (!lead.checkValidity()) return;                 // skip invalid submissions
+      if (lead._gotcha && lead._gotcha.value) return;    // skip honeypot/bot submissions
       var niche = (lead.querySelector('[name="niche"]') || {}).value || 'lead';
       window.fdTrack('Lead', { content_name: niche });
-    }, true); // capture phase: fires even though the handler calls preventDefault
+    });
 
     // Onboarding intake (post-payment) -> CompleteRegistration
     var onboard = document.getElementById('onboard-form');

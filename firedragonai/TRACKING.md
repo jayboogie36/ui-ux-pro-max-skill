@@ -30,12 +30,11 @@ The most valuable event is **Purchase**. Fire it after payment one of two ways:
 - **Stripe thank-you page:** set the Payment Link's after-payment redirect to a page that includes
   `tracking.js`, then add:
   ```html
-  <script>fdTrack('Purchase', { value: 1150, currency: 'USD', content_name: 'Ignite' });</script>
+  <script>fdTrack('Purchase', { value: 250, currency: 'USD', content_name: 'Booking Automation' });</script>
   ```
-  (Use 2500 / 'Inferno' for that tier, etc.)
 - **Or** keep the redirect to `onboarding.html` and uncomment a `Purchase` call there.
 
-> Values: Ignite one-time **1150**, Inferno one-time **2500**, monthly **500 / 1000**.
+> Value: Booking Automation **250 / month** (the website itself is free).
 
 ## 5. Fire your own events anywhere
 ```js

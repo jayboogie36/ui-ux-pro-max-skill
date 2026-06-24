@@ -5,7 +5,7 @@ Run:  python3 make_onboarding_pdf.py   ->  What-To-Send-Us.pdf
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
-from reportlab.lib.utils import ImageReader
+from reportlab.lib.utils import ImageReader, simpleSplit
 import os
 
 W, H = letter
@@ -35,27 +35,31 @@ c.setFont("Helvetica-Bold", 12)
 c.drawString(x + 0.85*inch, y - 0.40*inch, "What To Send Us  ·  Fire Dragon AI")
 
 y -= 0.78*inch
-c.setStrokeColorRGB(*ORANGE); c.setLineWidth(2)
+c.setStrokeColorRGB(*ORANGE)
+c.setLineWidth(2)
 c.line(x, y, W - M, y)
 y -= 0.26*inch
 
-c.setFillColorRGB(*GRAY); c.setFont("Helvetica", 9.5)
+c.setFillColorRGB(*GRAY)
+c.setFont("Helvetica", 9.5)
 intro = ("The faster you send these, the faster we launch. Your 48-hour build clock starts the "
          "moment we have your materials — most clients see leads in 7 days or less.")
 # wrap intro
-from reportlab.lib.utils import simpleSplit
 for line in simpleSplit(intro, "Helvetica", 9.5, W - 2*M):
-    c.drawString(x, y, line); y -= 0.16*inch
+    c.drawString(x, y, line)
+    y -= 0.16*inch
 y -= 0.08*inch
 
 # ---------- Sections ----------
 def checkbox(cx, cy):
-    c.setStrokeColorRGB(*ORANGE); c.setLineWidth(1)
+    c.setStrokeColorRGB(*ORANGE)
+    c.setLineWidth(1)
     c.rect(cx, cy - 0.005*inch, 0.12*inch, 0.12*inch, stroke=1, fill=0)
 
 def section(title, items):
     global y
-    c.setFillColorRGB(*RED); c.setFont("Helvetica-Bold", 11)
+    c.setFillColorRGB(*RED)
+    c.setFont("Helvetica-Bold", 11)
     c.drawString(x, y, title.upper())
     y -= 0.205*inch
     c.setFont("Helvetica", 9.3)
@@ -65,7 +69,8 @@ def section(title, items):
         lines = simpleSplit(it, "Helvetica", 9.3, W - 2*M - 0.32*inch)
         for i, line in enumerate(lines):
             c.drawString(x + 0.26*inch, y, line)
-            if i < len(lines) - 1: y -= 0.155*inch
+            if i < len(lines) - 1:
+                y -= 0.155*inch
         y -= 0.185*inch
     y -= 0.06*inch
 
@@ -76,7 +81,7 @@ section("1. Brand", [
 ])
 section("2. Photos & Video", [
     "Headshots / team photos",
-    "Photos of your space, gym, or work (before & afters are gold)",
+    "Photos of your team and your work (before & afters are gold)",
     "Any short videos or clips — the more authentic, the better",
 ])
 section("3. Business Details", [
@@ -103,9 +108,11 @@ box_h = 1.02*inch
 by = M + 0.15*inch
 c.setFillColorRGB(0.98, 0.95, 0.92)
 c.roundRect(x, by, W - 2*M, box_h, 8, stroke=0, fill=1)
-c.setFillColorRGB(*ORANGE); c.setFont("Helvetica-Bold", 10.5)
+c.setFillColorRGB(*ORANGE)
+c.setFont("Helvetica-Bold", 10.5)
 c.drawString(x + 0.18*inch, by + box_h - 0.26*inch, "HOW TO SEND IT")
-c.setFillColorRGB(*INK); c.setFont("Helvetica", 9)
+c.setFillColorRGB(*INK)
+c.setFont("Helvetica", 9)
 tips = [
     "Upload everything at the onboarding link we email you after checkout — or send to info@firedragonai.com.",
     "Keep your Client ID handy (format FD-YYYY-XXXXX) and include it with anything you send.",
@@ -113,12 +120,15 @@ tips = [
 ]
 ty = by + box_h - 0.46*inch
 for t in tips:
-    c.drawString(x + 0.18*inch, ty, "•  " + t); ty -= 0.165*inch
+    c.drawString(x + 0.18*inch, ty, "•  " + t)
+    ty -= 0.165*inch
 
 # ---------- Footer ----------
-c.setFillColorRGB(*LIGHT); c.setFont("Helvetica", 8)
+c.setFillColorRGB(*LIGHT)
+c.setFont("Helvetica", 8)
 c.drawCentredString(W/2, M - 0.12*inch,
     "Fire Dragon AI   ·   www.firedragonai.com   ·   info@firedragonai.com   ·   312.515.6882")
 
-c.showPage(); c.save()
+c.showPage()
+c.save()
 print("Wrote What-To-Send-Us.pdf", os.path.getsize("What-To-Send-Us.pdf"), "bytes")

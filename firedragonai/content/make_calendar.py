@@ -5,7 +5,8 @@ Google Sheets, Notion, GoHighLevel, Metricool, Later, etc.
 
 Edit START_DATE and the idea banks, then run:  python3 make_calendar.py
 """
-import csv, datetime
+import csv
+import datetime
 
 START_DATE = datetime.date(2026, 7, 6)   # a Monday; change to your client's start
 DAYS = 90
@@ -79,7 +80,8 @@ for d in range(DAYS):
         hooks = HOOKS[pillar]
         hook = hooks[hook_idx[pillar] % len(hooks)]
         hook_idx[pillar] += 1
-        cta = CTAS[cta_i % len(CTAS)]; cta_i += 1
+        cta = CTAS[cta_i % len(CTAS)]
+        cta_i += 1
         rows.append({
             "Date": date.isoformat(),
             "Weekday": date.strftime("%a"),

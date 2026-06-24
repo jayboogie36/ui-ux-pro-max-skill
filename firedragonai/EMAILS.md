@@ -1,10 +1,11 @@
 # Fire Dragon AI — Email Copy (Onboarding Confirmation)
 
 Ready to paste into **GoHighLevel** (or any email tool). Merge fields use GHL-style
-`{{ }}` — swap to your tool's syntax if different. Two emails included:
+`{{ }}` — swap to your tool's syntax if different. Three emails included:
 
 1. **Payment Welcome** — sent immediately after Stripe payment (before/with the onboarding link)
-2. **Onboarding Confirmation** — sent after they submit the onboarding form (the one you asked for)
+2. **Onboarding Confirmation** — sent after they submit the onboarding form
+3. **Sign Your Agreement** — pairs with the contract for e-signature
 
 **Merge fields used:** `{{contact.first_name}}`, `{{contact.email}}`, `{{client_id}}`,
 `{{plan_name}}`, `{{business_name}}`. Set `client_id` and `plan_name` from your workflow.

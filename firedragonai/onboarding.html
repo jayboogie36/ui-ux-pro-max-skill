@@ -48,7 +48,7 @@
         <span class="h-2 w-2 rounded-full bg-ember-orange animate-pulse"></span> Payment received · Step 2 of 3
       </div>
       <h1 class="reveal mt-6 font-display text-5xl sm:text-7xl leading-[0.95] text-white">WELCOME ABOARD.<br/><span class="text-flame">LET'S BUILD.</span></h1>
-      <p class="reveal mt-5 text-orange-100/75">Send us your materials and business info. The moment you submit, you'll get a <span class="text-white font-semibold">Client ID</span> and a confirmation email — and our 48-hour build clock starts.</p>
+      <p class="reveal mt-5 text-orange-100/75">Send us your materials and business info. The moment you submit, you'll get a <span class="text-white font-semibold">Client ID</span> and a confirmation email. Your <span class="text-white font-semibold">48-hour build clock starts once we've received everything we need</span> — your logo, photos, services, and Google Business access.</p>
       <p id="plan-badge" class="reveal mt-4 hidden"></p>
       <p class="reveal mt-5 text-sm"><a href="content/What-To-Send-Us.pdf" class="text-ember-orange hover:underline" download>📄 Prefer a checklist? Download "What To Send Us" (PDF)</a></p>
     </div>
@@ -113,7 +113,7 @@
 
       <label class="flex items-start gap-3 text-sm text-orange-100/70">
         <input type="checkbox" required class="mt-1 h-4 w-4 rounded border-orange-200/30 bg-ink-700 text-ember-orange focus:ring-ember-orange" />
-        <span>I agree to the <a href="#" class="text-ember-orange underline">Terms &amp; 90-day guarantee</a> and authorize Fire Dragon AI to begin the build.</span>
+        <span>I agree to the <a href="pricing.html#guarantee" class="text-ember-orange underline">Terms &amp; 30-day guarantee</a> and authorize Fire Dragon AI to begin the build.</span>
       </label>
 
       <input type="hidden" id="plan-field" name="plan" value="" />
@@ -184,19 +184,25 @@
   var ONBOARD_ENDPOINT = ""; // e.g. "https://formspree.io/f/xxxx" or your GHL webhook
 
   (function () {
-    // Show which plan was purchased (Stripe can append ?plan=inferno&billing=onetime)
+    // Single cleaning plan: Booking Automation, $250/month. Default everyone to it;
+    // an optional ?plan= param can still override the display name if ever needed.
     var params = new URLSearchParams(location.search);
-    var plan = (params.get('plan') || '').toLowerCase();
-    var billing = (params.get('billing') || '').toLowerCase();
-    var names = { ignite: 'Ignite', inferno: 'Inferno' };
-    if (names[plan]) {
-      var badge = document.getElementById('plan-badge');
-      badge.innerHTML = 'Plan purchased: <span class="text-white font-700">' + names[plan] +
-        (billing ? ' · ' + (billing === 'monthly' ? 'Monthly' : 'One-time') : '') + '</span>';
-      badge.className = 'reveal mt-4 text-sm text-ember-yellow';
-      document.getElementById('plan-field').value = names[plan];
-      document.getElementById('billing-field').value = billing;
-    }
+    var planParam = (params.get('plan') || '').toLowerCase();
+    var names = { booking: 'Booking Automation', automation: 'Booking Automation' };
+    var planName = names[planParam] || 'Booking Automation';
+    var billing = (params.get('billing') || 'monthly').toLowerCase();
+    var billingLabel = billing === 'onetime' || billing === 'one-time' ? 'One-time' : 'Monthly';
+
+    var badge = document.getElementById('plan-badge');
+    badge.textContent = '';
+    var strong = document.createElement('span');
+    strong.className = 'text-white font-700';
+    strong.textContent = planName + ' · ' + billingLabel + ' · $250/mo';
+    badge.appendChild(document.createTextNode('Plan purchased: '));
+    badge.appendChild(strong);
+    badge.className = 'reveal mt-4 text-sm text-ember-yellow';
+    document.getElementById('plan-field').value = planName;
+    document.getElementById('billing-field').value = billing || 'monthly';
 
     // File pickers + drag/drop
     document.querySelectorAll('.dropzone').forEach(function (zone) {

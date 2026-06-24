@@ -218,11 +218,9 @@
       btn.disabled = true; btn.textContent = 'Sending…';
 
       if (!FORMSPREE_CUSTOM_ID) {
-        setTimeout(function () {
-          form.classList.add('hidden');
-          document.getElementById('custom-thanks').classList.remove('hidden');
-          btn.disabled = false; btn.textContent = original;
-        }, 500);
+        // Form not yet connected — never fake success. Route to a real channel.
+        show('Almost there! Please email info@firedragonai.com or call/text 312.515.6882 to start your custom build — this form is being connected.', false);
+        btn.disabled = false; btn.textContent = original;
         return;
       }
       fetch('https://formspree.io/f/' + FORMSPREE_CUSTOM_ID, {

@@ -63,14 +63,17 @@
         if (btn) { btn.disabled = false; btn.textContent = original; }
         return;
       }
+      var controller = new AbortController();
+      var to = setTimeout(function () { controller.abort(); }, 12000);
       fetch('https://formspree.io/f/' + id, {
-        method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form)
+        method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form),
+        signal: controller.signal
       }).then(function (res) {
         if (res.ok) { show("🔥 Thanks! We'll reach out within one business day.", true); form.reset(); }
         else { show("Something went wrong. Email info@firedragonai.com.", false); }
       }).catch(function () {
         show("Network error. Call 312.515.6882 or email info@firedragonai.com.", false);
-      }).finally(function () { if (btn) { btn.disabled = false; btn.textContent = original; } });
+      }).finally(function () { clearTimeout(to); if (btn) { btn.disabled = false; btn.textContent = original; } });
     });
   }
 

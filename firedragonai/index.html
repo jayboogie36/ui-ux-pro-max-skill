@@ -1001,7 +1001,8 @@
   // ---------- Limited-time countdown ----------
   (function () {
     // Campaign deadline — update this date to extend or reset the offer.
-    var DEADLINE = new Date('2026-07-09T23:59:59');
+    // Chicago end-of-day (-05:00 CDT) so every visitor sees the same cutoff moment.
+    var DEADLINE = new Date('2026-07-09T23:59:59-05:00');
     var elDays = document.getElementById('cd-days');
     var elHours = document.getElementById('cd-hours');
     var elMins = document.getElementById('cd-mins');

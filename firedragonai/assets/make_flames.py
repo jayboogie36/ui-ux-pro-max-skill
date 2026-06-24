@@ -3,7 +3,9 @@
 Procedural fire using a vertical-advection noise field with a fire color ramp.
 Outputs hero-flames.mp4 (h264) + hero-poster.jpg. Loops perfectly via phase wrap.
 """
-import numpy as np, imageio.v2 as imageio, os
+import os
+import imageio.v2 as imageio
+import numpy as np
 from PIL import Image
 
 W, H = 1280, 720
@@ -22,7 +24,8 @@ def tileable_noise(h, w, period):
         px, py = rng.uniform(0, 2*np.pi, 2)
         amp = rng.uniform(0.4, 1.0)
         field += amp * np.sin(2*np.pi*fx*xx/w + px) * np.cos(2*np.pi*fy*yy/h + py)
-    field -= field.min(); field /= (field.max() + 1e-6)
+    field -= field.min()
+    field /= (field.max() + 1e-6)
     return field
 
 base = tileable_noise(H, W, 5)
