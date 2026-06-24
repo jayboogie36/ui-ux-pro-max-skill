@@ -77,37 +77,90 @@
   // ---------- flame particle canvas ----------
   var canvas = document.getElementById('flame-canvas');
   if (!canvas) return;
-  var ctx = canvas.getContext('2d'), w, h, particles = [];
-  var COLORS = ['#FACC15', '#FB7227', '#F4511E', '#E11D2A', '#9A1B0E'];
+  var ctx = canvas.getContext('2d'), w, h, flames = [], sparks = [];
+  var COLORS = ['#FFE066', '#FACC15', '#FFA126', '#FB7227', '#F4511E', '#E11D2A'];
+
+  // Pre-render a soft radial glow sprite per color for fast, bright 3D embers
+  var sprites = COLORS.map(function (c) {
+    var s = document.createElement('canvas'); s.width = s.height = 64;
+    var sc = s.getContext('2d');
+    var g = sc.createRadialGradient(32, 32, 0, 32, 32, 32);
+    g.addColorStop(0, c);
+    g.addColorStop(0.35, c);
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    sc.fillStyle = g; sc.beginPath(); sc.arc(32, 32, 32, 0, Math.PI * 2); sc.fill();
+    return s;
+  });
+  // Tiny white-hot sparkle sprite
+  var sparkSprite = (function () {
+    var s = document.createElement('canvas'); s.width = s.height = 16;
+    var sc = s.getContext('2d');
+    var g = sc.createRadialGradient(8, 8, 0, 8, 8, 8);
+    g.addColorStop(0, '#fffbe6'); g.addColorStop(0.4, '#FFD56A'); g.addColorStop(1, 'rgba(255,160,40,0)');
+    sc.fillStyle = g; sc.beginPath(); sc.arc(8, 8, 8, 0, Math.PI * 2); sc.fill();
+    return s;
+  })();
 
   function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
   resize(); window.addEventListener('resize', resize);
 
-  function spawn() {
-    return { x: Math.random() * w, y: h + Math.random() * 40, r: 1 + Math.random() * 3.5,
-      vy: 0.4 + Math.random() * 1.6, vx: (Math.random() - 0.5) * 0.6, life: 0,
-      ttl: 120 + Math.random() * 160, color: COLORS[(Math.random() * COLORS.length) | 0] };
+  function spawnFlame() {
+    return { x: Math.random() * w, y: h + Math.random() * 40, r: 4 + Math.random() * 11,
+      vy: 0.5 + Math.random() * 1.9, vx: (Math.random() - 0.5) * 0.6, life: 0,
+      ttl: 120 + Math.random() * 170, sprite: (Math.random() * sprites.length) | 0,
+      flick: Math.random() * Math.PI * 2, flickSpd: 0.12 + Math.random() * 0.22 };
   }
-  var COUNT = window.innerWidth < 640 ? 40 : 80;
-  for (var i = 0; i < COUNT; i++) { var p = spawn(); p.y = Math.random() * h; particles.push(p); }
+  function spawnSpark() {
+    return { x: Math.random() * w, y: h + Math.random() * 30, r: 0.8 + Math.random() * 2.2,
+      vy: 1.2 + Math.random() * 2.8, vx: (Math.random() - 0.5) * 1.2, life: 0,
+      ttl: 60 + Math.random() * 120, tw: Math.random() * Math.PI * 2, twSpd: 0.2 + Math.random() * 0.4 };
+  }
+
+  var mobile = window.innerWidth < 640;
+  var FCOUNT = mobile ? 45 : 90;
+  var SCOUNT = mobile ? 25 : 55;
+  for (var i = 0; i < FCOUNT; i++) { var p = spawnFlame(); p.y = Math.random() * h; flames.push(p); }
+  for (var j = 0; j < SCOUNT; j++) { var s2 = spawnSpark(); s2.y = Math.random() * h; sparks.push(s2); }
 
   function frame() {
     ctx.clearRect(0, 0, w, h);
     ctx.globalCompositeOperation = 'lighter';
-    for (var k = 0; k < particles.length; k++) {
-      var q = particles[k];
-      q.life++; q.y -= q.vy; q.x += q.vx + Math.sin(q.life * 0.03) * 0.3;
-      var t = q.life / q.ttl, alpha = Math.max(0, 1 - t) * 0.5;
-      ctx.beginPath(); ctx.fillStyle = q.color; ctx.globalAlpha = alpha;
-      ctx.arc(q.x, q.y, q.r * (1 - t * 0.5), 0, Math.PI * 2); ctx.fill();
-      if (q.life >= q.ttl || q.y < -20) particles[k] = spawn();
+
+    // Glowing 3D flame embers
+    for (var k = 0; k < flames.length; k++) {
+      var q = flames[k];
+      q.life++; q.flick += q.flickSpd;
+      q.y -= q.vy; q.x += q.vx + Math.sin(q.life * 0.03) * 0.4;
+      var t = q.life / q.ttl;
+      var flicker = 0.78 + Math.sin(q.flick) * 0.22;           // organic brightness flicker
+      var alpha = Math.max(0, 1 - t) * 0.62 * flicker;
+      var size = q.r * (1 - t * 0.35) * (0.9 + Math.sin(q.flick) * 0.12);
+      ctx.globalAlpha = alpha;
+      ctx.drawImage(sprites[q.sprite], q.x - size, q.y - size, size * 2, size * 2);
+      if (q.life >= q.ttl || q.y < -30) flames[k] = spawnFlame();
     }
-    ctx.globalAlpha = 1; requestAnimationFrame(frame);
+
+    // Twinkling sparks
+    for (var m = 0; m < sparks.length; m++) {
+      var e = sparks[m];
+      e.life++; e.tw += e.twSpd;
+      e.y -= e.vy; e.x += e.vx + Math.sin(e.life * 0.08) * 0.6;
+      var et = e.life / e.ttl;
+      var twinkle = Math.max(0, Math.sin(e.tw)) * Math.max(0, 1 - et);
+      var es = e.r * (1.6 + Math.sin(e.tw) * 0.5);
+      ctx.globalAlpha = twinkle;
+      ctx.drawImage(sparkSprite, e.x - es, e.y - es, es * 2, es * 2);
+      if (e.life >= e.ttl || e.y < -20) sparks[m] = spawnSpark();
+    }
+
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
+    requestAnimationFrame(frame);
   }
   if (!prefersReduced) frame();
   else {
-    var g = ctx.createLinearGradient(0, h, 0, h * 0.5);
-    g.addColorStop(0, 'rgba(225,29,42,0.18)'); g.addColorStop(1, 'rgba(10,6,6,0)');
-    ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+    var g2 = ctx.createLinearGradient(0, h, 0, h * 0.5);
+    g2.addColorStop(0, 'rgba(225,29,42,0.18)'); g2.addColorStop(1, 'rgba(10,6,6,0)');
+    ctx.fillStyle = g2; ctx.fillRect(0, 0, w, h);
   }
 })();

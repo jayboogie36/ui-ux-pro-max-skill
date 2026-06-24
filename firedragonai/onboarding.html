@@ -228,6 +228,100 @@
     var btn = document.getElementById('onboard-submit');
     var msg = document.getElementById('onboard-msg');
 
+    // ---------- Celebration: confetti + fireworks (dependency-free) ----------
+    function celebrate() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var cv = document.createElement('canvas');
+      cv.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;z-index:60;pointer-events:none;';
+      document.body.appendChild(cv);
+      var x = cv.getContext('2d'), W, H;
+      function size() { W = cv.width = window.innerWidth; H = cv.height = window.innerHeight; }
+      size(); window.addEventListener('resize', size);
+
+      var COLORS = ['#FFE066', '#FACC15', '#FB7227', '#F4511E', '#E11D2A', '#ffffff', '#34d399'];
+      var confetti = [], fireworks = [], sparks = [];
+      var start = Date.now(), DURATION = 6500;
+
+      // Confetti rain
+      for (var i = 0; i < 220; i++) {
+        confetti.push({
+          x: Math.random() * W, y: -20 - Math.random() * H,
+          w: 6 + Math.random() * 7, h: 9 + Math.random() * 9,
+          vx: (Math.random() - 0.5) * 2.5, vy: 2.5 + Math.random() * 3.5,
+          rot: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.3,
+          color: COLORS[(Math.random() * COLORS.length) | 0]
+        });
+      }
+
+      function launchFirework() {
+        fireworks.push({
+          x: W * (0.15 + Math.random() * 0.7), y: H + 10,
+          ty: H * (0.15 + Math.random() * 0.4),
+          vy: -(7 + Math.random() * 3),
+          color: COLORS[(Math.random() * COLORS.length) | 0]
+        });
+      }
+      function burst(px, py, color) {
+        var n = 36 + (Math.random() * 24 | 0);
+        for (var b = 0; b < n; b++) {
+          var a = (Math.PI * 2 * b) / n, sp = 2 + Math.random() * 4;
+          sparks.push({
+            x: px, y: py, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp,
+            life: 0, ttl: 50 + Math.random() * 30, color: color
+          });
+        }
+      }
+
+      var fwTimer = setInterval(launchFirework, 550);
+      launchFirework(); launchFirework();
+
+      function loop() {
+        var elapsed = Date.now() - start;
+        x.clearRect(0, 0, W, H);
+
+        // confetti
+        x.globalCompositeOperation = 'source-over';
+        for (var c = 0; c < confetti.length; c++) {
+          var p = confetti[c];
+          p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.vy += 0.03;
+          if (p.y > H + 20) { p.y = -20; p.x = Math.random() * W; }
+          x.save(); x.translate(p.x, p.y); x.rotate(p.rot);
+          x.fillStyle = p.color; x.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); x.restore();
+        }
+
+        // fireworks rockets
+        x.globalCompositeOperation = 'lighter';
+        for (var f = fireworks.length - 1; f >= 0; f--) {
+          var r = fireworks[f];
+          r.x += 0; r.y += r.vy; r.vy += 0.06;
+          x.globalAlpha = 1; x.fillStyle = r.color;
+          x.beginPath(); x.arc(r.x, r.y, 2.5, 0, Math.PI * 2); x.fill();
+          if (r.y <= r.ty || r.vy >= 0) { burst(r.x, r.y, r.color); fireworks.splice(f, 1); }
+        }
+
+        // firework sparks
+        for (var s = sparks.length - 1; s >= 0; s--) {
+          var e = sparks[s];
+          e.life++; e.x += e.vx; e.y += e.vy; e.vy += 0.05; e.vx *= 0.99;
+          var al = Math.max(0, 1 - e.life / e.ttl);
+          x.globalAlpha = al; x.fillStyle = e.color;
+          x.beginPath(); x.arc(e.x, e.y, 2.2, 0, Math.PI * 2); x.fill();
+          if (e.life >= e.ttl) sparks.splice(s, 1);
+        }
+        x.globalAlpha = 1;
+
+        if (elapsed > DURATION && sparks.length === 0) {
+          clearInterval(fwTimer);
+          cv.remove();
+          window.removeEventListener('resize', size);
+          return;
+        }
+        if (elapsed > DURATION) clearInterval(fwTimer);
+        requestAnimationFrame(loop);
+      }
+      loop();
+    }
+
     function showConfirmation(clientId, email) {
       form.classList.add('hidden');
       var c = document.getElementById('confirmation');
@@ -235,6 +329,7 @@
       document.getElementById('client-id').textContent = clientId;
       document.getElementById('confirm-email').textContent = email || 'your inbox';
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      celebrate();
     }
 
     form.addEventListener('submit', function (e) {
