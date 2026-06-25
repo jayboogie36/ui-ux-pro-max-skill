@@ -7,9 +7,9 @@
 
 ---
 
-**MARKETING & WEBSITE SERVICES AGREEMENT**
+**WEBSITE & BOOKING AUTOMATION SERVICES AGREEMENT**
 
-This Marketing & Website Services Agreement (the "**Agreement**") is entered into as of
+This Website & Booking Automation Services Agreement (the "**Agreement**") is entered into as of
 `[EFFECTIVE DATE]` (the "**Effective Date**") by and between:
 
 - **Provider:** `[LEGAL BUSINESS NAME]`, doing business as **Fire Dragon AI**, `[ENTITY TYPE,
@@ -24,53 +24,57 @@ Fire Dragon AI and Client are each a "**Party**" and together the "**Parties**."
 ---
 
 ## 1. Definitions
-- **"Package"** means the service tier selected by Client in **Exhibit A** (Ignite or Inferno).
+- **"Free Website"** means the custom cleaning-business website Fire Dragon AI builds at no
+  charge and publishes on a free `firedragonai.com` subdomain (e.g., `yourname.firedragonai.com`).
+- **"Service Plan"** means the **Booking Automation** subscription described in Section 2 and
+  priced in **Exhibit A** ($250/month, month-to-month, cancel anytime).
 - **"Materials"** means the logo, photos, images, copy, account access, and business
   information Client provides through onboarding.
-- **"Deliverables"** means the website, funnel, and other work product produced under the
-  selected Package.
-- **"Ad Spend"** means amounts paid to third-party advertising platforms (e.g., Meta, Google,
-  TikTok) for media, separate from Fire Dragon AI's fees.
-- **"Engagement Period"** means the 90-day service period described in Section 7.
+- **"Deliverables"** means the Free Website and the Service Plan work product produced for Client.
+- **"Engagement Period"** means the initial 30-day service period described in Section 7.
 
 ## 2. Services
-Fire Dragon AI will provide the services in the Package selected in **Exhibit A**. A summary:
+**2.1 Free Website.** Fire Dragon AI will design, build, and publish the Free Website for Client
+at no cost, live on a free `firedragonai.com` subdomain. The Free Website is provided whether or
+not Client subscribes to the Service Plan, subject to Sections 9 and 11.
 
-**Ignite** — custom website, website hosting, a sales funnel, AI voice answering service, and
-calendar/appointment booking setup.
-
-**Inferno** — everything in Ignite, plus Meta (Facebook/Instagram) advertising management,
-AI-assisted ad creation, AI-assisted SEO, Google Business Profile setup, and 90 days of social
-media management across Instagram, Facebook, and TikTok, including a 90-day content calendar.
+**2.2 Service Plan — Booking Automation ($250/month).** When Client subscribes, Fire Dragon AI
+provides: a custom domain and professional business email; AI phone answering (quotes and books
+jobs); self-serve online booking and scheduling; online payments (Client's customers pay by card,
+Apple Pay, or Google Pay, collected up front through Client's payment processor); automated
+review requests; an analytics dashboard; recurring-client/frequency-discount automation; and a
+30-day performance review.
 
 Fire Dragon AI may use subcontractors and AI tools to perform the Services.
 
 ## 3. Delivery Timeline
-**3.1 Initial build (48 hours).** Fire Dragon AI will make Client's **website and funnel** live
-within **forty-eight (48) hours after** Fire Dragon AI has received all required Materials and
-access from Client, not from the time of payment.
+**3.1 Initial build (48 hours).** Fire Dragon AI will make Client's **website and booking
+system** live within **forty-eight (48) hours after** Fire Dragon AI has received all required
+Materials and access from Client, not from the time of payment.
 
-**3.2 Growth services ramp.** Advertising, SEO, Google Business Profile, and social media
-services **begin within 48 hours** of receiving Materials/access and **ramp through the first
-week**. Certain items depend on third parties and are **outside Fire Dragon AI's control**,
-including but not limited to **Google Business Profile verification**, ad-account approvals, and
-platform review times.
+**3.2 Booking & automation ramp.** AI phone answering, online booking, online payments, review
+automation, and analytics **begin within 48 hours** of receiving Materials/access and **ramp
+through the first week**. Certain items depend on third parties and are **outside Fire Dragon
+AI's control**, including but not limited to **Google Business Profile verification**, custom
+domain/DNS propagation, payment-processor approval, and platform review times.
 
 **3.3 Client delays.** Timelines pause while Fire Dragon AI awaits Materials, approvals, access,
 or responses from Client.
 
 ## 4. Fees & Payment
-**4.1 Fees.** Client will pay the fees for the selected Package as set out in **Exhibit A**,
-via Fire Dragon AI's payment processor (**Stripe**). Options are (a) three (3) monthly payments
-or (b) a single one-time payment, as selected at checkout.
+**4.1 Fees.** The Free Website is provided at **no charge**. The Service Plan fee is
+**$250 per month** (USD), as set out in **Exhibit A**, billed through Fire Dragon AI's payment
+processor (**Stripe**).
 
-**4.2 Recurring billing.** If Client selects monthly billing, Client authorizes Fire Dragon AI
-(through Stripe) to charge the monthly fee for the agreed number of cycles. Monthly billing for
-a Package is **three (3) cycles** unless otherwise stated.
+**4.2 Recurring billing; cancel anytime.** Client authorizes Fire Dragon AI (through Stripe) to
+charge the **$250 monthly fee** on a recurring, **month-to-month** basis until cancelled. Client
+may cancel at any time as described in Section 8; cancellation stops future charges and is not
+retroactive (the current paid month is not pro-rated or refunded except under Section 7).
 
-**4.3 Ad Spend is separate.** Package fees **do not include Ad Spend**. Client is solely
-responsible for funding Ad Spend, which is billed directly by the advertising platforms to
-Client's payment method.
+**4.3 Third-party costs are separate.** The Service Plan fee **does not include** optional
+third-party pass-through costs Client may choose to incur (for example, custom-domain
+registration or premium add-ons), and **does not include** payment-processing fees charged to
+Client by Client's own payment processor on payments Client collects from its customers.
 
 **4.4 Taxes.** Fees are exclusive of applicable taxes, which are Client's responsibility.
 
@@ -98,51 +102,61 @@ on Client's lines and is responsible for any caller disclosures required of Clie
 **6.3 Client authorization.** Client represents it is authorized to enable call recording on the
 phone numbers it provides.
 
-## 7. 90-Day Conditional Money-Back Guarantee
-**7.1 The guarantee.** If, within ninety (90) days of the Effective Date, Client is not
-satisfied with the Services, Fire Dragon AI will **refund the Package service fees paid**,
-subject to the conditions below.
+## 7. 30-Day Booked-Jobs Guarantee
+**7.1 The guarantee.** If, within thirty (30) days of the Effective Date, Client has **not landed
+at least three (3) booked cleaning jobs** through the Services, Fire Dragon AI will **refund every
+dollar of Service Plan fees Client has paid**, and **Client keeps the website**, subject to the
+conditions below.
 
 **7.2 Conditions (all required).** The guarantee applies only if Client has, during the
 Engagement Period: (a) provided all requested Materials and access within `[e.g., 7]` days of
-request; (b) attended/participated in scheduled onboarding and reviews; (c) responded to Fire
+request; (b) let Fire Dragon AI publish the site and granted access to Client's Google Business
+Profile; (c) participated in scheduled onboarding and the 30-day review and responded to Fire
 Dragon AI requests within `[e.g., 3 business days]`; and (d) submitted a written refund request
-to `info@firedragonai.com` before the 90-day period ends.
+to `info@firedragonai.com` before the 30-day period ends.
 
-**7.3 Exclusions.** The refund **excludes** non-recoverable third-party hard costs, including
-**Ad Spend**, domain registration, paid app/subscription fees, and similar pass-through costs.
+**7.3 Exclusions.** The refund covers **Service Plan fees paid** and **excludes** non-recoverable
+third-party pass-through costs (for example, custom-domain registration or premium add-ons Client
+elected to purchase).
 
-**7.4 Effect of refund.** Upon a refund, all licenses to Deliverables terminate and Fire Dragon
-AI may disable and reclaim hosted assets and accounts it provisioned.
+**7.4 Effect of refund.** Upon a refund, **Client retains the Free Website** subject to Section 9
+(Intellectual Property). Fire Dragon AI may discontinue the paid Service Plan features (AI phone
+answering, online booking, online payments, review automation, analytics) and reclaim any paid
+third-party accounts or integrations it provisioned for those features.
 
-## 8. Term, Cancellation & White-Label Handoff
-**8.1 Term.** This Agreement begins on the Effective Date and continues through the 90-day
-Engagement Period, then `[month-to-month / as renewed in writing]`.
+## 8. Term & Cancellation
+**8.1 Term.** This Agreement begins on the Effective Date and continues **month-to-month** while
+Client maintains the Service Plan.
 
-**8.2 Cancellation.** Either Party may cancel with `[e.g., 14]` days' written notice. Fees for
-work performed and the current billing cycle are non-refundable except under Section 7.
+**8.2 Cancellation.** Client may cancel the Service Plan at any time by `[written notice to
+info@firedragonai.com / self-serve in the billing portal]`. Cancellation stops future monthly
+charges; the current paid month is non-refundable except under Section 7. Upon cancellation,
+Fire Dragon AI may discontinue the paid Service Plan features and any third-party integrations
+provisioned for them; treatment of the website is governed by Section 9.
 
-**8.3 White-label handoff.** After the 90-day Engagement Period, at Client's request, Fire Dragon
-AI will hand off the white-labeled system to Client to manage independently, including
-`[transfer of accounts/assets as listed in Exhibit A]`. Third-party subscription costs after
-handoff are Client's responsibility.
+**8.3 Custom domain & accounts.** If Client purchased or connected a custom domain or other
+third-party accounts, Client is responsible for those accounts and any associated costs after
+cancellation, and the Parties will reasonably cooperate to transfer or disconnect them.
 
 ## 9. Intellectual Property
 **9.1 Client Materials.** Client retains ownership of Materials it provides and grants Fire
 Dragon AI a license to use them to perform the Services.
 
-**9.2 Deliverables.** Upon full payment, Fire Dragon AI assigns to Client ownership of the final
-website design and content created specifically for Client, **except** for: Fire Dragon AI's
-pre-existing tools, templates, code libraries, workflows, and third-party/licensed components,
-which remain owned by their respective owners and are licensed to Client for use with the
-Deliverables.
+**9.2 Free Website.** Client owns the final website **content** created specifically for Client
+(its text, its images, and Client's brand assets). Fire Dragon AI grants Client a license to use
+the website design as published. Fire Dragon AI's **pre-existing tools, templates, code
+libraries, workflows, and third-party/licensed components** remain owned by their respective
+owners and are licensed to Client for use with the website. `[ATTORNEY TO SPECIFY: whether, on
+cancellation/refund, "Client keeps the website" means continued hosting on the firedragonai.com
+subdomain, a static export Client may self-host, and/or assignment of the custom domain.]`
 
 **9.3 Portfolio.** Fire Dragon AI may display the Deliverables and reference Client as a customer
 in its portfolio and marketing unless Client opts out in writing.
 
 ## 10. Third-Party Platforms
-Services rely on third parties (e.g., Stripe, Meta, Google, TikTok, hosting, GoHighLevel, AI
-providers). Their availability, policies, approvals, and pricing are outside Fire Dragon AI's
+Services rely on third parties (e.g., Stripe and other payment processors, Google/Google Business
+Profile, web hosting and domain registrars, GoHighLevel, telephony/AI voice providers, and other
+AI providers). Their availability, policies, approvals, and pricing are outside Fire Dragon AI's
 control, and Client agrees to their applicable terms.
 
 ## 11. Warranties & Disclaimer
@@ -154,7 +168,8 @@ which depend on factors outside its control.
 ## 12. Limitation of Liability
 To the maximum extent permitted by law, neither Party is liable for indirect, incidental,
 special, or consequential damages. Fire Dragon AI's total aggregate liability under this
-Agreement will not exceed the **total fees paid by Client in the 90-day Engagement Period**.
+Agreement will not exceed the **total Service Plan fees paid by Client in the `[three (3)]`
+months immediately preceding the event giving rise to the claim**.
 
 ## 13. Indemnification
 Client will indemnify and hold harmless Fire Dragon AI from claims arising out of (a) Materials
@@ -193,23 +208,27 @@ Signature: ______________________  Name: `[NAME]`  Title: `[TITLE]`  Date: _____
 
 ---
 
-## Exhibit A — Package, Fees & Handoff Details
+## Exhibit A — Plan, Fees & Details
 
-**Package selected:** ☐ Ignite ☐ Inferno
+**Free Website:** ☑ Included at **$0** — custom cleaning-business site, live on a free
+`firedragonai.com` subdomain.
 
-**Fees (select one):**
-| Package | Monthly (×3) | One-time |
-|---------|--------------|----------|
-| Ignite | $500/mo for 3 months ($1,500 total) | $1,150 |
-| Inferno | $1,000/mo for 3 months ($3,000 total) | $2,500 |
+**Service Plan — Booking Automation:** ☐ Subscribed
 
-**Selected billing:** ☐ 3 monthly payments ☐ One-time payment
-**Total fee:** `$[____]`  ·  **Ad Spend budget (paid by Client, separate):** `$[____] / month`
+| Plan | Price | Billing |
+|------|-------|---------|
+| Booking Automation | **$250 / month** (USD) | Month-to-month · cancel anytime |
 
-**Included deliverables:** `[list per Package above]`
+**Service Plan includes:** custom domain + professional business email · AI phone answering ·
+self-serve online booking & scheduling · online payments (card / Apple Pay / Google Pay, collected
+up front) · automated review requests · analytics dashboard · recurring-client/frequency-discount
+automation · 30-day performance review.
 
-**Accounts/assets to transfer at 90-day white-label handoff:**
-`[domain, website export/hosting, GHL sub-account, GBP, ad accounts, social accounts, content calendar, etc.]`
+**Stripe Payment Link:** `[paste live $250/mo Payment Link]`
 
-**Guarantee response windows (from Section 7.2):** Materials within `[7]` days · responses within
+**Guarantee (Section 7):** 3 booked cleaning jobs within 30 days, or refund of all Service Plan
+fees paid — **and Client keeps the website**.
+**Guarantee response windows (Section 7.2):** Materials within `[7]` days · responses within
 `[3 business days]`.
+
+**Custom domain / accounts (if any):** `[domain name, registrar, who pays, transfer terms]`

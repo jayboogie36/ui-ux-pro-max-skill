@@ -8,13 +8,13 @@ fire-branded landing page in one shot.
 
 ```text
 You are an elite front-end designer + developer. Build a single, production-quality landing
-page for my digital marketing agency. Make it look like a $100,000 website — cinematic, modern,
-and conversion-obsessed.
+page for my business that builds websites + booking systems for CLEANING BUSINESSES. Make it
+look like a $100,000 website — cinematic, modern, and conversion-obsessed.
 
 FIRST: Use my `ui-ux-pro-max` skill before writing any code.
   Run these and let the results drive your decisions:
-    python3 src/ui-ux-pro-max/scripts/search.py "AI marketing agency dark fire bold conversion" --design-system -p "Fire Dragon AI" -f markdown
-    python3 src/ui-ux-pro-max/scripts/search.py "agency lead magnet hero social proof CTA" --domain landing
+    python3 src/ui-ux-pro-max/scripts/search.py "cleaning business dark fire bold conversion" --design-system -p "Fire Dragon AI" -f markdown
+    python3 src/ui-ux-pro-max/scripts/search.py "service business lead magnet hero social proof CTA" --domain landing
     python3 src/ui-ux-pro-max/scripts/search.py "bold display tech headlines" --domain typography
     python3 src/ui-ux-pro-max/scripts/search.py "scroll reveal parallax reduced motion accessibility" --domain ux
   Override any palette recommendation with my brand fire colors below.
@@ -22,10 +22,12 @@ FIRST: Use my `ui-ux-pro-max` skill before writing any code.
 BUSINESS
   Name: Fire Dragon AI
   Site: www.firedragonai.com | Email: info@firedragonai.com | Phone: 312.515.6882 | Chicago, IL
-  What we do: We build clients a high-converting WEBSITE FOR FREE (our lead magnet). Then we
-    construct their funnels, landing pages, and AI booking systems to book more appointments.
-  Who we serve: online fitness coaches, small gyms/studios, and cleaning businesses.
-  Core promise: "You focus on training and cleaning. We handle the growth."
+  What we do: We build cleaning businesses a high-converting WEBSITE FOR FREE (our lead magnet,
+    live on a free firedragonai.com subdomain). Then for $250/month we add instant-quote, AI
+    phone answering, self-serve booking, online payments, reviews, and analytics.
+  Who we serve: cleaning businesses only (residential, commercial, move-in/move-out).
+  Core promise: "You focus on cleaning. We handle the growth." Guarantee: 3 booked jobs in
+    30 days or we refund every dollar — and you keep the website.
   Assets: assets/logo-dragon.png (circular flaming-dragon emblem) and assets/logo-wordmark.png.
 
 LOOK & FEEL (non-negotiable)
@@ -44,24 +46,25 @@ LOOK & FEEL (non-negotiable)
     hover lift + glow, smooth 150–300ms easing cubic-bezier(.16,1,.3,1).
 
 PAGE STRUCTURE (in this order)
-  1. Sticky glass nav: logo + links (Services, Who It's For, Process, Results, FAQ) + CTA
-     "Claim Free Website".
-  2. Hero: huge flame-gradient headline ("WE BUILD YOUR WEBSITE FOR FREE. THEN WE BOOK YOUR
-     CALENDAR."), subhead, two CTAs (primary "Claim My Free Website", ghost "See What We Build"),
-     trust ticks, and the floating dragon-orb + 3 floating stat cards (3× appointments, $0 to
-     launch, AI funnels 24/7).
-  3. Trust marquee: scrolling list of the niches we serve.
-  4. Problem section: 3 stat cards framing the cost of a weak online presence.
-  5. Services: free-website highlight card (LEAD MAGNET badge) + funnels, landing pages, AI
-     booking, AI tools. SVG icons only (Heroicons/Lucide) — no emoji as structural icons.
-  6. Who It's For: 3 cards (Online Fitness Coaches, Small Gyms & Studios, Cleaning Businesses).
-  7. Process: 4 steps (Free strategy call → We build it free → Add the funnel → You get booked).
-  8. Testimonials: 3 five-star cards (mark as illustrative placeholders).
-  9. Primary CTA section: "CLAIM YOUR FREE WEBSITE" + a ≤3-field form (name, email, business
-     type) + phone/email contact. One primary action.
-  10. FAQ: accordion ("Is it really free?", "What's the catch?", "How fast?", "Do I need to be
-      techy?").
-  11. Footer: logo, contact (site/email/phone/Chicago), nav links, copyright with current year.
+  1. Sticky glass nav: logo + links (How It Works, Pricing, About, FAQ) + CTA "Get Free Website".
+  2. Hero: huge flame-gradient headline ("YOUR NEXT CLEANING CLIENTS ARE ALREADY GOOGLING YOU."),
+     subhead, two CTAs (primary "Get My Free Website", ghost "See the Quote System"), trust ticks
+     (free site · $250/mo booking automation · cancel anytime), and the floating dragon-orb + 3
+     floating stat cards ($0 to launch, <60s to quote & book, booking runs while you clean).
+  3. Trust marquee: scrolling list of cleaning types (residential, commercial, move-in/move-out).
+  4. Live quote demo: interactive instant-quote calculator + mock booking calendar.
+  5. Services: free-website highlight card (FREE badge) + instant-quote & booking, AI phone
+     answering, online payments (get paid upfront), analytics, reviews. SVG icons only
+     (Heroicons/Lucide) — no emoji as structural icons.
+  6. Process: 4 steps (One-click start → We build it free → Quoting on autopilot → Booked in 7 days).
+  7. Testimonials: real five-star cards (cleaning owners / clients).
+  8. Pricing: free website + $250/mo booking automation, with a limited-time countdown.
+  9. About/Founder: photo + owner-operator origin story.
+  10. Primary CTA section: "CLAIM YOUR FREE WEBSITE" + a lean form (name, phone, email, service
+      area) + phone/email contact. One primary action.
+  11. FAQ: accordion ("Is the website actually free?", "What does $250/mo include?", "How fast?",
+      "Do I need to be techy?").
+  12. Footer: logo, contact (site/email/phone/Chicago), nav links, copyright with current year.
 
 ACCESSIBILITY & PERFORMANCE (must pass)
   - Respect prefers-reduced-motion: disable canvas/float/marquee/reveal; show a static glow.
@@ -74,7 +77,7 @@ DELIVERABLE
   A single self-contained index.html using the Tailwind CDN + a small <script> for the canvas,
   scroll-reveal, and form handler. Reference assets/logo-dragon.png. Clean, commented, ready to
   open in a browser. Then summarize the design choices you made and what I should swap before
-  launch (real testimonials, form endpoint, booking link).
+  launch (Formspree endpoint, Stripe Payment Link, booking link, countdown deadline).
 ```
 
 ---
