@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fire Dragon AI — Free Website &amp; Booking Automation for Cleaning Businesses</title>
+<meta name="description" content="Fire Dragon AI builds cleaning businesses a free website with an instant-quote system that books jobs 24/7. Chicago, IL. Leads in 7 days or less, or your money back." />
+<meta name="theme-color" content="#0a0606" />
+<meta property="og:title" content="Fire Dragon AI — Websites &amp; Booking for Cleaning Businesses" />
+<meta property="og:description" content="Free website + instant-quote system + AI booking automation. $250/month, cancel anytime." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.firedragonai.com" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Bebas Neue', 'sans-serif'],
+          heading: ['Space Grotesk', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+        colors: {
+          ember: {
+            yellow: '#FACC15',
+            orange: '#FB7227',
+            flame:  '#F4511E',
+            red:    '#E11D2A',
+            deep:   '#9A1B0E',
+          },
+          ink: {
+            900: '#0a0606',
+            800: '#120a09',
+            700: '#1b0f0d',
+            600: '#2a1815',
+          },
+        },
+      },
+    },
+  };
+</script>
+
+<script src="assets/tracking.js"></script>
+
+<style>
+  :root { color-scheme: dark; }
+  html, body { background: #0a0606; }
+  body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+  .text-flame {
+    background: linear-gradient(180deg, #FFE259 0%, #FB7227 45%, #E11D2A 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  #flame-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
+  .glow-blob { position: absolute; border-radius: 9999px; filter: blur(90px); opacity: .5; pointer-events: none; }
+
+  .glass {
+    background: linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,180,120,0.14);
+    backdrop-filter: blur(14px);
+  }
+  .glass:hover { border-color: rgba(251,114,39,0.35); }
+
+  .float-3d { transform-style: preserve-3d; will-change: transform; animation: floaty 7s ease-in-out infinite; }
+  .float-3d.delay-1 { animation-delay: -2.3s; }
+  .float-3d.delay-2 { animation-delay: -4.6s; }
+  @keyframes floaty {
+    0%,100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+    50%      { transform: translateY(-18px) rotateX(6deg) rotateY(-6deg); }
+  }
+
+  .orb { animation: orbFloat 9s ease-in-out infinite; will-change: transform; }
+  @keyframes orbFloat {
+    0%,100% { transform: translateY(0) scale(1); }
+    50%      { transform: translateY(-24px) scale(1.03); }
+  }
+  .orb-ring { animation: spin 26s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .btn-flame {
+    background: linear-gradient(180deg, #FB7227 0%, #E11D2A 100%);
+    box-shadow: 0 10px 30px -8px rgba(225,29,42,0.6), 0 0 0 1px rgba(255,180,120,0.25) inset;
+    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  }
+  .btn-flame:hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 16px 40px -8px rgba(251,114,39,0.7), 0 0 0 1px rgba(255,210,150,0.4) inset; }
+  .btn-flame:active { transform: translateY(0); }
+
+  .btn-ghost { transition: all .18s ease; }
+  .btn-ghost:hover { background: rgba(251,114,39,0.12); border-color: #FB7227; }
+
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  .marquee { display: flex; gap: 3rem; width: max-content; animation: slide 32s linear infinite; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  a, button { -webkit-tap-highlight-color: transparent; }
+  :focus-visible { outline: 2px solid #FB7227; outline-offset: 3px; border-radius: 4px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .float-3d, .orb, .orb-ring, .marquee { animation: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  .mobile-cta-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    display: none; align-items: center; gap: .6rem;
+    padding: .7rem .9rem calc(.7rem + env(safe-area-inset-bottom));
+    background: linear-gradient(0deg, rgba(10,6,6,0.98), rgba(10,6,6,0.82));
+    border-top: 1px solid rgba(255,180,120,0.18); backdrop-filter: blur(10px);
+  }
+  .mobile-cta-bar .call {
+    display: grid; place-items: center; width: 52px; height: 52px; flex: 0 0 auto;
+    border: 1px solid rgba(255,180,120,0.28); border-radius: 12px; color: #FB7227;
+  }
+  .mobile-cta-bar .build { flex: 1; text-align: center; border-radius: 12px; padding: 14px 12px; font-weight: 700; color: #fff; }
+  @media (max-width: 639px) { .mobile-cta-bar { display: flex; } body.has-mobile-cta { padding-bottom: 5.5rem; } }
+</style>
+</head>
+
+<body class="font-body text-orange-50/90 selection:bg-ember-orange/40">
+
+<canvas id="flame-canvas" aria-hidden="true"></canvas>
+<div class="glow-blob" style="top:-6rem;left:-6rem;width:32rem;height:32rem;background:#E11D2A;"></div>
+<div class="glow-blob" style="top:30%;right:-8rem;width:34rem;height:34rem;background:#FB7227;opacity:.35;"></div>
+<div class="glow-blob" style="bottom:-8rem;left:30%;width:30rem;height:30rem;background:#9A1B0E;opacity:.4;"></div>
+
+<div class="relative" style="z-index:1;">
+
+<!-- ============ NAV ============ -->
+<header class="fixed top-0 inset-x-0 z-50">
+  <nav class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="mt-4 flex items-center justify-between rounded-2xl glass px-4 py-3">
+      <a href="#top" class="flex items-center gap-3" aria-label="Fire Dragon AI home">
+        <img src="assets/logo-dragon.png" alt="Fire Dragon AI logo" class="h-10 w-10 rounded-full ring-1 ring-ember-orange/40" />
+        <span class="font-heading text-lg font-700 tracking-tight text-white">Fire&nbsp;Dragon<span class="text-flame">AI</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-7 text-sm font-medium text-orange-100/70">
+        <a href="#services" class="hover:text-white transition">Services</a>
+        <a href="#how" class="hover:text-white transition">How It Works</a>
+        <a href="pricing.html" class="hover:text-white transition">Pricing</a>
+        <a href="#about" class="hover:text-white transition">About</a>
+        <a href="#faq" class="hover:text-white transition">FAQ</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="tel:+13125156882" class="hidden sm:block text-sm font-600 text-orange-100/80 hover:text-white transition">312.515.6882</a>
+        <a href="#claim" class="btn-flame rounded-xl px-4 py-2.5 text-sm font-700 text-white">Get Free Website</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="relative min-h-dvh flex items-center pt-32 pb-20">
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <video id="hero-flames" class="h-full w-full object-cover opacity-0 transition-opacity duration-1000"
+           muted loop playsinline preload="auto" poster="assets/hero-poster.jpg">
+      <source src="assets/hero-flames.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0" style="background:radial-gradient(125% 85% at 50% 100%, rgba(10,6,6,0.15), rgba(10,6,6,0.82) 68%, #0a0606 100%);"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-12 items-center w-full">
+    <div class="lg:col-span-7">
+      <div class="reveal inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-semibold text-ember-yellow">
+        <span class="h-2 w-2 rounded-full bg-ember-orange animate-pulse"></span>
+        AI-Powered Booking for Cleaning Businesses · Chicago, IL
+      </div>
+
+      <h1 class="reveal mt-6 font-display text-6xl sm:text-7xl lg:text-8xl leading-[0.92] text-white">
+        YOUR NEXT CLEANING<br/>CLIENTS ARE ALREADY<br/><span class="text-flame">GOOGLING YOU.</span>
+      </h1>
+
+      <p class="reveal mt-7 max-w-xl text-lg text-orange-100/75 leading-relaxed">
+        We build your cleaning business a <span class="text-white font-semibold">free, professional website</span> — then add an instant-quote system that gives customers a real price in seconds and books the job automatically.
+        <span class="text-white font-semibold">Leads in 7 days or less.</span>
+      </p>
+
+      <div class="reveal mt-9 flex flex-col sm:flex-row gap-4">
+        <a href="#claim" class="btn-flame rounded-2xl px-8 py-4 text-center text-base font-700 text-white">
+          🔥 Get My Free Website
+        </a>
+        <a href="#quote-demo" class="btn-ghost rounded-2xl border border-orange-200/25 px-8 py-4 text-center text-base font-600 text-orange-50">
+          See the Quote System
+        </a>
+      </div>
+
+      <div class="reveal mt-5 inline-flex flex-wrap items-center gap-3 rounded-2xl glass px-5 py-3 text-sm">
+        <span class="text-ember-yellow font-600">Free site</span>
+        <span class="text-orange-100/40">·</span>
+        <span class="text-orange-100/70 font-600">$250/mo for booking automation</span>
+        <span class="text-orange-100/40">·</span>
+        <span class="text-orange-100/70">cancel anytime</span>
+      </div>
+
+      <div class="reveal mt-6 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm text-orange-100/60">
+        <span class="flex items-center gap-2">
+          <svg class="h-4 w-4 text-ember-orange flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>No upfront cost
+        </span>
+        <span class="flex items-center gap-2">
+          <svg class="h-4 w-4 text-ember-orange flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Live in 48 hours
+        </span>
+        <span class="flex items-center gap-2">
+          <svg class="h-4 w-4 text-ember-orange flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>3 booked jobs in 30 days or full refund
+        </span>
+      </div>
+    </div>
+
+    <!-- 3D floating stat cards -->
+    <div class="lg:col-span-5 relative h-[400px] sm:h-[500px]">
+      <div class="orb absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div class="relative">
+          <div class="orb-ring absolute -inset-6 rounded-full border border-dashed border-ember-orange/30"></div>
+          <div class="absolute -inset-10 rounded-full" style="background:radial-gradient(circle,rgba(251,114,39,0.45),transparent 65%);filter:blur(20px);"></div>
+          <img src="assets/logo-dragon.png" alt="Fire Dragon AI" class="relative h-52 w-52 sm:h-64 sm:w-64 rounded-full ring-2 ring-ember-orange/40 shadow-2xl" />
+        </div>
+      </div>
+      <div class="float-3d glass absolute top-6 right-0 rounded-2xl px-5 py-4 w-44">
+        <div class="font-display text-4xl text-flame leading-none">$0</div>
+        <div class="mt-1 text-xs text-orange-100/70">to launch your website</div>
+      </div>
+      <div class="float-3d delay-1 glass absolute bottom-8 left-0 rounded-2xl px-5 py-4 w-48">
+        <div class="font-display text-3xl text-white leading-none">&lt;60s</div>
+        <div class="mt-1 text-xs text-orange-100/70">to get a quote &amp; book</div>
+      </div>
+      <div class="float-3d delay-2 glass absolute bottom-1 right-0 rounded-2xl px-4 py-3 flex items-center gap-3">
+        <span class="h-9 w-9 grid place-items-center rounded-xl bg-ember-orange/20 text-ember-orange">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </span>
+        <span class="text-xs text-orange-100/80 leading-tight">Booking runs<br/>while you clean</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-orange-100/40 text-xs flex flex-col items-center gap-2">
+    <span>Scroll</span>
+    <span class="h-8 w-px bg-gradient-to-b from-ember-orange to-transparent"></span>
+  </div>
+</section>
+
+<!-- ============ TRUST MARQUEE ============ -->
+<section class="relative border-y border-orange-200/10 py-6 overflow-hidden">
+  <p class="text-center text-xs uppercase tracking-[0.3em] text-orange-100/40 mb-5">Built exclusively for cleaning businesses</p>
+  <div class="marquee">
+    <span class="font-heading text-xl text-orange-100/30 whitespace-nowrap">RESIDENTIAL CLEANING</span>
+    <span class="font-heading text-xl text-ember-orange/50 whitespace-nowrap">★</span>
+    <span class="font-heading text-xl text-orange-100/30 whitespace-nowrap">COMMERCIAL CLEANING</span>
+    <span class="font-heading text-xl text-ember-orange/50 whitespace-nowrap">★</span>
+    <span class="font-heading text-xl text-orange-100/30 whitespace-nowrap">MOVE-IN / MOVE-OUT</span>
+    <span class="font-heading text-xl text-ember-orange/50 whitespace-nowrap">★</span>
+    <span class="font-heading text-xl text-orange-100/30 whitespace-nowrap">RECURRING CLIENTS</span>
+    <span class="font-heading text-xl text-ember-orange/50 whitespace-nowrap">★</span>
+    <span class="font-heading text-xl text-orange-100/30 whitespace-nowrap">DEEP CLEANS</span>
+    <span class="font-heading text-xl text-ember-orange/50 whitespace-nowrap">★</span>
+    <!-- duplicate for seamless loop -->
+    <span class="font-heading text-xl text-orange-100/30 whitespace-nowrap">RESIDENTIAL CLEANING</span>
+    <span class="font-heading text-xl text-ember-orange/50 whitespace-nowrap">★</span>
+    <span class="font-heading text-xl text-orange-100/30 whitespace-nowrap">COMMERCIAL CLEANING</span>
+    <span class="font-heading text-xl text-ember-orange/50 whitespace-nowrap">★</span>
+    <span class="font-heading text-xl text-orange-100/30 whitespace-nowrap">MOVE-IN / MOVE-OUT</span>
+    <span class="font-heading text-xl text-ember-orange/50 whitespace-nowrap">★</span>
+    <span class="font-heading text-xl text-orange-100/30 whitespace-nowrap">RECURRING CLIENTS</span>
+    <span class="font-heading text-xl text-ember-orange/50 whitespace-nowrap">★</span>
+    <span class="font-heading text-xl text-orange-100/30 whitespace-nowrap">DEEP CLEANS</span>
+    <span class="font-heading text-xl text-ember-orange/50 whitespace-nowrap">★</span>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-5xl px-5 sm:px-8 text-center">
+    <p class="reveal text-sm font-semibold uppercase tracking-[0.25em] text-ember-orange">The Problem</p>
+    <h2 class="reveal mt-4 font-heading text-3xl sm:text-5xl font-700 text-white leading-tight">
+      You're great at cleaning.<br/>Your competitors are <span class="text-flame">better at getting found.</span>
+    </h2>
+    <p class="reveal mt-6 text-lg text-orange-100/70 max-w-2xl mx-auto">
+      Every day without a fast website and instant-quote system is leads going to whoever shows up first on Google and answers fastest. You didn't start a cleaning business to fight with web builders and phone tags.
+    </p>
+    <div class="mt-14 grid sm:grid-cols-3 gap-6 text-left">
+      <div class="reveal glass rounded-2xl p-6">
+        <div class="font-display text-5xl text-flame">73%</div>
+        <p class="mt-3 text-sm text-orange-100/70">of customers judge a cleaning business's credibility by their website before ever picking up the phone.</p>
+      </div>
+      <div class="reveal glass rounded-2xl p-6">
+        <div class="font-display text-5xl text-flame">6h</div>
+        <p class="mt-3 text-sm text-orange-100/70">average hours per week cleaning owners lose to manual quotes and back-and-forth booking calls — time that could be on the clock.</p>
+      </div>
+      <div class="reveal glass rounded-2xl p-6">
+        <div class="font-display text-5xl text-flame">0</div>
+        <p class="mt-3 text-sm text-orange-100/70">minutes you should spend on tech, quoting, and chasing leads. That's our job. Yours is cleaning.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIVE QUOTE DEMO ============ -->
+<section id="quote-demo" class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto">
+      <p class="reveal text-sm font-semibold uppercase tracking-[0.25em] text-ember-orange">Live Demo</p>
+      <h2 class="reveal mt-4 font-heading text-3xl sm:text-5xl font-700 text-white">The page that turns Google searches into booked jobs</h2>
+      <p class="reveal mt-5 text-lg text-orange-100/70">
+        This instant-quote system is what we build into your website. Customers pick their home size, type of clean, and how often — and get a real price in seconds. They book right then. No phone call, no waiting.
+      </p>
+    </div>
+
+    <div class="reveal mt-12 relative overflow-hidden rounded-[2rem] glass p-6 sm:p-10">
+      <div class="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-ember-orange/25 blur-3xl pointer-events-none"></div>
+      <div class="relative grid lg:grid-cols-2 gap-10 items-start">
+        <!-- Controls -->
+        <div class="space-y-5">
+          <div>
+            <label for="demo-service" class="block text-sm font-600 text-orange-100/80 mb-1.5">Type of clean</label>
+            <select id="demo-service" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white focus:border-ember-orange focus:outline-none">
+              <option value="90">Standard clean</option>
+              <option value="160">Deep clean</option>
+              <option value="210">Move-in / move-out</option>
+              <option value="120">Office / commercial</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="demo-beds" class="block text-sm font-600 text-orange-100/80 mb-1.5">Bedrooms</label>
+              <select id="demo-beds" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white focus:border-ember-orange focus:outline-none">
+                <option value="0">Studio</option>
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5+</option>
+              </select>
+            </div>
+            <div>
+              <label for="demo-baths" class="block text-sm font-600 text-orange-100/80 mb-1.5">Bathrooms</label>
+              <select id="demo-baths" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white focus:border-ember-orange focus:outline-none">
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4+</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label for="demo-freq" class="block text-sm font-600 text-orange-100/80 mb-1.5">How often?</label>
+            <select id="demo-freq" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white focus:border-ember-orange focus:outline-none">
+              <option value="1" data-label="One-time">One-time</option>
+              <option value="0.95" data-label="Monthly">Monthly</option>
+              <option value="0.85" data-label="Bi-weekly" selected>Bi-weekly (save 15%)</option>
+              <option value="0.8" data-label="Weekly">Weekly (save 20%)</option>
+            </select>
+          </div>
+          <div class="rounded-xl glass p-4 text-xs text-orange-100/60 leading-relaxed">
+            <span class="text-ember-yellow font-600 block mb-1">↑ This is what your customers see.</span>
+            They pick their details, get a price instantly, and click "Book Now." All yours — built into your free website.
+          </div>
+        </div>
+
+        <!-- Live estimate -->
+        <div class="flex flex-col items-center text-center gap-6">
+          <div class="w-full rounded-2xl bg-ink-800/70 border border-ember-orange/25 p-8">
+            <p class="text-xs uppercase tracking-[0.2em] text-orange-100/50">Your estimated price</p>
+            <p id="demo-amount" class="font-display text-7xl text-flame leading-none mt-3">$—</p>
+            <p id="demo-note" class="mt-3 text-sm text-orange-100/60">Select options above</p>
+          </div>
+
+          <!-- Mock booking calendar (demo only — clickable, intentionally routes nowhere) -->
+          <div class="w-full rounded-2xl bg-ink-800/70 border border-orange-200/15 p-5 text-left">
+            <div class="flex items-center justify-between mb-3">
+              <p class="text-xs uppercase tracking-[0.2em] text-orange-100/50">Pick a date</p>
+              <span id="demo-month" class="text-xs text-orange-100/40"></span>
+            </div>
+            <div id="demo-dates" class="grid grid-cols-5 gap-2"></div>
+
+            <p class="text-xs uppercase tracking-[0.2em] text-orange-100/50 mt-5 mb-2">Available times</p>
+            <div id="demo-times" class="grid grid-cols-3 gap-2"></div>
+
+            <button id="demo-book" type="button" class="btn-flame mt-5 w-full rounded-xl px-6 py-3.5 text-base font-700 text-white">
+              Book Now
+            </button>
+            <p id="demo-book-msg" class="hidden mt-3 text-center text-sm font-600 text-ember-yellow"></p>
+          </div>
+
+          <a href="#claim" class="btn-flame w-full rounded-xl px-6 py-4 text-base font-700 text-white">
+            🔥 Get This On My Website
+          </a>
+          <p class="text-sm text-orange-100/60">Your prices, your brand, live in 48 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="max-w-2xl">
+      <p class="reveal text-sm font-semibold uppercase tracking-[0.25em] text-ember-orange">What We Build</p>
+      <h2 class="reveal mt-4 font-heading text-3xl sm:text-5xl font-700 text-white leading-tight">
+        Everything your cleaning business needs to grow online.
+      </h2>
+      <p class="reveal mt-5 text-lg text-orange-100/70">
+        A free website to earn your trust — then the complete booking system that fills your route.
+      </p>
+    </div>
+
+    <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <article class="reveal glass rounded-3xl p-7 lg:row-span-2 relative overflow-hidden">
+        <div class="absolute top-4 right-4 rounded-full bg-ember-yellow/15 px-3 py-1 text-xs font-700 text-ember-yellow">FREE</div>
+        <div class="h-12 w-12 grid place-items-center rounded-2xl bg-gradient-to-br from-ember-orange to-ember-red text-white">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </div>
+        <h3 class="mt-5 font-heading text-2xl font-700 text-white">Your Cleaning Website</h3>
+        <p class="mt-2 text-sm font-semibold text-ember-orange">Built for your business. $0.</p>
+        <p class="mt-3 text-sm text-orange-100/70 leading-relaxed">A fast, mobile-first site in your brand colors with the instant-quote tool already built in. We do the work. You share the link.</p>
+        <ul class="mt-5 space-y-2 text-sm text-orange-100/75">
+          <li class="flex gap-2"><span class="text-ember-orange">✓</span> Instant-quote calculator included</li>
+          <li class="flex gap-2"><span class="text-ember-orange">✓</span> Loads fast on every phone</li>
+          <li class="flex gap-2"><span class="text-ember-orange">✓</span> Built to generate calls &amp; bookings</li>
+          <li class="flex gap-2"><span class="text-ember-orange">✓</span> Live in days, not months</li>
+        </ul>
+        <a href="#claim" class="mt-6 inline-flex btn-flame rounded-xl px-5 py-3 text-sm font-700 text-white">Claim it free</a>
+      </article>
+
+      <article class="reveal glass rounded-3xl p-7">
+        <div class="h-12 w-12 grid place-items-center rounded-2xl bg-ember-orange/15 text-ember-orange">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+        </div>
+        <h3 class="mt-5 font-heading text-xl font-700 text-white">Instant-Quote &amp; Booking</h3>
+        <p class="mt-3 text-sm text-orange-100/70">Customers get a real price in seconds and book directly — no phone tag. Frequency discounts built in to convert one-time jobs into recurring clients.</p>
+      </article>
+
+      <article class="reveal glass rounded-3xl p-7">
+        <div class="h-12 w-12 grid place-items-center rounded-2xl bg-ember-flame/15 text-ember-flame">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.2l-2.26 1.13a11 11 0 005.5 5.5l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/></svg>
+        </div>
+        <h3 class="mt-5 font-heading text-xl font-700 text-white">AI Phone Answering</h3>
+        <p class="mt-3 text-sm text-orange-100/70">Your phone rings, we answer it. An AI voice rep quotes the job and books it on your calendar while you're out on a route. Never miss a lead again.</p>
+      </article>
+
+      <article class="reveal glass rounded-3xl p-7">
+        <div class="h-12 w-12 grid place-items-center rounded-2xl bg-ember-red/15 text-ember-red">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <h3 class="mt-5 font-heading text-xl font-700 text-white">Analytics from Day One</h3>
+        <p class="mt-3 text-sm text-orange-100/70">See exactly where your leads come from, which pages convert, and how much each new client costs to acquire. Real numbers from your first visitor.</p>
+      </article>
+
+      <article class="reveal glass rounded-3xl p-7">
+        <div class="h-12 w-12 grid place-items-center rounded-2xl bg-ember-yellow/15 text-ember-yellow">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+        </div>
+        <h3 class="mt-5 font-heading text-xl font-700 text-white">Reviews &amp; Repeat Business</h3>
+        <p class="mt-3 text-sm text-orange-100/70">Automated review requests after each clean to build your Google rating — and reminders that lock in recurring weekly and bi-weekly clients.</p>
+      </article>
+
+      <article class="reveal glass rounded-3xl p-7 md:col-span-2 lg:col-span-1">
+        <div class="h-12 w-12 grid place-items-center rounded-2xl bg-green-500/15 text-green-400">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+        </div>
+        <h3 class="mt-5 font-heading text-xl font-700 text-white">Online Payments — Get Paid Upfront</h3>
+        <p class="mt-3 text-sm text-orange-100/70">Stop chasing cash. Stop showing up to jobs that don't pay. Clients pay a deposit or the full amount when they book — card, Apple Pay, Google Pay. Your money lands in your account before you ever load the van.</p>
+        <p class="mt-3 text-xs text-green-400/80 font-600">↑ One of the fastest ways a small cleaning company grows — when payment is built into booking, collections disappear as a problem entirely.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how" class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="max-w-2xl">
+      <p class="reveal text-sm font-semibold uppercase tracking-[0.25em] text-ember-orange">How It Works</p>
+      <h2 class="reveal mt-4 font-heading text-3xl sm:text-5xl font-700 text-white">From sign-up to booked jobs — no calls, no waiting</h2>
+    </div>
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="reveal glass rounded-2xl p-6">
+        <div class="font-display text-5xl text-flame">1</div>
+        <h3 class="mt-2 font-heading text-lg font-600 text-white">One-Click Start</h3>
+        <p class="mt-2 text-sm text-orange-100/70">Fill out one short form — your name, cleaning business, and service area. No call required.</p>
+      </div>
+      <div class="reveal glass rounded-2xl p-6">
+        <div class="font-display text-5xl text-flame">2</div>
+        <h3 class="mt-2 font-heading text-lg font-600 text-white">Live in 48 Hours</h3>
+        <p class="mt-2 text-sm text-orange-100/70">Your website and instant-quote system go live. Analytics track every visitor from day one.</p>
+      </div>
+      <div class="reveal glass rounded-2xl p-6">
+        <div class="font-display text-5xl text-flame">3</div>
+        <h3 class="mt-2 font-heading text-lg font-600 text-white">Quotes on Autopilot</h3>
+        <p class="mt-2 text-sm text-orange-100/70">Customers quote themselves and book directly — 24/7. No work from you. Your phone rings, we answer it.</p>
+      </div>
+      <div class="reveal glass rounded-2xl p-6">
+        <div class="font-display text-5xl text-flame">4</div>
+        <h3 class="mt-2 font-heading text-lg font-600 text-white">Leads in 7 Days</h3>
+        <p class="mt-2 text-sm text-orange-100/70">First bookings arrive within a week. We review your real numbers at 30 days and optimize from there.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIAL ============ -->
+<section id="proof" class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-5xl px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto">
+      <p class="reveal text-sm font-semibold uppercase tracking-[0.25em] text-ember-orange">What Cleaning Owners Say</p>
+      <h2 class="reveal mt-4 font-heading text-3xl sm:text-5xl font-700 text-white">From word-of-mouth to booked online</h2>
+    </div>
+
+    <div class="mt-14 grid sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
+      <figure class="reveal glass rounded-3xl p-8 sm:p-10">
+        <div class="flex gap-1 text-ember-yellow text-xl mb-5">★★★★★</div>
+        <blockquote class="text-lg sm:text-xl text-orange-100/90 leading-relaxed">
+          "I found them online, got an instant quote, and had 10 units booked for next-day move-in cleanings — no phone tag, no waiting. The booking system made it effortless."
+        </blockquote>
+        <figcaption class="mt-7 flex items-center gap-4">
+          <span class="h-14 w-14 rounded-full bg-gradient-to-br from-ember-orange to-ember-red grid place-items-center font-700 text-white text-lg">C</span>
+          <span>
+            <span class="block font-700 text-white text-base">Candice P.</span>
+            <span class="text-orange-100/60 text-sm">Property Manager · Chicago, IL</span>
+          </span>
+        </figcaption>
+      </figure>
+      <figure class="reveal glass rounded-3xl p-8 sm:p-10">
+        <div class="flex gap-1 text-ember-yellow text-xl mb-5">★★★★★</div>
+        <blockquote class="text-lg sm:text-xl text-orange-100/90 leading-relaxed">
+          "Fire Dragon helped me secure a government cleaning contract, it's changed my business forever."
+        </blockquote>
+        <figcaption class="mt-7 flex items-center gap-4">
+          <span class="h-14 w-14 rounded-full bg-gradient-to-br from-ember-orange to-ember-red grid place-items-center font-700 text-white text-lg">C</span>
+          <span>
+            <span class="block font-700 text-white text-base">Carmela</span>
+            <span class="text-orange-100/60 text-sm">Owner, MYR General Services · Toronto, ON</span>
+          </span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing" class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-5xl px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto">
+      <p class="reveal text-sm font-semibold uppercase tracking-[0.25em] text-ember-orange">Pricing</p>
+      <h2 class="reveal mt-4 font-heading text-3xl sm:text-5xl font-700 text-white">Simple. Honest. No surprises.</h2>
+      <p class="reveal mt-5 text-lg text-orange-100/70">Start with a free website. Add booking automation when you're ready. Cancel anytime.</p>
+    </div>
+
+    <!-- ====== LIMITED-TIME COUNTDOWN ====== -->
+    <div id="countdown" class="reveal mt-12 relative overflow-hidden rounded-[2rem] border border-ember-orange/40 bg-gradient-to-br from-ember-red/15 via-ink-800/60 to-ink-900/60 p-6 sm:p-8 text-center">
+      <div class="absolute -top-16 left-1/2 -translate-x-1/2 h-48 w-48 rounded-full bg-ember-orange/25 blur-3xl pointer-events-none"></div>
+      <div class="relative">
+        <p class="inline-flex items-center gap-2 rounded-full bg-ember-red/20 border border-ember-red/40 px-4 py-1.5 text-xs font-700 uppercase tracking-[0.2em] text-ember-yellow">
+          <span class="h-2 w-2 rounded-full bg-ember-red animate-ping"></span> Limited-Time Offer
+        </p>
+        <h3 class="mt-4 font-heading text-2xl sm:text-3xl font-700 text-white">Lock in <span class="text-flame">$250/mo + a free website</span> before it's gone.</h3>
+        <p class="mt-2 text-sm text-orange-100/70 max-w-xl mx-auto">When this timer hits zero, the price jumps to <span class="text-white font-600">$500/month</span> and the <span class="text-white font-600">free website build ends</span>. Claim your spot now and your rate is locked for life.</p>
+
+        <div class="mt-6 flex items-stretch justify-center gap-2 sm:gap-4">
+          <div class="flex-1 max-w-[110px] rounded-2xl bg-ink-900/70 border border-orange-200/15 px-3 py-4">
+            <div id="cd-days" class="font-display text-4xl sm:text-6xl text-flame leading-none">15</div>
+            <div class="mt-1 text-[10px] sm:text-xs uppercase tracking-[0.2em] text-orange-100/50">Days</div>
+          </div>
+          <div class="flex-1 max-w-[110px] rounded-2xl bg-ink-900/70 border border-orange-200/15 px-3 py-4">
+            <div id="cd-hours" class="font-display text-4xl sm:text-6xl text-flame leading-none">00</div>
+            <div class="mt-1 text-[10px] sm:text-xs uppercase tracking-[0.2em] text-orange-100/50">Hours</div>
+          </div>
+          <div class="flex-1 max-w-[110px] rounded-2xl bg-ink-900/70 border border-orange-200/15 px-3 py-4">
+            <div id="cd-mins" class="font-display text-4xl sm:text-6xl text-flame leading-none">00</div>
+            <div class="mt-1 text-[10px] sm:text-xs uppercase tracking-[0.2em] text-orange-100/50">Mins</div>
+          </div>
+          <div class="flex-1 max-w-[110px] rounded-2xl bg-ink-900/70 border border-orange-200/15 px-3 py-4">
+            <div id="cd-secs" class="font-display text-4xl sm:text-6xl text-flame leading-none">00</div>
+            <div class="mt-1 text-[10px] sm:text-xs uppercase tracking-[0.2em] text-orange-100/50">Secs</div>
+          </div>
+        </div>
+
+        <a href="#claim" class="mt-7 inline-block btn-flame rounded-xl px-8 py-3.5 text-sm font-700 text-white">🔥 Claim My Free Website &amp; Lock $250</a>
+      </div>
+    </div>
+
+    <div class="mt-14 grid sm:grid-cols-2 gap-6 items-start">
+      <!-- Free site -->
+      <article class="reveal glass rounded-3xl p-8">
+        <div class="font-heading text-sm font-700 uppercase tracking-[0.2em] text-ember-orange">The Website</div>
+        <div class="mt-6 flex items-end gap-2">
+          <span class="font-display text-7xl text-white leading-none">$0</span>
+        </div>
+        <p class="mt-2 text-orange-100/70 text-sm">Always free. No hidden fees.</p>
+        <ul class="mt-7 space-y-3 text-sm text-orange-100/80">
+          <li class="flex gap-3"><span class="text-ember-orange mt-0.5">✓</span> Custom-designed cleaning website</li>
+          <li class="flex gap-3"><span class="text-ember-orange mt-0.5">✓</span> Instant-quote calculator included</li>
+          <li class="flex gap-3"><span class="text-ember-orange mt-0.5">✓</span> Mobile-first, fast-loading</li>
+          <li class="flex gap-3"><span class="text-ember-orange mt-0.5">✓</span> Your brand, your colors</li>
+          <li class="flex gap-3"><span class="text-ember-orange mt-0.5">✓</span> Live in 48 hours</li>
+          <li class="flex gap-3"><span class="text-ember-orange mt-0.5">✓</span> Free firedragonai.com subdomain</li>
+        </ul>
+        <a href="#claim" class="btn-ghost mt-7 block text-center rounded-xl border border-ember-orange/40 px-6 py-4 text-base font-700 text-white">Get My Free Website</a>
+      </article>
+
+      <!-- Booking system -->
+      <article class="reveal rounded-3xl p-8 relative bg-gradient-to-b from-ember-orange/[0.10] to-transparent border border-ember-orange/40 ring-1 ring-ember-orange/30" style="backdrop-filter:blur(14px);">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-ember-orange to-ember-red px-4 py-1 text-xs font-700 text-white shadow-lg">🔥 MOST POPULAR</div>
+        <div class="font-heading text-sm font-700 uppercase tracking-[0.2em] text-ember-yellow">Booking Automation</div>
+        <div class="mt-6 flex items-end gap-2">
+          <span class="font-display text-7xl text-flame leading-none">$250</span>
+          <span class="mb-2 text-orange-100/60 text-sm">/month</span>
+        </div>
+        <p class="mt-2 text-sm text-ember-yellow">Cancel anytime · no long-term contract</p>
+        <a href="pricing.html" class="btn-flame mt-7 block text-center rounded-xl px-6 py-4 text-base font-700 text-white">Start Booking Jobs Now</a>
+        <p class="mt-3 text-center text-xs text-orange-100/40">Secure checkout · cancel before next billing cycle</p>
+        <ul class="mt-7 space-y-3 text-sm text-orange-100/85">
+          <li class="flex gap-3"><span class="text-ember-yellow mt-0.5">★</span><span><span class="font-600 text-white">Free website included</span>, plus:</span></li>
+          <li class="flex gap-3"><span class="text-ember-orange mt-0.5">✓</span> Your own custom domain (yourcleaningco.com)</li>
+          <li class="flex gap-3"><span class="text-ember-orange mt-0.5">✓</span> Professional business email</li>
+          <li class="flex gap-3"><span class="text-ember-orange mt-0.5">✓</span> AI phone answering — books jobs for you</li>
+          <li class="flex gap-3"><span class="text-ember-orange mt-0.5">✓</span> Self-serve booking &amp; scheduling</li>
+          <li class="flex gap-3"><span class="text-green-400 mt-0.5">✓</span> <span><span class="font-600 text-white">Online payments</span> — card, Apple Pay, Google Pay (collect upfront)</span></li>
+          <li class="flex gap-3"><span class="text-ember-orange mt-0.5">✓</span> Automated review requests</li>
+          <li class="flex gap-3"><span class="text-ember-orange mt-0.5">✓</span> Analytics dashboard (traffic + leads + revenue)</li>
+          <li class="flex gap-3"><span class="text-ember-orange mt-0.5">✓</span> Recurring-client discount automation</li>
+          <li class="flex gap-3"><span class="text-ember-orange mt-0.5">✓</span> 30-day review on your real numbers</li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- Guarantee -->
+    <div class="reveal mt-12 relative overflow-hidden rounded-[2rem] glass p-8 sm:p-10 text-center">
+      <div class="absolute -top-20 left-1/2 -translate-x-1/2 h-60 w-60 rounded-full bg-ember-orange/25 blur-3xl pointer-events-none"></div>
+      <div class="relative">
+        <div class="mx-auto h-14 w-14 grid place-items-center rounded-2xl bg-gradient-to-br from-ember-orange to-ember-red text-white">
+          <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.6 1A9 9 0 11 12 3a9 9 0 019.6 8z"/></svg>
+        </div>
+        <h3 class="mt-5 font-heading text-2xl sm:text-3xl font-700 text-white">3 Booked Jobs in 30 Days — Guaranteed</h3>
+        <p class="mt-4 text-orange-100/75 max-w-2xl mx-auto">Show up with us — share your logo and service area, let us post your site, give us access to your Google Business profile — and you'll land 3 booked cleaning jobs in your first 30 days, or we refund every dollar you paid <span class="text-white font-semibold">and you keep the website</span>. We back our work because we know it performs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT / FOUNDER ============ -->
+<section id="about" class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-5xl px-5 sm:px-8">
+    <div class="reveal grid lg:grid-cols-2 gap-14 items-center">
+      <!-- Photo slot -->
+      <div class="relative">
+        <div class="relative rounded-3xl overflow-hidden aspect-[4/5] bg-gradient-to-br from-ink-700 to-ink-800 border border-ember-orange/20 flex items-center justify-center">
+          <img src="assets/founder-photo.jpg" alt="Jason, Founder of Fire Dragon AI" class="w-full h-full object-cover" />
+          <div class="absolute inset-0" style="background:radial-gradient(125% 85% at 50% 100%, rgba(10,6,6,0.05), rgba(10,6,6,0.65) 80%);"></div>
+        </div>
+        <div class="absolute -bottom-4 -right-4 glass rounded-2xl px-5 py-3 text-sm">
+          <span class="block font-700 text-white">Chicago, IL</span>
+          <span class="text-orange-100/60 text-xs">Built for cleaning businesses nationwide</span>
+        </div>
+      </div>
+
+      <!-- Story -->
+      <div>
+        <p class="reveal text-sm font-semibold uppercase tracking-[0.25em] text-ember-orange">Who's Building This For You</p>
+        <h2 class="reveal mt-4 font-heading text-3xl sm:text-4xl font-700 text-white leading-tight">
+          I built this for myself first — then I built it for you.
+        </h2>
+        <div class="reveal mt-6 space-y-4 text-orange-100/75 leading-relaxed">
+          <p>I was a cleaning business owner who was tired of losing jobs to companies that couldn't deliver the level of service my customers actually wanted. I knew what they needed — because I was the one showing up, doing the work, and talking to them directly.</p>
+          <p>But as an owner-operator, I couldn't follow up with leads or answer calls while I was on a job. Stepping away meant sacrificing the quality of the service I was already providing. I couldn't afford an assistant, and there were no market-specific agencies I could trust to represent my business the right way.</p>
+          <p>So I built my own system. I became my own testimonial. I designed everything around my customers' needs — not around what was easy for me to sell — and it worked. Now I want to give that same system to every cleaning business owner who's in the position I was in.</p>
+        </div>
+        <div class="reveal mt-7 flex items-center gap-4">
+          <span class="h-12 w-12 rounded-full bg-gradient-to-br from-ember-orange to-ember-red grid place-items-center font-700 text-white text-lg">J</span>
+          <div>
+            <span class="block font-700 text-white">Jason</span>
+            <span class="text-orange-100/60 text-sm">Founder, Fire Dragon AI · Chicago, IL</span>
+          </div>
+        </div>
+        <!-- Optional: paste a 60-sec founder video embed here once recorded -->
+        <div class="reveal mt-7">
+          <a href="#claim" class="btn-flame inline-block rounded-xl px-7 py-3.5 text-sm font-700 text-white">🔥 Let's Build Your System</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEAD FORM ============ -->
+<section id="claim" class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-5xl px-5 sm:px-8">
+    <div class="reveal relative overflow-hidden rounded-[2rem] glass p-8 sm:p-12">
+      <div class="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-ember-orange/30 blur-3xl pointer-events-none"></div>
+      <div class="relative grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 class="font-display text-5xl sm:text-6xl leading-[0.95] text-white">CLAIM YOUR<br/><span class="text-flame">FREE WEBSITE</span></h2>
+          <p class="mt-5 text-orange-100/75">Tell us about your cleaning business and we'll get to work. No cost. No contract to start. Just a website that books jobs.</p>
+          <ul class="mt-6 space-y-3 text-sm text-orange-100/80">
+            <li class="flex gap-2"><span class="text-ember-orange">🔥</span> Free website with instant-quote calculator</li>
+            <li class="flex gap-2"><span class="text-ember-orange">🔥</span> Live in 48 hours</li>
+            <li class="flex gap-2"><span class="text-ember-orange">🔥</span> 3 booked jobs in 30 days or full refund</li>
+          </ul>
+          <div class="mt-8 space-y-2 text-sm">
+            <a href="tel:+13125156882" class="flex items-center gap-3 text-orange-100/80 hover:text-white transition">
+              <svg class="h-5 w-5 text-ember-orange flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.2l-2.26 1.13a11 11 0 005.5 5.5l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/></svg>
+              312.515.6882
+            </a>
+            <a href="mailto:info@firedragonai.com" class="flex items-center gap-3 text-orange-100/80 hover:text-white transition">
+              <svg class="h-5 w-5 text-ember-orange flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              info@firedragonai.com
+            </a>
+          </div>
+        </div>
+
+        <form id="lead-form" class="space-y-4" novalidate>
+          <div>
+            <label for="lf-name" class="block text-sm font-600 text-orange-100/80 mb-1.5">Your name</label>
+            <input id="lf-name" name="name" type="text" required autocomplete="name" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="Jordan Smith" />
+          </div>
+          <div>
+            <label for="lf-phone" class="block text-sm font-600 text-orange-100/80 mb-1.5">Phone number</label>
+            <input id="lf-phone" name="phone" type="tel" required autocomplete="tel" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="(312) 555-0100" />
+          </div>
+          <div>
+            <label for="lf-email" class="block text-sm font-600 text-orange-100/80 mb-1.5">Email</label>
+            <input id="lf-email" name="email" type="email" required autocomplete="email" class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="you@business.com" />
+          </div>
+          <div>
+            <label for="lf-area" class="block text-sm font-600 text-orange-100/80 mb-1.5">Service area (city or ZIP)</label>
+            <input id="lf-area" name="service_area" type="text" required class="w-full rounded-xl bg-ink-700/60 border border-orange-200/15 px-4 py-3 text-white placeholder-orange-100/30 focus:border-ember-orange focus:outline-none" placeholder="Chicago, IL or 60601" />
+          </div>
+          <input type="hidden" name="niche" value="Cleaning business" />
+          <input type="hidden" name="_subject" value="🔥 New Free Website lead — Fire Dragon AI (homepage)" />
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+          <input type="hidden" name="source" value="homepage-lead-form" />
+          <button id="lead-submit" type="submit" class="btn-flame w-full rounded-xl px-6 py-4 text-base font-700 text-white disabled:opacity-60 disabled:cursor-not-allowed">🔥 Build My Free Website</button>
+          <p id="form-msg" class="text-sm text-center hidden" role="status" aria-live="polite"></p>
+          <p class="text-xs text-orange-100/40 text-center">We'll reach out within one business day. No spam, ever.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-3xl px-5 sm:px-8">
+    <div class="text-center">
+      <p class="reveal text-sm font-semibold uppercase tracking-[0.25em] text-ember-orange">Questions</p>
+      <h2 class="reveal mt-4 font-heading text-3xl sm:text-5xl font-700 text-white">The "is this really free?" section</h2>
+    </div>
+    <div class="mt-12 space-y-4">
+      <details class="reveal glass rounded-2xl p-5 group">
+        <summary class="flex cursor-pointer items-center justify-between font-600 text-white list-none">Is the website actually free? <span class="text-ember-orange group-open:rotate-45 text-2xl leading-none transition-transform">+</span></summary>
+        <p class="mt-3 text-sm text-orange-100/70">Yes, genuinely free. We design, build, and publish your full cleaning website — with the instant-quote calculator built in — live on a free firedragonai.com subdomain, at no cost and no obligation. The $250/month plan adds your own custom domain and professional business email, plus AI phone answering, scheduling, analytics, and review automation. Cancel anytime.</p>
+      </details>
+      <details class="reveal glass rounded-2xl p-5 group">
+        <summary class="flex cursor-pointer items-center justify-between font-600 text-white list-none">What does the $250/month include? <span class="text-ember-orange group-open:rotate-45 text-2xl leading-none transition-transform">+</span></summary>
+        <p class="mt-3 text-sm text-orange-100/70">Everything needed to run bookings without touching the phone: your own custom domain and professional business email, AI voice answering (quotes &amp; books jobs on your behalf), online self-booking, online payments (card, Apple Pay, Google Pay — clients pay upfront so you stop chasing cash), automated review requests after each clean, an analytics dashboard, and frequency-discount automation that converts one-time jobs into recurring weekly or bi-weekly clients.</p>
+      </details>
+      <details class="reveal glass rounded-2xl p-5 group">
+        <summary class="flex cursor-pointer items-center justify-between font-600 text-white list-none">How fast will I be live? <span class="text-ember-orange group-open:rotate-45 text-2xl leading-none transition-transform">+</span></summary>
+        <p class="mt-3 text-sm text-orange-100/70">Your site goes live within <span class="text-white font-600">48 hours</span> of you sending your basics — logo, service area, and the types of cleans you offer. Most clients see their first booked jobs within <span class="text-white font-600">7 days</span>.</p>
+      </details>
+      <details class="reveal glass rounded-2xl p-5 group">
+        <summary class="flex cursor-pointer items-center justify-between font-600 text-white list-none">What's the guarantee? <span class="text-ember-orange group-open:rotate-45 text-2xl leading-none transition-transform">+</span></summary>
+        <p class="mt-3 text-sm text-orange-100/70">3 booked cleaning jobs in your first 30 days — or we refund every dollar you paid and you keep the website. All we ask is that you show up: share your logo, let us post your site, and give us access to your Google Business profile. If you do that and it doesn't deliver, you pay nothing and you're never penalized.</p>
+      </details>
+      <details class="reveal glass rounded-2xl p-5 group">
+        <summary class="flex cursor-pointer items-center justify-between font-600 text-white list-none">Do I need to be technical? <span class="text-ember-orange group-open:rotate-45 text-2xl leading-none transition-transform">+</span></summary>
+        <p class="mt-3 text-sm text-orange-100/70">Not at all. We handle every bit of the tech — website build, quote system, booking integration, AI phone setup, analytics. You send us a few photos and your services list. We take care of the rest.</p>
+      </details>
+      <details class="reveal glass rounded-2xl p-5 group">
+        <summary class="flex cursor-pointer items-center justify-between font-600 text-white list-none">Does the AI phone system comply with Illinois law? <span class="text-ember-orange group-open:rotate-45 text-2xl leading-none transition-transform">+</span></summary>
+        <p class="mt-3 text-sm text-orange-100/70">Yes. Illinois requires all parties to consent to call recording. Our AI answering service announces that the call is being recorded at the start of every conversation, in full compliance with Illinois all-party consent law.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="relative border-t border-orange-200/10 py-14">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 grid sm:grid-cols-3 gap-10">
+    <div>
+      <div class="flex items-center gap-3">
+        <img src="assets/logo-dragon.png" alt="" class="h-10 w-10 rounded-full ring-1 ring-ember-orange/40" />
+        <span class="font-heading text-lg font-700 text-white">Fire Dragon <span class="text-flame">AI</span></span>
+      </div>
+      <p class="mt-4 text-sm text-orange-100/60 max-w-xs">AI-powered websites, instant quotes, and booking automation built exclusively for cleaning businesses.</p>
+    </div>
+    <div>
+      <h4 class="font-600 text-white">Contact</h4>
+      <ul class="mt-4 space-y-2 text-sm text-orange-100/65">
+        <li><a href="https://www.firedragonai.com" class="hover:text-white transition">www.firedragonai.com</a></li>
+        <li><a href="mailto:info@firedragonai.com" class="hover:text-white transition">info@firedragonai.com</a></li>
+        <li><a href="tel:+13125156882" class="hover:text-white transition">312.515.6882</a></li>
+        <li>Chicago, Illinois</li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-600 text-white">Links</h4>
+      <ul class="mt-4 space-y-2 text-sm text-orange-100/65">
+        <li><a href="#services" class="hover:text-white transition">Services</a></li>
+        <li><a href="pricing.html" class="hover:text-white transition">Pricing</a></li>
+        <li><a href="#how" class="hover:text-white transition">How It Works</a></li>
+        <li><a href="#about" class="hover:text-white transition">About</a></li>
+        <li><a href="#claim" class="hover:text-white transition">Get Free Website</a></li>
+        <li><a href="cleaners.html" class="hover:text-white transition">Get a Quote</a></li>
+        <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 mt-10 pt-6 border-t border-orange-200/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-orange-100/40">
+    <p>© <span id="year"></span> Fire Dragon AI. All rights reserved.</p>
+    <p><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a> · Built to convert. Forged with AI. 🔥</p>
+  </div>
+</footer>
+
+</div><!-- /z-1 -->
+
+<!-- Mobile sticky bar -->
+<div class="mobile-cta-bar" aria-label="Quick actions">
+  <a href="tel:+13125156882" class="call" aria-label="Call Fire Dragon AI">
+    <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.2l-2.26 1.13a11 11 0 005.5 5.5l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/></svg>
+  </a>
+  <a href="#claim" class="build btn-flame">🔥 Get My Free Website</a>
+</div>
+
+<script>
+  // ---------- Year ----------
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.body.classList.add('has-mobile-cta');
+
+  // ---------- Scroll reveal ----------
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+  // ---------- Live quote demo ----------
+  (function () {
+    var svc  = document.getElementById('demo-service');
+    var beds = document.getElementById('demo-beds');
+    var bath = document.getElementById('demo-baths');
+    var freq = document.getElementById('demo-freq');
+    var amt  = document.getElementById('demo-amount');
+    var note = document.getElementById('demo-note');
+    var r5   = function (n) { return Math.round(n / 5) * 5; };
+
+    function calc() {
+      var base  = +svc.value;
+      var mult  = +freq.value;
+      var label = freq.selectedOptions[0].dataset.label;
+      var est   = (base + +beds.value * 20 + +bath.value * 25) * mult;
+      var low   = r5(est * 0.9), high = r5(est * 1.15);
+      amt.textContent  = '$' + low + '–$' + high;
+      note.textContent = label + ' · price locked when you book';
+    }
+    [svc, beds, bath, freq].forEach(function (el) { el.addEventListener('change', calc); });
+    calc();
+  })();
+
+  // ---------- Mock booking calendar (demo only — routes nowhere) ----------
+  (function () {
+    var datesEl = document.getElementById('demo-dates');
+    var timesEl = document.getElementById('demo-times');
+    var monthEl = document.getElementById('demo-month');
+    var bookBtn = document.getElementById('demo-book');
+    var bookMsg = document.getElementById('demo-book-msg');
+    if (!datesEl || !timesEl) return;
+
+    var DAYS  = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var TIMES = ['8:00 AM', '10:30 AM', '1:00 PM', '3:30 PM', '5:00 PM', '6:30 PM'];
+
+    var selDate = null, selTime = null;
+    var base = 'rounded-xl border px-2 py-2 text-center transition cursor-pointer';
+    var off  = ' bg-ink-700/60 border-orange-200/15 text-orange-100/80 hover:border-ember-orange/60';
+    var on   = ' bg-ember-orange border-ember-orange text-white font-700';
+
+    // Next 10 days, starting tomorrow
+    var start = new Date();
+    start.setDate(start.getDate() + 1);
+    if (monthEl) monthEl.textContent = MONTHS[start.getMonth()] + ' ' + start.getFullYear();
+
+    function clearSel(container) {
+      Array.prototype.forEach.call(container.children, function (c) { c.className = base + off; });
+    }
+
+    for (var i = 0; i < 10; i++) {
+      var d = new Date(start);
+      d.setDate(start.getDate() + i);
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = base + off;
+      btn.innerHTML = '<span class="block text-[10px] uppercase tracking-wide text-orange-100/50">' +
+        DAYS[d.getDay()] + '</span><span class="block text-lg font-700 leading-tight">' + d.getDate() + '</span>';
+      btn.dataset.label = DAYS[d.getDay()] + ', ' + MONTHS[d.getMonth()] + ' ' + d.getDate();
+      btn.addEventListener('click', function () {
+        clearSel(datesEl);
+        this.className = base + on;
+        selDate = this.dataset.label;
+        hideMsg();
+      });
+      datesEl.appendChild(btn);
+    }
+
+    TIMES.forEach(function (t) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = base + off;
+      btn.textContent = t;
+      btn.addEventListener('click', function () {
+        clearSel(timesEl);
+        this.className = base + on;
+        selTime = t;
+        hideMsg();
+      });
+      timesEl.appendChild(btn);
+    });
+
+    function hideMsg() { if (bookMsg) bookMsg.classList.add('hidden'); }
+    function showMsg(text, ok) {
+      if (!bookMsg) return;
+      bookMsg.textContent = text;
+      bookMsg.classList.remove('hidden');
+      bookMsg.classList.toggle('text-ember-yellow', ok);
+      bookMsg.classList.toggle('text-red-400', !ok);
+    }
+
+    if (bookBtn) {
+      bookBtn.addEventListener('click', function () {
+        if (!selDate || !selTime) {
+          showMsg('Pick a date and time to see how booking works.', false);
+          return;
+        }
+        showMsg('✓ Booked for ' + selDate + ' at ' + selTime + ' — that’s exactly what your customer sees. (Demo only)', true);
+      });
+    }
+  })();
+
+  // ---------- Lead form -> Formspree ----------
+  // Replace xityourID with your real Formspree form ID before launch.
+  var FORMSPREE_ID = 'xykqyalo';
+
+  (function () {
+    var form = document.getElementById('lead-form');
+    var btn  = document.getElementById('lead-submit');
+    var msg  = document.getElementById('form-msg');
+    if (!form) return;
+
+    function show(text, ok) {
+      msg.textContent = text;
+      msg.classList.remove('hidden');
+      msg.classList.toggle('text-ember-yellow', ok);
+      msg.classList.toggle('text-red-400', !ok);
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (form._gotcha && form._gotcha.value) return;
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      var original = btn ? btn.textContent : '';
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+      if (FORMSPREE_ID === 'xityourID') {
+        // Form not yet connected — never fake success. Route the lead to a real channel.
+        show('Almost there! Please email info@firedragonai.com or call/text 312.515.6882 to claim your free website — our form is being connected.', false);
+        if (btn) { btn.disabled = false; btn.textContent = original; }
+        return;
+      }
+
+      fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+        method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form)
+      }).then(function (res) {
+        if (res.ok) {
+          show("🔥 We've got you! We'll reach out within one business day to kick off your free build.", true);
+          form.reset();
+        } else {
+          show('Something went wrong. Please email info@firedragonai.com or call 312.515.6882.', false);
+        }
+      }).catch(function () {
+        show('Network error. Please call 312.515.6882 or email info@firedragonai.com.', false);
+      }).finally(function () { if (btn) { btn.disabled = false; btn.textContent = original; } });
+    });
+  })();
+
+  // ---------- Hero flame video ----------
+  (function () {
+    var v = document.getElementById('hero-flames');
+    if (!v) return;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) { v.removeAttribute('autoplay'); v.style.opacity = '0.28'; return; }
+    v.addEventListener('playing', function () { v.style.opacity = '0.42'; }, { once: true });
+    var tryPlay = function () { v.play().catch(function () { v.style.opacity = '0.42'; }); };
+    if (v.readyState >= 2) tryPlay(); else v.addEventListener('loadeddata', tryPlay, { once: true });
+  })();
+
+  // ---------- Limited-time countdown ----------
+  (function () {
+    // Campaign deadline — update this date to extend or reset the offer.
+    // Chicago end-of-day (-05:00 CDT) so every visitor sees the same cutoff moment.
+    var DEADLINE = new Date('2026-07-09T23:59:59-05:00');
+    var elDays = document.getElementById('cd-days');
+    var elHours = document.getElementById('cd-hours');
+    var elMins = document.getElementById('cd-mins');
+    var elSecs = document.getElementById('cd-secs');
+    var box = document.getElementById('countdown');
+    if (!elDays || !box) return;
+
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+
+    function tick() {
+      var diff = DEADLINE.getTime() - Date.now();
+      if (diff <= 0) {
+        box.innerHTML = '<div class="relative text-center">' +
+          '<p class="inline-flex items-center gap-2 rounded-full bg-ink-900/70 border border-orange-200/20 px-4 py-1.5 text-xs font-700 uppercase tracking-[0.2em] text-orange-100/60">Offer Ended</p>' +
+          '<h3 class="mt-4 font-heading text-2xl sm:text-3xl font-700 text-white">This round of free builds has closed.</h3>' +
+          '<p class="mt-2 text-sm text-orange-100/70 max-w-xl mx-auto">Pricing is now $500/month. Reach out — we may open a few spots for serious cleaning businesses ready to grow.</p>' +
+          '<a href="#claim" class="mt-6 inline-block btn-flame rounded-xl px-8 py-3.5 text-sm font-700 text-white">🔥 Ask About Availability</a></div>';
+        return;
+      }
+      var d = Math.floor(diff / 86400000);
+      var hrs = Math.floor((diff % 86400000) / 3600000);
+      var mins = Math.floor((diff % 3600000) / 60000);
+      var secs = Math.floor((diff % 60000) / 1000);
+      elDays.textContent = d;
+      elHours.textContent = pad(hrs);
+      elMins.textContent = pad(mins);
+      elSecs.textContent = pad(secs);
+      requestAnimationFrame(function () { setTimeout(tick, 1000); });
+    }
+    tick();
+  })();
+
+  // ---------- Flame particle canvas (bright 3D glowing embers + sparkles) ----------
+  (function () {
+    var canvas  = document.getElementById('flame-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d'), w, h, flames = [], sparks = [];
+    var COLORS  = ['#FFE066', '#FACC15', '#FFA126', '#FB7227', '#F4511E', '#E11D2A'];
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+    resize(); window.addEventListener('resize', resize);
+
+    if (reduced) {
+      var g = ctx.createLinearGradient(0, h, 0, h * 0.5);
+      g.addColorStop(0, 'rgba(225,29,42,0.18)'); g.addColorStop(1, 'rgba(10,6,6,0)');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+      return;
+    }
+
+    // Pre-rendered glow sprites — one per color — for bright, performant 3D embers
+    var sprites = COLORS.map(function (c) {
+      var s = document.createElement('canvas'); s.width = s.height = 64;
+      var sc = s.getContext('2d');
+      var rg = sc.createRadialGradient(32, 32, 0, 32, 32, 32);
+      rg.addColorStop(0, c); rg.addColorStop(0.35, c); rg.addColorStop(1, 'rgba(0,0,0,0)');
+      sc.fillStyle = rg; sc.beginPath(); sc.arc(32, 32, 32, 0, Math.PI * 2); sc.fill();
+      return s;
+    });
+    var sparkSprite = (function () {
+      var s = document.createElement('canvas'); s.width = s.height = 16;
+      var sc = s.getContext('2d');
+      var rg = sc.createRadialGradient(8, 8, 0, 8, 8, 8);
+      rg.addColorStop(0, '#fffbe6'); rg.addColorStop(0.4, '#FFD56A'); rg.addColorStop(1, 'rgba(255,160,40,0)');
+      sc.fillStyle = rg; sc.beginPath(); sc.arc(8, 8, 8, 0, Math.PI * 2); sc.fill();
+      return s;
+    })();
+
+    function spawnFlame() {
+      return { x: Math.random() * w, y: h + Math.random() * 40, r: 4 + Math.random() * 11,
+        vy: 0.5 + Math.random() * 1.9, vx: (Math.random() - 0.5) * 0.6, life: 0,
+        ttl: 120 + Math.random() * 170, sprite: (Math.random() * sprites.length) | 0,
+        flick: Math.random() * Math.PI * 2, flickSpd: 0.12 + Math.random() * 0.22 };
+    }
+    function spawnSpark() {
+      return { x: Math.random() * w, y: h + Math.random() * 30, r: 0.8 + Math.random() * 2.2,
+        vy: 1.2 + Math.random() * 2.8, vx: (Math.random() - 0.5) * 1.2, life: 0,
+        ttl: 60 + Math.random() * 120, tw: Math.random() * Math.PI * 2, twSpd: 0.2 + Math.random() * 0.4 };
+    }
+
+    var mobile = window.innerWidth < 640;
+    var FCOUNT = mobile ? 45 : 90, SCOUNT = mobile ? 25 : 55;
+    for (var i = 0; i < FCOUNT; i++) { var p = spawnFlame(); p.y = Math.random() * h; flames.push(p); }
+    for (var j = 0; j < SCOUNT; j++) { var s2 = spawnSpark(); s2.y = Math.random() * h; sparks.push(s2); }
+
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (var k = 0; k < flames.length; k++) {
+        var q = flames[k];
+        q.life++; q.flick += q.flickSpd;
+        q.y -= q.vy; q.x += q.vx + Math.sin(q.life * 0.03) * 0.4;
+        var t = q.life / q.ttl;
+        var flicker = 0.78 + Math.sin(q.flick) * 0.22;
+        var alpha = Math.max(0, 1 - t) * 0.62 * flicker;
+        var size = q.r * (1 - t * 0.35) * (0.9 + Math.sin(q.flick) * 0.12);
+        ctx.globalAlpha = alpha;
+        ctx.drawImage(sprites[q.sprite], q.x - size, q.y - size, size * 2, size * 2);
+        if (q.life >= q.ttl || q.y < -30) flames[k] = spawnFlame();
+      }
+      for (var m = 0; m < sparks.length; m++) {
+        var e = sparks[m];
+        e.life++; e.tw += e.twSpd;
+        e.y -= e.vy; e.x += e.vx + Math.sin(e.life * 0.08) * 0.6;
+        var et = e.life / e.ttl;
+        var twinkle = Math.max(0, Math.sin(e.tw)) * Math.max(0, 1 - et);
+        var es = e.r * (1.6 + Math.sin(e.tw) * 0.5);
+        ctx.globalAlpha = twinkle;
+        ctx.drawImage(sparkSprite, e.x - es, e.y - es, es * 2, es * 2);
+        if (e.life >= e.ttl || e.y < -20) sparks[m] = spawnSpark();
+      }
+      ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+      requestAnimationFrame(frame);
+    }
+    frame();
+  })();
+</script>
+
+</body>
+</html>

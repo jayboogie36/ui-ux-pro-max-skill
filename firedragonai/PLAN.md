@@ -1,0 +1,140 @@
+# Fire Dragon AI — Landing Page Plan & Design System
+
+> AI-powered growth studio. We build a **free website** as the lead magnet, then construct
+> **funnels, landing pages, and AI booking** for online fitness coaches, small gyms, and
+> cleaning businesses — so they focus on training and cleaning.
+
+**Brand:** Fire Dragon AI · **Web:** www.firedragonai.com · **Email:** info@firedragonai.com · **Phone:** 312.515.6882 · **HQ:** Chicago, IL
+
+---
+
+## 1. Strategy
+
+| Lever | Decision | Why |
+|-------|----------|-----|
+| **Primary goal** | One conversion: *Claim Free Website* form submit | A single primary CTA per page outperforms competing CTAs (UX rule `primary-action`). |
+| **Lead magnet** | The free website itself | Removes price objection; the offer IS the hook. |
+| **Positioning** | Specialist, not generalist | Three named niches (coaches / gyms / cleaners) make the copy feel "for me." |
+| **Emotional promise** | "You focus on training & cleaning. We handle growth." | Sells time and relief, not features. |
+| **Proof** | Testimonials + stat cards before the CTA | Social proof before the ask lifts conversion (landing pattern below). |
+
+### Landing pattern (from `ui-ux-pro-max --domain landing`)
+Hybrid of two proven patterns the skill returned:
+- **Lead Magnet + Form** → hero benefit headline → magnet preview → ≤3-field form.
+- **Hero + Testimonials + CTA** → social proof seated directly before the conversion block.
+
+**Final section order:** Nav → Hero → Trust marquee → Problem → Services → Who It's For → Process → Testimonials → **Claim CTA (form)** → FAQ → Footer.
+Form kept to **3 fields** (name, email, business type) — the skill's conversion note: *form fields ≤ 3 for best conversion.*
+
+---
+
+## 2. Visual Design System
+
+### Style — "Ember Dark" (Dark Mode OLED + Kinetic Brutalism energy)
+Dark-primary, high-contrast, bold display type, motion-driven. Sourced from the skill's
+`Dark Mode (OLED)` (WCAG AAA, excellent performance) blended with the bold/kinetic energy of
+`Kinetic Brutalism`.
+
+### Color palette — Fire Dragon brand (overrides the auto-picked pink)
+Pulled to match the dragon logo's flames. On a near-black base for max contrast.
+
+| Role | Hex | Usage |
+|------|-----|-------|
+| Background | `#0a0606` | Near-black (avoids pure #000 OLED smear) |
+| Surface (elevated) | `#1b0f0d` | Cards, inputs |
+| Ember Yellow | `#FACC15` | Top of flame gradient, stars, highlights |
+| Ember Orange | `#FB7227` | **Primary accent**, icons, links |
+| Ember Flame | `#F4511E` | Mid-gradient |
+| Ember Red | `#E11D2A` | CTA gradient base, deep accents |
+| Ember Deep | `#9A1B0E` | Shadows, glows |
+| Foreground | `#FFF4ED` (orange-50) | Body text on dark — passes 4.5:1+ |
+
+**Flame gradient** (logo DNA): `linear-gradient(180deg, #FFE259 0%, #FB7227 45%, #E11D2A 100%)` — used on display headlines and the CTA button.
+
+### Typography (from `ui-ux-pro-max --domain typography` → "Bold Statement" + "Tech Startup")
+- **Display:** `Bebas Neue` — oversized all-caps hero/section headlines (agency/marketing best-fit).
+- **Heading:** `Space Grotesk` — sub-headlines, card titles (tech/startup character).
+- **Body:** `Inter` — highly readable at 16px+, line-height 1.5–1.75.
+
+### Effects
+- Live **flame particle canvas** rising from the bottom (orange→red→yellow embers), `globalCompositeOperation: 'lighter'` for glow.
+- **Floating 3D cards** (`rotateX/Y` + translateY, `transform-style: preserve-3d`).
+- Rotating dashed **orb ring** around the dragon emblem with radial glow.
+- **Glassmorphism** cards (blur 14px, warm 1px border) on the dark base.
+- Scroll-reveal via `IntersectionObserver`; infinite trust marquee.
+
+---
+
+## 3. Accessibility & Performance (skill Quick Reference §1–§7)
+- ✅ `prefers-reduced-motion`: disables canvas animation, floats, marquee, and reveals → renders a static glow instead.
+- ✅ Contrast: warm-white body text on `#0a0606` exceeds 4.5:1; large display type exceeds 3:1.
+- ✅ Visible `:focus-visible` rings (ember orange) for keyboard nav.
+- ✅ Touch targets ≥ 44px; semantic inputs (`type=email`, `tel:` / `mailto:` links) with visible labels.
+- ✅ Animations use `transform`/`opacity` only (no layout thrash); easing `cubic-bezier(.16,1,.3,1)`.
+- ✅ Responsive at 375 / 768 / 1024 / 1440; `min-h-dvh` hero; no horizontal scroll.
+- ✅ SVG icons (no emoji as structural icons); logo used at correct proportions.
+
+---
+
+## 4. What's in this folder
+```
+firedragonai/
+├── index.html          # Main landing page (homepage / overview)
+├── coaches.html        # Niche funnel — online fitness coaches
+├── gyms.html           # Niche funnel — small gyms & studios
+├── cleaners.html       # Niche funnel — cleaning businesses (instant-quote calculator)
+├── assets/
+│   ├── logo-dragon.png    # Circular dragon emblem
+│   ├── logo-wordmark.png  # "Fire Dragon AI" wordmark
+│   ├── hero-flames.mp4    # Seamlessly-looping procedural flame video (hero bg)
+│   ├── hero-poster.jpg    # Poster frame (shown before video loads / reduced-motion)
+│   ├── make_flames.py     # Generator script (re-run to tweak the flame look)
+│   ├── brand.css          # Shared Ember Dark styles (used by niche pages)
+│   ├── brand.js           # Shared behaviour: reveal, flame canvas, hero video, lead form
+│   └── tw-config.js       # Shared Tailwind CDN config (brand tokens)
+├── PLAN.md             # This document
+└── PROMPT.md           # Copy-paste master prompt for Claude / Claude Code
+```
+
+### Niche funnel pages
+Three dedicated, conversion-focused landing pages share the design system via
+`assets/brand.{css,js}` + `tw-config.js`, each with its own funnel copy and a single primary
+action. The homepage "Who It's For" cards deep-link into them.
+
+| Page | Headline angle | Conversion mechanism |
+|------|----------------|----------------------|
+| `coaches.html` | "Stop chasing DMs. Fill your roster." | Application-funnel lead form |
+| `gyms.html` | "Empty classes? Not anymore." | Trial-class lead form |
+| `cleaners.html` | "Turn 'how much?' into booked jobs." | **Live instant-quote calculator** → lead capture |
+
+**Instant-quote calculator** (`cleaners.html`): pick clean type (base price), bedrooms (+$20),
+bathrooms (+$25), and frequency (one-time → weekly with up to 20% off). It computes a rounded
+`$low–$high` range live as a demo of the exact funnel we build, then captures the lead with the
+quote string included. Pricing constants are at the top of the inline script — fully configurable.
+
+Each niche page has its own `window.FORMSPREE_ID` slot (commented in `<head>`) so you can route
+coach / gym / cleaner leads to separate Formspree inboxes.
+
+### Hero flame video
+A real, GPU-free looping flame video sits behind the hero (`opacity ~0.42`), with a radial
+scrim for headline legibility. It degrades gracefully: **video → poster image → live ember
+canvas**. Under `prefers-reduced-motion` the video is paused and the static poster shows at low
+opacity. Regenerate the look anytime with `python3 assets/make_flames.py`. To swap in a
+nano-banana / AI-generated clip, just replace `assets/hero-flames.mp4` (and the poster).
+
+### Lead form → real endpoint
+The form POSTs to **Formspree** via `fetch` with loading / success / error states, inline
+validation, and a honeypot anti-spam field. **One-line activation:** create a free form at
+formspree.io (use info@firedragonai.com) and paste the ID into `FORMSPREE_ID` in `index.html`.
+Until then it runs in a safe demo mode. Swappable for HubSpot/Web3Forms by changing the endpoint.
+
+**Preview locally:** open `index.html` in a browser, or `cd firedragonai && python3 -m http.server 8000` → http://localhost:8000
+
+---
+
+## 5. Before launch (swap placeholders)
+1. Replace the 3 illustrative testimonials with real client quotes + photos.
+2. ✅ Form wired to Formspree — just paste your `FORMSPREE_ID` in `index.html` to go live.
+3. ✅ Hero flame video added (`assets/hero-flames.mp4`) — optionally replace with a nano-banana clip.
+4. Add favicon + real OG share image; verify the `og:image` tag.
+5. Connect booking (Calendly / GoHighLevel) behind the CTA.
