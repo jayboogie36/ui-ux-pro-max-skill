@@ -1,8 +1,8 @@
 # Fire Dragon AI — Landing Page Plan & Design System
 
-> AI-powered growth studio. We build a **free website** as the lead magnet, then construct
-> **funnels, landing pages, and AI booking** for online fitness coaches, small gyms, and
-> cleaning businesses — so they focus on training and cleaning.
+> AI-powered growth studio for **cleaning businesses**. We build a **free website** as the
+> lead magnet, then add **instant-quote, AI booking, and online payments** ($250/month) — so
+> owners focus on cleaning while the system quotes, books, and gets them paid.
 
 **Brand:** Fire Dragon AI · **Web:** www.firedragonai.com · **Email:** info@firedragonai.com · **Phone:** 312.515.6882 · **HQ:** Chicago, IL
 
@@ -14,8 +14,8 @@
 |-------|----------|-----|
 | **Primary goal** | One conversion: *Claim Free Website* form submit | A single primary CTA per page outperforms competing CTAs (UX rule `primary-action`). |
 | **Lead magnet** | The free website itself | Removes price objection; the offer IS the hook. |
-| **Positioning** | Specialist, not generalist | Three named niches (coaches / gyms / cleaners) make the copy feel "for me." |
-| **Emotional promise** | "You focus on training & cleaning. We handle growth." | Sells time and relief, not features. |
+| **Positioning** | Specialist, not generalist | Built exclusively for cleaning businesses — the copy feels "for me." |
+| **Emotional promise** | "You focus on cleaning. We handle growth." | Sells time and relief, not features. |
 | **Proof** | Testimonials + stat cards before the CTA | Social proof before the ask lifts conversion (landing pattern below). |
 
 ### Landing pattern (from `ui-ux-pro-max --domain landing`)
@@ -23,8 +23,8 @@ Hybrid of two proven patterns the skill returned:
 - **Lead Magnet + Form** → hero benefit headline → magnet preview → ≤3-field form.
 - **Hero + Testimonials + CTA** → social proof seated directly before the conversion block.
 
-**Final section order:** Nav → Hero → Trust marquee → Problem → Services → Who It's For → Process → Testimonials → **Claim CTA (form)** → FAQ → Footer.
-Form kept to **3 fields** (name, email, business type) — the skill's conversion note: *form fields ≤ 3 for best conversion.*
+**Final section order:** Nav → Hero → Trust marquee → Quote demo → Services → Process → Testimonials → Pricing (+ countdown) → About/Founder → **Claim CTA (form)** → FAQ → Footer.
+Form kept lean (name, phone, email, service area) + hidden fields (`niche`, `source`, `_subject`, honeypot) — the skill's conversion note: *keep visible fields minimal for best conversion.*
 
 ---
 
@@ -79,41 +79,43 @@ Pulled to match the dragon logo's flames. On a near-black base for max contrast.
 ## 4. What's in this folder
 ```
 firedragonai/
-├── index.html          # Main landing page (homepage / overview)
-├── coaches.html        # Niche funnel — online fitness coaches
-├── gyms.html           # Niche funnel — small gyms & studios
-├── cleaners.html       # Niche funnel — cleaning businesses (instant-quote calculator)
+├── index.html          # Main landing page (homepage)
+├── cleaners.html       # Cleaning quote funnel (instant-quote calculator)
+├── pricing.html        # Pricing — free site + $250/mo booking automation
+├── onboarding.html     # Post-purchase intake (uploads, Client ID, confirmation)
+├── custom.html         # Client-only DFY funnel (noindex; custom builds, SaaS, white-label)
+├── privacy.html        # Privacy policy
 ├── assets/
 │   ├── logo-dragon.png    # Circular dragon emblem
 │   ├── logo-wordmark.png  # "Fire Dragon AI" wordmark
+│   ├── founder-photo.jpg  # Jason — founder headshot (About section)
 │   ├── hero-flames.mp4    # Seamlessly-looping procedural flame video (hero bg)
 │   ├── hero-poster.jpg    # Poster frame (shown before video loads / reduced-motion)
 │   ├── make_flames.py     # Generator script (re-run to tweak the flame look)
-│   ├── brand.css          # Shared Ember Dark styles (used by niche pages)
+│   ├── brand.css          # Shared Ember Dark styles
 │   ├── brand.js           # Shared behaviour: reveal, flame canvas, hero video, lead form
+│   ├── tracking.js        # Meta/GA conversion-tracking helpers
 │   └── tw-config.js       # Shared Tailwind CDN config (brand tokens)
 ├── PLAN.md             # This document
 └── PROMPT.md           # Copy-paste master prompt for Claude / Claude Code
 ```
 
-### Niche funnel pages
-Three dedicated, conversion-focused landing pages share the design system via
-`assets/brand.{css,js}` + `tw-config.js`, each with its own funnel copy and a single primary
-action. The homepage "Who It's For" cards deep-link into them.
+### Cleaning quote funnel
+`cleaners.html` shares the design system via `assets/brand.{css,js}` + `tw-config.js`, with its
+own funnel copy and a single primary action. The homepage deep-links into it.
 
 | Page | Headline angle | Conversion mechanism |
 |------|----------------|----------------------|
-| `coaches.html` | "Stop chasing DMs. Fill your roster." | Application-funnel lead form |
-| `gyms.html` | "Empty classes? Not anymore." | Trial-class lead form |
 | `cleaners.html` | "Turn 'how much?' into booked jobs." | **Live instant-quote calculator** → lead capture |
 
-**Instant-quote calculator** (`cleaners.html`): pick clean type (base price), bedrooms (+$20),
-bathrooms (+$25), and frequency (one-time → weekly with up to 20% off). It computes a rounded
-`$low–$high` range live as a demo of the exact funnel we build, then captures the lead with the
-quote string included. Pricing constants are at the top of the inline script — fully configurable.
+**Instant-quote calculator** (`cleaners.html` + the homepage demo): pick clean type (base price),
+bedrooms (+$20), bathrooms (+$25), and frequency (one-time → weekly with up to 20% off). It
+computes a rounded `$low–$high` range live, then captures the lead with the quote string
+included. The homepage demo also includes a mock booking calendar. Pricing constants are at the
+top of the inline script — fully configurable.
 
-Each niche page has its own `window.FORMSPREE_ID` slot (commented in `<head>`) so you can route
-coach / gym / cleaner leads to separate Formspree inboxes.
+Both forms route to one Formspree inbox; a hidden `source` field (`homepage-lead-form` vs
+`cleaners-quote-form`) and per-page `_subject` line make leads triageable at a glance.
 
 ### Hero flame video
 A real, GPU-free looping flame video sits behind the hero (`opacity ~0.42`), with a radial
@@ -123,18 +125,20 @@ opacity. Regenerate the look anytime with `python3 assets/make_flames.py`. To sw
 nano-banana / AI-generated clip, just replace `assets/hero-flames.mp4` (and the poster).
 
 ### Lead form → real endpoint
-The form POSTs to **Formspree** via `fetch` with loading / success / error states, inline
-validation, and a honeypot anti-spam field. **One-line activation:** create a free form at
-formspree.io (use info@firedragonai.com) and paste the ID into `FORMSPREE_ID` in `index.html`.
-Until then it runs in a safe demo mode. Swappable for HubSpot/Web3Forms by changing the endpoint.
+The form POSTs to **Formspree** (`xykqyalo`) via `fetch` with loading / success / error states,
+inline validation, a 12s timeout, and a honeypot anti-spam field. If the endpoint is ever
+unset, it routes users to email/phone instead of faking success. **Activation:** submit once on
+the live site and click Formspree's confirmation email (sent to info@firedragonai.com).
+Swappable for HubSpot/Web3Forms by changing the endpoint.
 
 **Preview locally:** open `index.html` in a browser, or `cd firedragonai && python3 -m http.server 8000` → http://localhost:8000
 
 ---
 
-## 5. Before launch (swap placeholders)
-1. Replace the 3 illustrative testimonials with real client quotes + photos.
-2. ✅ Form wired to Formspree — just paste your `FORMSPREE_ID` in `index.html` to go live.
+## 5. Before launch
+1. ✅ Real testimonials in place (Candice P. · Carmela) + founder photo.
+2. ✅ Form wired to Formspree (`xykqyalo`) — submit once + click the confirmation email to activate.
 3. ✅ Hero flame video added (`assets/hero-flames.mp4`) — optionally replace with a nano-banana clip.
 4. Add favicon + real OG share image; verify the `og:image` tag.
-5. Connect booking (Calendly / GoHighLevel) behind the CTA.
+5. Set `ONBOARD_ENDPOINT` in `onboarding.html`; attorney review of `CONTRACT-TEMPLATE.md` + `privacy.html`.
+6. Point the domain + wildcard `*.firedragonai.com` DNS for the free-subdomain hosting.
