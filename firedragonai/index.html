@@ -1113,40 +1113,72 @@
     // Update this to your $299/month Stripe Payment Link when ready
     var STRIPE_BOOKING = 'https://buy.stripe.com/8x29ATbmj82dcI7egq8g001';
 
-    var modal   = document.getElementById('upsell-modal');
-    var yesBtn  = document.getElementById('upsell-yes');
-    var noBtn   = document.getElementById('upsell-no');
+    var modal    = document.getElementById('upsell-modal');
+    var yesBtn   = document.getElementById('upsell-yes');
+    var noBtn    = document.getElementById('upsell-no');
     var closeBtn = document.getElementById('upsell-close');
     var backdrop = document.getElementById('upsell-backdrop');
     if (!modal) return;
 
     if (yesBtn) yesBtn.href = STRIPE_BOOKING;
 
-    function openModal() {
+    var fromForm    = false; // whether modal was triggered by the form submit button
+    var bypassModal = false; // lets "No thanks" re-submit without re-triggering modal
+
+    function openModal(isForm) {
+      fromForm = !!isForm;
       modal.style.display = 'flex';
       document.body.style.overflow = 'hidden';
     }
     function closeModal() {
       modal.style.display = 'none';
       document.body.style.overflow = '';
+      fromForm = false;
     }
 
-    // Event delegation — catches dynamically rendered buttons too (e.g. expired-state CTA)
+    // 1. Intercept all #claim anchor links (nav, hero, pricing card, sticky bar, countdown, etc.)
+    //    Uses event delegation so it catches buttons rendered dynamically (e.g. expired-state CTA)
     document.addEventListener('click', function (e) {
       var a = e.target.closest('a');
       if (!a) return;
       if (a.getAttribute('href') !== '#claim') return;
-      // When offer has ended, skip modal and scroll straight to form
-      if (window._fdOfferActive && !window._fdOfferActive()) return;
+      if (window._fdOfferActive && !window._fdOfferActive()) return; // offer ended — skip
       e.preventDefault();
-      openModal();
+      openModal(false);
     });
 
+    // 2. Intercept the "Build My Free Website" form submit button in the #claim section.
+    //    Runs in capture phase so it fires BEFORE the Formspree handler.
+    //    Validates first — if the form is invalid, let Formspree show the native error UI.
+    var leadForm = document.getElementById('lead-form');
+    if (leadForm) {
+      leadForm.addEventListener('submit', function (e) {
+        if (bypassModal) return;                                    // re-dispatch from "No thanks" — let through
+        if (window._fdOfferActive && !window._fdOfferActive()) return; // offer ended — let Formspree handle
+        if (!leadForm.checkValidity()) return;                      // invalid — let Formspree show errors
+        if (leadForm._gotcha && leadForm._gotcha.value) return;     // bot — let Formspree discard silently
+        e.preventDefault();
+        e.stopImmediatePropagation(); // block Formspree handler until user decides
+        openModal(true);
+      }, true /* capture phase */);
+    }
+
+    // 3. "No thanks" — proceed with whichever path triggered the modal
     if (noBtn) noBtn.addEventListener('click', function () {
+      var wasForm = fromForm;
       closeModal();
-      var target = document.getElementById('claim');
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
+      if (wasForm) {
+        // Re-fire submit, bypassing the upsell interceptor so Formspree takes over
+        bypassModal = true;
+        var form = document.getElementById('lead-form');
+        if (form) form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+        bypassModal = false;
+      } else {
+        var target = document.getElementById('claim');
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      }
     });
+
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
     if (backdrop) backdrop.addEventListener('click', closeModal);
     document.addEventListener('keydown', function (e) {
