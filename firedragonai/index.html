@@ -224,8 +224,8 @@
       </div>
     </div>
 
-    <!-- 3D floating stat cards -->
-    <div class="lg:col-span-5 relative h-[400px] sm:h-[500px]">
+    <!-- 3D floating stat cards (cards show on lg+ where the 2-col layout has room) -->
+    <div class="lg:col-span-5 relative h-[280px] sm:h-[360px] lg:h-[500px]">
       <div class="orb absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         <div class="relative">
           <div class="orb-ring absolute -inset-6 rounded-full border border-dashed border-ember-orange/30"></div>
@@ -233,15 +233,15 @@
           <img src="assets/logo-dragon.png" alt="Fire Dragon AI" class="relative h-52 w-52 sm:h-64 sm:w-64 rounded-full ring-2 ring-ember-orange/40 shadow-2xl" />
         </div>
       </div>
-      <div class="float-3d glass absolute top-6 right-0 rounded-2xl px-5 py-4 w-44">
+      <div class="float-3d glass absolute top-6 right-0 rounded-2xl px-5 py-4 w-44 hidden lg:block">
         <div class="font-display text-4xl text-flame leading-none">$0</div>
         <div class="mt-1 text-xs text-orange-100/70">to launch your website</div>
       </div>
-      <div class="float-3d delay-1 glass absolute bottom-8 left-0 rounded-2xl px-5 py-4 w-48">
+      <div class="float-3d delay-1 glass absolute bottom-8 left-0 rounded-2xl px-5 py-4 w-48 hidden lg:block">
         <div class="font-display text-3xl text-white leading-none">&lt;60s</div>
         <div class="mt-1 text-xs text-orange-100/70">to get a quote &amp; book</div>
       </div>
-      <div class="float-3d delay-2 glass absolute bottom-1 right-0 rounded-2xl px-4 py-3 flex items-center gap-3">
+      <div class="float-3d delay-2 glass absolute bottom-1 right-0 rounded-2xl px-4 py-3 hidden lg:flex items-center gap-3">
         <span class="h-9 w-9 grid place-items-center rounded-xl bg-ember-orange/20 text-ember-orange">
           <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
         </span>
